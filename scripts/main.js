@@ -1,31 +1,53 @@
-var actor = function (id, fullName, baptismDate, birthYear, birthPlace, deathYear, gender, occupation, firstAppearance, firstParentID, secondParentID, spouseID, firstGodParentID, secondGodParentID) {
-    this.ID = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.fullName = fullName;
-    this.baptismDate = baptismDate;
-    this.birthYear = birthYear;
-    this.birthPlace = birthPlace;
-    this.deathYear = deathYear;
-    this.gender = gender;
-    this.occupation = occupation;
-    this.firstAppearance = firstAppearance;
-    this.firstParentID = firstParentID;
-    this.secondParentID = secondParentID;
-    this.firstGodParentID = firstGodParentID;
-    this.secondGodParentID = secondGodParentID;
+var NAME_LABEL = "Name"
+var MARRIAGE_LABEL = "Marriage"
+var BAPTISM_LABEL = "Baptism"
+var FUNERAL_LABEL = "Funeral"
+var OFFSPRING_LABEL = "Offspring"
 
-    this.spouseID = spouseID;
+
+//  var ActorFinal = function (id, fullName, baptismDate, birthYear, birthPlace, deathYear, gender, occupation, firstAppearance, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList) {
+//     this.ID = id;
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.fullName = fullName;
+//     this.baptismDate = baptismDate;
+//     this.birthYear = birthYear;
+//     this.birthPlace = birthPlace;
+//     this.deathYear = deathYear;
+//     this.gender = gender;
+//     this.occupation = occupation;
+//     this.firstAppearance = firstAppearance;
+//     this.firstParent = firstParent;
+//     this.secondParent = secondParent;
+//     this.firstGodParent = firstGodParent;
+//     this.secondGodParent = secondGodParent;
+//     this.offSpringList = offSpringList;
+//
+//     this.spouse = spouse;
+// };
+
+
+
+
+var Actor = function (id, fullName, firstParent, secondParent, spouse, offSpringList) {
+    this.ID = id;
+    this.fullName = fullName;
+    this.firstParent = firstParent;
+    this.secondParent = secondParent;
+    this.offSpringList = offSpringList;
+
+    this.spouse = spouse;
 };
 
-
-var tie = function (actorID1, tieType, actorID2, tieStartYear, tieEndYear) {
+var Tie = function (actorID1, tieType, actorID2, tieStartYear, tieEndYear) {
     this.actorID1 = actorID1;
     this.actorID2 = actorID2;
     this.tieType = tieType;
     this.tieStartYear = tieStartYear;
     this.tieEndYear = tieEndYear;
 };
+
+var actorList = [];
 
 
 function getJSON(id) {
@@ -34,7 +56,7 @@ function getJSON(id) {
     var url = "//projectcornelia.be/source_browser/public/router.php";
     var params = "q=" + id + "&s=ALL-SOURCES&w=search-by-option";
 
-    // TODO: now synchronous call. to be changed to async
+    // TODO: now synchronous call. to be fixed
     http.open("POST", url, false);
 
 //Send the proper header information along with the request
@@ -48,107 +70,187 @@ function getJSON(id) {
     http.send(params);
     return (myActorData);
 
-
 }
 
-function parseJSON(id, actorJSON) {
 
+function parseJSON(id, actorJSON) {
     var myActorData;
     console.log(actorJSON);
 
     // TODO: convert to date object
-    // TODO: Functions for JSON parsing
-
 
     var actorFullName = getFullNameFromJSON(actorJSON);
 
-    var firstParentID = getFirstParentFromJSON(actorJSON);
-    var secondParentID = getSecondParentFromJSON(actorJSON);
+    var firstParent = getFirstParentFromJSON(actorJSON);
+    var secondParent = getSecondParentFromJSON(actorJSON);
 
-    var firstGodParentID = getFirstGodParentFromJSON(actorJSON);
-    var secondGodParentID = getSecondGodParentFromJSON(actorJSON);
+    // var firstGodParent = getFirstGodParentFromJSON(actorJSON);
+    // var secondGodParent = getSecondGodParentFromJSON(actorJSON);
+    //
+    // var actorBaptismDate = getBaptismDate(actorJSON);
+    // var actorBaptismPlace = getBaptismPlace(actorJSON);
+    // var actorBaptismSource = getBaptismSource(actorJSON);
+    //
+    // var actorFuneralDate = getFuneralDate(actorJSON);
 
-    var actorBaptismDate = getBaptismDate(actorJSON);
-    var actorBaptismPlace = getBaptismPlace(actorJSON);
-    var actorBaptismSource = getBaptismSource(actorJSON);
+    var actorSpouse = getSpouseID(actorJSON);
 
-    var actorSpouseID = getSpouseID(actorJSON);
-    // var offspringList = getOffspringList(actorJSON);
+    var offSpringList = getOffspringList(actorJSON);
 
-    console.log(actorFullName, actorBaptismDate, firstParentID, secondParentID,
-        firstGodParentID, secondGodParentID,
-        actorBaptismPlace, actorBaptismSource,actorSpouseID)
+    var centralActor = new Actor(id, actorFullName, firstParent, secondParent, actorSpouse, offSpringList)
 
-    // myActorData = new actor(id, )
+    if (firstParent || secondParent) {
+        createParentTies(centralActor);
+    }
 
+    actorList.push(centralActor);
+
+    console.log(actorList);
 
     return myActorData;
 
 }
 
 function getFullNameFromJSON(json) {
-    var fullName = json[0].data[0][0].text;
+    var element = checkLabelExistence(NAME_LABEL, json);
+    if (!element) return null;
+    var fullName = element.data[0][0].text;
     if (fullName) {
         return (fullName);
     }
 }
-
 function getFirstParentFromJSON(json) {
-    var firstParentID = json[2].data.parents.data[0]["query-value"];
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
+    var firstParentID = parseInt(element.data.parents.data[0]["query-value"]);
+    var firstParentName = element.data.parents.data[0]["query-text"];
     if (firstParentID) {
-        return (firstParentID);
+        var thisFirstParent = new Actor(firstParentID, firstParentName);
+        actorList.push(thisFirstParent);
+        return (thisFirstParent);
     }
 }
-
 function getSecondParentFromJSON(json) {
-    var secondParentID = json[2].data.parents.data[2]["query-value"];
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
+    var secondParentID = parseInt(element.data.parents.data[2]["query-value"]);
+    var secondParentName = element.data.parents.data[2]["query-text"];
     if (secondParentID) {
-        return (secondParentID);
+        var thisSecondParent = new Actor(secondParentID, secondParentName);
+        actorList.push(thisSecondParent);
+        return (thisSecondParent);
     }
 }
-
-
 function getFirstGodParentFromJSON(json) {
-    var firstGodParentID = json[2].data.godparents.data[0]["query-value"];
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
+    var firstGodParentID = element.data.godparents.data[0]["query-text"];
     if (firstGodParentID) {
         return (firstGodParentID);
     }
 }
-
 function getSecondGodParentFromJSON(json) {
-    var secondGodParentID = json[2].data.godparents.data[2]["query-value"];
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
+    var secondGodParentID = element.data.godparents.data[2]["query-text"];
     if (secondGodParentID) {
         return (secondGodParentID);
     }
 }
+function getBaptismPlace(json) {
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
 
-function getBaptismPlace(json){
-    var baptismPlace = json[2].value;
+    var baptismPlace = element.value;
     if (baptismPlace) {
         return (baptismPlace);
     }
 }
-function getBaptismDate(json){
-    var baptismDate = json[2].data.place.data[0].text;
+function getBaptismDate(json) {
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
+
+    var baptismDate = element.data.place.data[0].text;
     if (baptismDate) {
         return (baptismDate);
     }
 }
-function getBaptismSource(json){
-    var baptismSource = json[2].data.source.data[0].text;
+function getBaptismSource(json) {
+    var element = checkLabelExistence(BAPTISM_LABEL, json);
+    if (!element) return null;
+
+    var baptismSource = element.data.source.data[0].text;
     if (baptismSource) {
         return (baptismSource);
     }
 }
+function getSpouseID(json) {
+    var element = checkLabelExistence(MARRIAGE_LABEL, json);
+    if (!element) return null;
+    var spouseID = parseInt(element.data[0].data.spouse.data[0]["query-value"]);
+    var spouseName = element.data[0].data.spouse.data[0]["query-text"];
 
-function getSpouseID(json){
-    var spouseID = json[3].data[0].data.spouse.data[0]["query-value"];
     if (spouseID) {
-        return (spouseID);
+        var thisSpouse = new Actor(spouseID, spouseName);
+        actorList.push(thisSpouse);
+        return (thisSpouse);
+    }
+}
+function getFuneralDate(json) {
+    var element = checkLabelExistence(FUNERAL_LABEL, json);
+    if (!element) return null;
+
+    var funeralDate = element.value;
+    if (funeralDate) {
+        return (funeralDate);
+    }
+}
+function getOffspringList(json) {
+    var element = checkLabelExistence(OFFSPRING_LABEL, json);
+    if (!element) return null;
+
+    var rawOffspringArray = element.data.offsprings.data;
+
+    if (rawOffspringArray) {
+        var offSpringNameList = [];
+        var offSpringList = [];
+        for (var i = 0; i < rawOffspringArray.length; i++) {
+            if (rawOffspringArray[i]["query-type"] === "actor") {
+                var thisChildID = parseInt(rawOffspringArray[i]["query-value"]);
+                var thisChild = new Actor(thisChildID);
+                if (rawOffspringArray[i + 2]["query-type"] === "year") {
+                    var thisChildName = rawOffspringArray[i]["query-text"];
+                    thisChild.fullName = thisChildName
+                }
+                offSpringList.push(thisChild);
+                actorList.push(thisChild);
+            }
+        }
+        return (offSpringList);
     }
 }
 
+function createParentTies(actor) {
+    console.log(actor)
+    return null;
+}
 
+
+function checkLabelExistence(label, json) {
+    var element = search(label, json);
+    if (!element || !element.data) {
+        return null;
+    } else {
+        return element;
+    }
+}
+function search(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+        if (myArray[i].label === nameKey) {
+            return myArray[i];
+        }
+    }
+}
 function getActors(id) {
     var myActorJSON = getJSON(id);
     var myActorObject = parseJSON(id, myActorJSON);
@@ -156,12 +258,14 @@ function getActors(id) {
 }
 
 
-
-
 // var result = post_to_url('//projectcornelia.be/source_browser/public/router.php', {q: '490', s: "ALL-SOURCES", w: "search-by-option"});
 // console.log(result);
 
-getActors(4);
+// getActors(4);
+// getActors(2);
+// getActors(42);
+getActors(490);
+// getActors(480);
 
 
 // function drawGraph(){}
