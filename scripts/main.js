@@ -1,8 +1,10 @@
-var NAME_LABEL = "Name"
-var MARRIAGE_LABEL = "Marriage"
-var BAPTISM_LABEL = "Baptism"
-var FUNERAL_LABEL = "Funeral"
-var OFFSPRING_LABEL = "Offspring"
+var NAME_LABEL = "Name";
+var MARRIAGE_LABEL = "Marriage";
+var BAPTISM_LABEL = "Baptism";
+var FUNERAL_LABEL = "Funeral";
+var OFFSPRING_LABEL = "Offspring";
+
+var CENTRAL_DEPTH_LEVEL = 0;
 
 //  var ActorFinal = function (id, fullName, baptismDate, birthYear, birthPlace, deathYear, gender, occupation, firstAppearance, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList) {
 //     this.ID = id;
@@ -33,7 +35,6 @@ var Node = function (id, fullName, firstParent, secondParent, spouse, offSpringL
     this.secondParent = secondParent;
     this.offSpringList = offSpringList;
     this.spouse = spouse;
-    console.log(this.ID)
     if (this.ID.includes("+")) {
         this.isActor = false;
     }
@@ -118,10 +119,10 @@ function parseJSON(id, actorJSON) {
     }
 
 
-    nodeList.push(centralActor);
+    pushActorToList(centralActor);
 
 
-    return myActorData;
+    return centralActor;
 
 }
 
@@ -141,7 +142,7 @@ function getFirstParentFromJSON(json) {
     var firstParentName = element.data.parents.data[0]["query-text"];
     if (firstParentID) {
         var thisFirstParent = new Node(firstParentID, firstParentName);
-        nodeList.push(thisFirstParent);
+        pushActorToList(thisFirstParent);
         return (thisFirstParent);
     }
 }
@@ -153,7 +154,7 @@ function getSecondParentFromJSON(json) {
     var secondParentName = element.data.parents.data[2]["query-text"];
     if (secondParentID) {
         var thisSecondParent = new Node(secondParentID, secondParentName);
-        nodeList.push(thisSecondParent);
+        pushActorToList(thisSecondParent);
         return (thisSecondParent);
     }
 }
@@ -214,7 +215,7 @@ function getSpouseID(json) {
 
     if (spouseID) {
         var thisSpouse = new Node(spouseID, spouseName);
-        nodeList.push(thisSpouse);
+        pushActorToList(thisSpouse);
         return (thisSpouse);
     }
 }
@@ -247,7 +248,7 @@ function getOffspringList(json) {
                     thisChild.fullName = thisChildName
                 }
                 offSpringList.push(thisChild);
-                nodeList.push(thisChild);
+                pushActorToList(thisChild);
             }
         }
         return (offSpringList);
@@ -261,7 +262,7 @@ function createParentsUnionNode(actor) {
     var secondParentID = relativeIDToString(actor.secondParent);
 
     var parentsMarriageNode = new Node(firstParentID + "+" + secondParentID);
-    nodeList.push(parentsMarriageNode);
+    pushActorToList(parentsMarriageNode);
 
     if (firstParentID.length > 0) {
         firstParentToMarriageTie = new Tie(firstParentID, parentsMarriageNode.ID);
@@ -280,8 +281,7 @@ function createCentralActorUnionNode(actor) {
 
     var actorSpouseID = relativeIDToString(actor.spouse);
     var actorMarriageNode = new Node(actor.ID + "+" + actorSpouseID);
-    console.log(actorMarriageNode);
-    nodeList.push(actorMarriageNode);
+    pushActorToList(actorMarriageNode);
     var actorToMarriageTie = new Tie(actor.ID, actorMarriageNode.ID);
     tieList.push(actorToMarriageTie);
 
@@ -297,6 +297,19 @@ function createCentralActorUnionNode(actor) {
         }
 
 
+    }
+}
+
+function pushActorToList(actor) {
+    var isActorInList = nodeList.filter(function (e) {
+        return e.ID === actor.ID
+    });
+    if (isActorInList.length === 0) {
+
+        nodeList.push(actor);
+    }
+    else {
+        return;
     }
 }
 
@@ -325,10 +338,47 @@ function search(nameKey, myArray) {
     }
 }
 
-function getActors(id) {
+function getCentralActor(id) {
+    var thisChild = {},
+        thisGrandChild = {};
+    var centralActor = getActorData(id);
+    if (centralActor.offSpringList) {
+        for (var i = 0; i < centralActor.offSpringList.length; i++) {
+            thisChild = getActorData(centralActor.offSpringList[i].ID);
+
+            if (thisChild.offSpringList) {
+                for (var j = 0; j < thisChild.offSpringList.length; j++) {
+                    thisGrandChild = getActorData(thisChild.offSpringList[j].ID);
+                    assignOriginParentNodeToChild(thisGrandChild, thisChild);
+                    thisChild.offSpringList[j] = thisGrandChild;
+                }
+            }
+            assignOriginParentNodeToChild(thisChild, centralActor);
+            centralActor.offSpringList[i] = thisChild;
+        }
+    }
+
+
+    console.log(centralActor);
+}
+
+function assignOriginParentNodeToChild(actor, originParent) {
+
+    if (actor.firstParent.ID = originParent.ID) {
+        actor.firstParent = originParent;
+    }
+    else if (actor.secondParent.ID = originParent.ID) {
+        actor.secondParent = originParent;
+    }
+
+}
+
+
+function getActorData(id) {
     var myActorJSON = getJSON(id);
     var myActorObject = parseJSON(id, myActorJSON);
 
+    return myActorObject;
 }
 
 function drawGraph(nodes, links) {
@@ -337,16 +387,12 @@ function drawGraph(nodes, links) {
     graph["nodes"] = nodes;
     graph["links"] = links;
 
-    console.log(graph);
-
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
-            console.log(d);
             return "" + d.ID;
         }))
         .force("charge", d3.forceManyBody().strength(-250))
         .force("center", d3.forceCenter(width / 2, height / 2));
-
 
 
     // graph.nodes.filter(function (d) {
@@ -371,23 +417,19 @@ function drawGraph(nodes, links) {
         .data(graph.nodes)
         .enter().append("g");
 
-    console.log(node);
-
 
     var rectangle = node.append("rect")
         .attr("width", function (d) {
             if (d.isActor) {
-                return 30;
+                return 60;
             }
             else return 0;
         })
         .attr("height", 6)
         .attr("x", -15)
         .attr("y", -3)
-        .attr("fill", function (d) {
-
-            return color(d.group);
-        })
+        .attr('fill', 'white')
+        .attr('stroke', 'black')
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
@@ -398,8 +440,8 @@ function drawGraph(nodes, links) {
             if (d.isActor)
                 return d.fullName;
         })
-        .attr('x', 6)
-        .attr('y', 3);
+        .attr('x', -10)
+        .attr('y', -10);
 
 
     simulation
@@ -433,30 +475,66 @@ function drawGraph(nodes, links) {
 
 function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-    // d.fx = d.x;
-    // d.fy = d.y;
+    d.fx = d.x;
+    d.fy = d.y;
 
 }
 
 function dragged(d) {
-    // d.fx = d3.event.x;
-    // d.fy = d3.event.y;
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
 }
 
 function dragended(d) {
     if (!d3.event.active) simulation.alphaTarget(0);
-    // d.fx = null;
-    // d.fy = null;
+    d.fx = null;
+    d.fy = null;
+}
+
+function traverseGraph(actor) {
+    console.log(actor);
+
+    if (actor.offSpringList) {
+        for (var i = 0; i < actor.offSpringList.length; i++) {
+            getActors(actor.offSpringList[i].ID);
+            if (actor.offSpringList[i].offSpringList) {
+                for (var j = 0; j < actor.offSpringList[i].offSpringList[j]; j++)
+                    (actor.offSpringList[i].offSpringList[j].depth = CENTRAL_DEPTH_LEVEL - 2);
+            }
+            actor.offSpringList[i].depth = CENTRAL_DEPTH_LEVEL - 1;
+
+            // console.log(getActors(actor.offSpringList[i].ID));
+
+        }
+    }
+    actor.depth = CENTRAL_DEPTH_LEVEL;
+
+    if (actor.firstParent) {
+        // getActors(actor.firstParent.ID);
+    }
+
+
+}
+
+function checkNode(a) {
+
+    if (a.offSpringList) {
+        // checkNode(a.offSpringList)
+    }
+    a.traversed = true;
+
 }
 
 
-// var result = post_to_url('//projectcornelia.be/source_browser/public/router.php', {q: '490', s: "ALL-SOURCES", w: "search-by-option"});
-// console.log(result);
-
 // getActors(4);
 // getActors(42);
-getActors(480);
-// getActors("490");
-drawGraph(nodeList, tieList);
+// getActors(480);
 
+var centralActor = getCentralActor("490");
+
+// traverseGraph(centralActor);
+
+
+console.log(nodeList);
+drawGraph(nodeList, tieList);
 
