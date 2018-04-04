@@ -4,7 +4,7 @@ beforeEach(() => {
     jest.resetModules();
     jsonConversion = require('../scripts/jsonConversion.js');
 
-})
+});
 
 test('search in an empty array doesnt return anything', () => {
         expect(jsonConversion.search("foo", [])).toBe(null);
@@ -40,7 +40,6 @@ test('when search returns object with empty data field, checklabelexistence retu
     }
 );
 
-
 test('checkLabelExistence finds label and returns expected object', () => {
     var returnedObject = {label: "Marriage", type: "list", data: "data-value", value: null};
     var testArray = [{label: "Name"}, {}, returnedObject];
@@ -48,7 +47,6 @@ test('checkLabelExistence finds label and returns expected object', () => {
     jsonConversion.search.mockReturnValueOnce(returnedObject);
     expect(jsonConversion.checkLabelExistence("Marriage", testArray)).toBe(returnedObject);
 });
-
 
 test('getActorData returns simple object with the input ID', () => {
     var expectedJSONObject = new jsonConversion.Node("id", "Full Name", null, null, null, null);
@@ -828,16 +826,13 @@ test('getActorData returns complex object with the input ID', () => {
 ;
 
 
-//
-// test('getActorData returns null the json object doesnt contain a name', ()=>{
-//     var jsonObject = [{label: "Name", type: "section", data: null, value: null},
-//         {label: "Parish Records", type: "header", data: null, value: null},
-//         {label: "Baptism", type: "collapsible", data: null, value: "27 November 1594"}];
-//
-//     jsonConversion.getJSON = jest.fn();
-//     jsonConversion.getJSON.mockReturnValueOnce(jsonObject);
-//     expect(jsonConversion.getActorData("id").toBe(null);
-// })
+test('getActorData returns null the json object doesnt contain a name', () => {
 
+    var jsonObject = [{label: "Name", type: "section", data: [], value: null},
+        {label: "Parish Records", type: "header", data: "data", value: null},
+        {label: "Baptism", type: "collapsible", data: null, value: "27 November 1594"}];
 
-
+    jsonConversion.getJSON = jest.fn();
+    jsonConversion.getJSON.mockReturnValueOnce(jsonObject);
+    expect(jsonConversion.getActorData("id")).toBe(null);
+});

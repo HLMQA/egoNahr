@@ -20,8 +20,6 @@ var Node = function (id, fullName, firstParent, secondParent, spouse, offSpringL
     else this.isActor = true;
 };
 
-
-
 var Tie = function (source, target, tieType, tieStartYear, tieEndYear) {
     this.source = source;
     this.target = target;
@@ -34,14 +32,10 @@ var nodeList = [];
 var tieList = [];
 
 
-
-
-
-
 function getJSON(id) {
     var myActorData;
     var http = new XMLHttpRequest();
-    var url = "https://projectcornelia.be/source_browser/public/router.php";
+    var url = "//projectcornelia.be/source_browser/public/router.php";
     var params = "q=" + id + "&s=ALL-SOURCES&w=search-by-option";
 
     // TODO: now synchronous call. to be fixed
@@ -57,16 +51,17 @@ function getJSON(id) {
     };
     http.send(params);
     return (myActorData);
-
 }
 
 function parseJSON(id, actorJSON) {
     var myActorData;
-    console.log(actorJSON);
 
     // TODO: convert to date object
 
     var actorFullName = getFullNameFromJSON(actorJSON);
+    if (!actorFullName){
+        return null;
+    }
 
     var firstParent = getFirstParentFromJSON(actorJSON);
     var secondParent = getSecondParentFromJSON(actorJSON);
@@ -104,8 +99,11 @@ function parseJSON(id, actorJSON) {
 
 function getFullNameFromJSON(json) {
     var element = checkLabelExistence(NAME_LABEL, json);
-    console.log(element);
-    if (!element) return null;
+    if (!element || !element.data || !element.data[0] || !element.data[0][0]) {
+        console.log(element);
+        return null;
+    }
+
     var fullName = element.data[0][0].text;
     if (fullName) {
         return (fullName);
@@ -235,7 +233,6 @@ function getOffspringList(json) {
 
 function getActorData(id) {
     var myActorJSON = exports.getJSON(id);
-    console.log(myActorJSON);
     var myActorObject = parseJSON(id, myActorJSON);
 
     return myActorObject;
@@ -282,7 +279,6 @@ function relativeIDToString(relative) {
     return relativeID;
 
 }
-
 
 
 function createParentsUnionNode(actor) {

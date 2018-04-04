@@ -2,6 +2,7 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/dist/scripts/actorManagement.js" />
         <item url="file://$PROJECT_DIR$/dist/scripts/jsonConversion.js" />
         <item url="file://$PROJECT_DIR$/dist/scripts/main.js" />
       </sourceFilesUrls>
@@ -1316,6 +1317,7 @@
       <root url="file://$PROJECT_DIR$/dist/node_modules/unique-filename/coverage/prettify.js" />
       <root url="file://$PROJECT_DIR$/dist/node_modules/unique-filename/coverage/sorter.js" />
       <root url="file://$PROJECT_DIR$/dist/node_modules/unique-filename/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/scripts/actorManagement.js" />
       <root url="file://$PROJECT_DIR$/dist/scripts/jsonConversion.js" />
       <root url="file://$PROJECT_DIR$/dist/scripts/main.js" />
     </CLASSES>
