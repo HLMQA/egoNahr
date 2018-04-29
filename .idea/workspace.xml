@@ -2,20 +2,643 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddc5100c-4d5f-4300-99be-1bb75204a0b3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/scripts/actorManagement.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/bundle.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/build/bundle.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dist/scripts/jsonConversion.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dist/scripts/jsonConversion.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dist/scripts/main.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dist/scripts/main.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/scripts/jsonConversion.js" afterPath="$PROJECT_DIR$/scripts/jsonConversion.js" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.js" afterPath="$PROJECT_DIR$/scripts/main.js" />
-      <change beforePath="$PROJECT_DIR$/tests/jsonConversion.test.js" afterPath="$PROJECT_DIR$/tests/jsonConversion.test.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/base64-js/base64js.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/base64-js/base64js.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/base64-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/base64-js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/base64-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/base64-js/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/base64-js/test/big-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/base64-js/test/big-data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/base64-js/test/convert.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/base64-js/test/convert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/base64-js/test/url-safe.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/base64-js/test/url-safe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-aes/decrypter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-aes/decrypter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-aes/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-aes/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-cipher/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-cipher/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-cipher/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-cipher/browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-cipher/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-cipher/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-des/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-des/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/browserify-des/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/browserify-des/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chrome-trace-event/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chrome-trace-event/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/chrome-trace-event/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-ecdh/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-ecdh/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-ecdh/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hash/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hash/browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/make-hash.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/md5.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hash/md5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hash/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hash/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hash/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hash/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hmac/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hmac/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/create-hmac/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/create-hmac/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/diffie-hellman/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/diffie-hellman/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/diffie-hellman/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/external-editor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/external-editor/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/external-editor/example_sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/external-editor/example_sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/external-editor/main/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/external-editor/main/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/external-editor/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/external-editor/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flow-parser/flow_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flow-parser/flow_parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/flow-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/flow-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/hash-base/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/hash-base/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/hash-base/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/hash-base/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/hash-base/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/hash-base/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inquirer/node_modules/chalk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/inquirer/node_modules/chalk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inquirer/node_modules/chalk/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/inquirer/node_modules/chalk/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inquirer/node_modules/supports-color/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/inquirer/node_modules/supports-color/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inquirer/node_modules/supports-color/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/inquirer/node_modules/supports-color/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jscodeshift/node_modules/babylon/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/jscodeshift/node_modules/babylon/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jscodeshift/node_modules/babylon/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/jscodeshift/node_modules/babylon/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jscodeshift/node_modules/babylon/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/jscodeshift/node_modules/babylon/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/md5.js/node_modules/hash-base/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/md5.js/node_modules/hash-base/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/md5.js/node_modules/hash-base/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/md5.js/node_modules/hash-base/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/p-cancelable/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/p-cancelable/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/p-cancelable/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/p-cancelable/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/parse-asn1/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/parse-asn1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/parse-asn1/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/parse-asn1/fixProc.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/parse-asn1/fixProc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/parse-asn1/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/parse-asn1/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/parse-asn1/test/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/parse-asn1/test/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/bin-prettier.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/bin-prettier.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-babylon.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-babylon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-flow.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-flow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-glimmer.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-glimmer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-graphql.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-graphql.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-markdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-markdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-parse5.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-parse5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-postcss.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-postcss.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-typescript.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-typescript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/parser-vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/prettier/parser-vue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/prettier/prettier-1.11.1.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/public-encrypt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/public-encrypt/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/appveyor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/appveyor.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/lib/async.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/lib/async.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/lib/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/lib/sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/readme.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/readme.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/test/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/test/filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/test/filter_sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/test/filter_sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/test/pathfilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/test/pathfilter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/test/resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/test/resolver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/resolve/test/resolver_sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/resolve/test/resolver_sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/AsyncSubject.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/AsyncSubject.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/AsyncSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/AsyncSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/AsyncSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/AsyncSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/BehaviorSubject.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/BehaviorSubject.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/BehaviorSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/BehaviorSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/BehaviorSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/BehaviorSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Observable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Observable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Observable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Observable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Observable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Observable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/ReplaySubject.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/ReplaySubject.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/ReplaySubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/ReplaySubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/ReplaySubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/ReplaySubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Subject.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Subject.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Subject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Subject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Subject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Subject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Subscriber.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Subscriber.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Subscriber.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Subscriber.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/Subscriber.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/Subscriber.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/AsyncSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/AsyncSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/AsyncSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/AsyncSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/BehaviorSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/BehaviorSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/BehaviorSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/BehaviorSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Observable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Observable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Observable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Observable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/ReplaySubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/ReplaySubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/ReplaySubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/ReplaySubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subscriber.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subscriber.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subscriber.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/Subscriber.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayLikeObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayLikeObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayLikeObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayLikeObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ArrayObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundCallbackObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundCallbackObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundCallbackObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundCallbackObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundNodeCallbackObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundNodeCallbackObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundNodeCallbackObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/BoundNodeCallbackObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ConnectableObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ConnectableObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ConnectableObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ConnectableObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/DeferObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/DeferObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/DeferObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/DeferObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/EmptyObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/EmptyObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/EmptyObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/EmptyObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ErrorObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ErrorObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ErrorObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ErrorObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ForkJoinObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ForkJoinObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ForkJoinObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ForkJoinObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventPatternObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventPatternObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventPatternObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromEventPatternObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/FromObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/GenerateObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/GenerateObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/GenerateObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/GenerateObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IfObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IfObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IfObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IfObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IntervalObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IntervalObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IntervalObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IntervalObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IteratorObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IteratorObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IteratorObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/IteratorObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/NeverObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/NeverObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/NeverObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/NeverObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PairsObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PairsObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PairsObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PairsObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PromiseObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PromiseObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PromiseObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/PromiseObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/RangeObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/RangeObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/RangeObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/RangeObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ScalarObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ScalarObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ScalarObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/ScalarObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/SubscribeOnObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/SubscribeOnObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/SubscribeOnObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/SubscribeOnObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/TimerObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/TimerObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/TimerObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/TimerObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/UsingObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/UsingObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/UsingObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/UsingObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/AjaxObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/AjaxObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/AjaxObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/AjaxObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/WebSocketSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/WebSocketSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/WebSocketSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/observable/dom/WebSocketSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferTime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferTime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferTime.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/bufferWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/delayWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/delayWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/delayWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/delayWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/groupBy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/groupBy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/groupBy.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/groupBy.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/refCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/refCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/refCount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/refCount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/repeatWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/repeatWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/repeatWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/repeatWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/retryWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/retryWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/retryWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/retryWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMap.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMapTo.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMapTo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMapTo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/switchMapTo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/throttle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/throttle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/throttle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/throttle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeout.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeout.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeout.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeoutWith.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeoutWith.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeoutWith.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/timeoutWith.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/window.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/window.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/window.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/window.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowCount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowCount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowToggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowToggle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowToggle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/operators/windowToggle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/scheduler/AsyncAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/scheduler/AsyncAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/scheduler/AsyncAction.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/scheduler/AsyncAction.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/testing/HotObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/testing/HotObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/testing/HotObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm2015/testing/HotObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/AsyncSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/AsyncSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/AsyncSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/AsyncSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/BehaviorSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/BehaviorSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/BehaviorSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/BehaviorSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Observable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Observable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Observable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Observable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/ReplaySubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/ReplaySubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/ReplaySubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/ReplaySubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subscriber.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subscriber.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subscriber.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/Subscriber.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayLikeObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayLikeObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayLikeObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayLikeObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ArrayObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundCallbackObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundCallbackObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundCallbackObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundCallbackObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundNodeCallbackObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundNodeCallbackObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundNodeCallbackObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/BoundNodeCallbackObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ConnectableObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ConnectableObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ConnectableObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ConnectableObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/DeferObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/DeferObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/DeferObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/DeferObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/EmptyObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/EmptyObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/EmptyObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/EmptyObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ErrorObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ErrorObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ErrorObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ErrorObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ForkJoinObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ForkJoinObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ForkJoinObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ForkJoinObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventPatternObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventPatternObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventPatternObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromEventPatternObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/FromObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/GenerateObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/GenerateObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/GenerateObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/GenerateObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IfObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IfObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IfObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IfObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IntervalObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IntervalObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IntervalObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IntervalObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IteratorObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IteratorObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IteratorObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/IteratorObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/NeverObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/NeverObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/NeverObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/NeverObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PairsObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PairsObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PairsObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PairsObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PromiseObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PromiseObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PromiseObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/PromiseObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/RangeObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/RangeObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/RangeObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/RangeObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ScalarObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ScalarObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ScalarObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/ScalarObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/SubscribeOnObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/SubscribeOnObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/SubscribeOnObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/SubscribeOnObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/TimerObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/TimerObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/TimerObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/TimerObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/UsingObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/UsingObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/UsingObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/UsingObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/AjaxObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/AjaxObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/AjaxObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/AjaxObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/WebSocketSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/WebSocketSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/WebSocketSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/observable/dom/WebSocketSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferTime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferTime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferTime.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/bufferWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/delayWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/delayWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/delayWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/delayWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/groupBy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/groupBy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/groupBy.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/groupBy.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/refCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/refCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/refCount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/refCount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/repeatWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/repeatWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/repeatWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/repeatWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/retryWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/retryWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/retryWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/retryWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMap.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMapTo.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMapTo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMapTo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/switchMapTo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/throttle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/throttle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/throttle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/throttle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeout.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeout.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeout.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeoutWith.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeoutWith.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeoutWith.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/timeoutWith.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/window.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/window.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/window.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/window.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowCount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowCount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowToggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowToggle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowToggle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/operators/windowToggle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/scheduler/AsyncAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/scheduler/AsyncAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/scheduler/AsyncAction.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/scheduler/AsyncAction.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/testing/HotObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/testing/HotObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/_esm5/testing/HotObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/_esm5/testing/HotObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/bundles/Rx.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/bundles/Rx.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/bundles/Rx.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/bundles/Rx.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/bundles/Rx.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/bundles/Rx.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ArrayObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundCallbackObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundCallbackObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundCallbackObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundCallbackObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundCallbackObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundCallbackObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundNodeCallbackObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundNodeCallbackObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundNodeCallbackObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundNodeCallbackObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundNodeCallbackObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/BoundNodeCallbackObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ConnectableObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ConnectableObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ConnectableObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ConnectableObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ConnectableObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ConnectableObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/DeferObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/DeferObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/DeferObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/DeferObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/DeferObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/DeferObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/EmptyObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/EmptyObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/EmptyObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/EmptyObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/EmptyObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/EmptyObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ErrorObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ErrorObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ErrorObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ErrorObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ErrorObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ErrorObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ForkJoinObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ForkJoinObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ForkJoinObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ForkJoinObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ForkJoinObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ForkJoinObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventPatternObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventPatternObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventPatternObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventPatternObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventPatternObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromEventPatternObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/FromObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/FromObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/GenerateObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/GenerateObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/GenerateObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/GenerateObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/GenerateObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/GenerateObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IfObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IfObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IfObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IfObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IfObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IfObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IntervalObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IntervalObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IntervalObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IntervalObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IntervalObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IntervalObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IteratorObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IteratorObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IteratorObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IteratorObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/IteratorObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/IteratorObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/NeverObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/NeverObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/NeverObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/NeverObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/NeverObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/NeverObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/PairsObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/PairsObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/PairsObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/PairsObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/PairsObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/PairsObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/PromiseObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/PromiseObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/PromiseObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/PromiseObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/PromiseObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/PromiseObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/RangeObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/RangeObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/RangeObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/RangeObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/RangeObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/RangeObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ScalarObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ScalarObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ScalarObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ScalarObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/ScalarObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/ScalarObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/SubscribeOnObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/SubscribeOnObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/SubscribeOnObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/SubscribeOnObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/SubscribeOnObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/SubscribeOnObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/TimerObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/TimerObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/TimerObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/TimerObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/TimerObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/TimerObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/UsingObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/UsingObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/UsingObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/UsingObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/UsingObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/UsingObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/AjaxObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/AjaxObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/AjaxObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/AjaxObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/AjaxObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/AjaxObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/WebSocketSubject.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/WebSocketSubject.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/WebSocketSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/WebSocketSubject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/WebSocketSubject.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/observable/dom/WebSocketSubject.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferTime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferTime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferTime.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/bufferWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/delayWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/delayWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/delayWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/delayWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/groupBy.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/groupBy.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/groupBy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/groupBy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/groupBy.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/groupBy.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/refCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/refCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/refCount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/refCount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/repeatWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/repeatWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/repeatWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/repeatWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/retryWhen.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/retryWhen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/retryWhen.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/retryWhen.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMap.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMapTo.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMapTo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMapTo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/switchMapTo.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/throttle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/throttle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/throttle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/throttle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/timeout.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/timeout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/timeout.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/timeout.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/timeoutWith.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/timeoutWith.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/timeoutWith.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/timeoutWith.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/window.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/window.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/window.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/window.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/windowCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/windowCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/windowCount.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/windowCount.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/windowToggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/windowToggle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/operators/windowToggle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/operators/windowToggle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/scheduler/AsyncAction.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/scheduler/AsyncAction.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/scheduler/AsyncAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/scheduler/AsyncAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/scheduler/AsyncAction.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/scheduler/AsyncAction.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/AsyncSubject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/AsyncSubject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/BehaviorSubject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/BehaviorSubject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/Observable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/Observable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/ReplaySubject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/ReplaySubject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/Subject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/Subject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/Subscriber.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/Subscriber.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ArrayLikeObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ArrayLikeObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ArrayObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ArrayObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/BoundCallbackObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/BoundCallbackObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/BoundNodeCallbackObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/BoundNodeCallbackObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ConnectableObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ConnectableObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/DeferObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/DeferObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/EmptyObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/EmptyObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ErrorObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ErrorObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ForkJoinObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ForkJoinObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/FromEventObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/FromEventObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/FromEventPatternObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/FromEventPatternObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/FromObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/FromObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/GenerateObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/GenerateObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/IfObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/IfObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/IntervalObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/IntervalObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/IteratorObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/IteratorObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/NeverObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/NeverObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/PairsObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/PairsObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/PromiseObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/PromiseObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/RangeObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/RangeObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ScalarObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/ScalarObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/SubscribeOnObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/SubscribeOnObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/TimerObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/TimerObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/UsingObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/UsingObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/dom/AjaxObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/dom/AjaxObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/observable/dom/WebSocketSubject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/observable/dom/WebSocketSubject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/bufferTime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/bufferTime.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/bufferWhen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/bufferWhen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/delayWhen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/delayWhen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/groupBy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/groupBy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/refCount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/refCount.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/repeatWhen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/repeatWhen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/retryWhen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/retryWhen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/switchMap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/switchMap.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/switchMapTo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/switchMapTo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/throttle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/throttle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/timeout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/timeout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/timeoutWith.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/timeoutWith.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/window.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/window.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/windowCount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/windowCount.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/operators/windowToggle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/operators/windowToggle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/scheduler/AsyncAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/scheduler/AsyncAction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/src/testing/HotObservable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/src/testing/HotObservable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/testing/HotObservable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/testing/HotObservable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/testing/HotObservable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/testing/HotObservable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rxjs/testing/HotObservable.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rxjs/testing/HotObservable.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/serialize-javascript/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/serialize-javascript/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/serialize-javascript/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/serialize-javascript/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/serialize-javascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/serialize-javascript/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/timers-browserify/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/timers-browserify/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/timers-browserify/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/timers-browserify/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/timers-browserify/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/timers-browserify/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/braces.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/braces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/parsers-new.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/parsers-orig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/parsers-parens.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/parsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/parsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/lib/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/node_modules/define-property/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/node_modules/define-property/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/node_modules/define-property/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/node_modules/define-property/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/watchpack/node_modules/braces/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/bin/convert-argv.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/bin/convert-argv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/bin/process-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/bin/process-options.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/bin/webpack.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/bin/webpack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/commands/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/commands/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/commands/migrate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/commands/migrate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/examples/simple/src/index.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/examples/simple/src/lazy-module.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/examples/simple/src/static-esm-module.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/examples/simple/webpack.config.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/src/_index.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/src/cjs.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/test/fixtures/simple-file.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/test/functional.test.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/test/test-utils.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-loader/templates/test/unit.test.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/examples/simple/_webpack.config.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/examples/simple/src/index.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/examples/simple/src/lazy-module.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/examples/simple/src/static-esm-module.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/src/_index.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/src/cjs.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/test/fixtures/simple-file.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/test/functional.test.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generate-plugin/templates/test/test-utils.js.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/init-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/init-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/loader-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/loader-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/loader-generator.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/loader-generator.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/plugin-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/plugin-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/webpack-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/generators/webpack-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/init/transformations/top-scope/top-scope.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/init/transformations/top-scope/top-scope.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/lib/migrate/loaderOptionsPlugin/loaderOptionsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/lib/migrate/loaderOptionsPlugin/loaderOptionsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/chalk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/chalk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/chalk/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/chalk/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/supports-color/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/supports-color/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/supports-color/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/supports-color/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/lib/apply-extends.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/lib/apply-extends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/lib/usage.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/lib/usage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/yargs.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/node_modules/yargs/yargs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack-cli/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack-cli/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/buildin/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/buildin/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/buildin/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/buildin/harmony-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/buildin/harmony-module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/buildin/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/buildin/module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/hot/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/AsyncDependenciesBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/AsyncDependenciesBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Chunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ChunkGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ChunkGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Compilation.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Compilation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Compiler.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Compiler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/ContextModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/ContextModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Dependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Dependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Entrypoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/EvalDevToolModuleTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/EvalDevToolModuleTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/EvalSourceMapDevToolModuleTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/EvalSourceMapDevToolModuleTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/FunctionModulePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/FunctionModulePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/GraphHelpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/GraphHelpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/HotModuleReplacement.runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/HotModuleReplacement.runtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/HotModuleReplacementPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/HotModuleReplacementPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/HotUpdateChunkTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/HotUpdateChunkTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Module.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/NormalModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/NormalModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/NormalModuleFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/NormalModuleFactory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/RuleSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/RuleSet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/RuntimeTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/RuntimeTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/SizeFormatHelpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/SizeFormatHelpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/Stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/Stats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WarnNoModeSetPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WarnNoModeSetPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebAssemblyGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebAssemblyGenerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackError.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackError.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsApply.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsApply.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsDefaulter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsDefaulter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsValidationError.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/WebpackOptionsValidationError.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/debug/ProfilingPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/debug/ProfilingPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDDefineDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDDefineDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDDefineDependencyParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDDefineDependencyParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDRequireDependenciesBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDRequireDependenciesBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/CommonJsRequireContextDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/CommonJsRequireContextDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ContextDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ContextDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/DelegatedExportsDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/DelegatedExportsDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyAcceptImportDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyAcceptImportDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyExportExpressionDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyExportExpressionDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyExportImportedSpecifierDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyExportImportedSpecifierDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyExportSpecifierDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyExportSpecifierDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyImportDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyImportDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyImportSpecifierDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyImportSpecifierDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyTopLevelThisParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/HarmonyTopLevelThisParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ImportDependenciesBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ImportDependenciesBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ImportParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/ImportParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/JsonExportsDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/JsonExportsDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/LoaderPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/LoaderPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/LocalModuleDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/LocalModuleDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/RequireEnsureDependenciesBlockParserPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/RequireEnsureDependenciesBlockParserPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/RequireIncludeDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/RequireIncludeDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/WebAssemblyImportDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/WebAssemblyImportDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/getFunctionExpression.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/dependencies/getFunctionExpression.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeMainTemplateAsync.runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/node/NodeMainTemplateAsync.runtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ChunkModuleIdRangePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ChunkModuleIdRangePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ConcatenatedModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ConcatenatedModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ModuleConcatenationPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/ModuleConcatenationPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/RuntimeChunkPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/optimize/RuntimeChunkPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/prepareOptions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/Semaphore.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/Semaphore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/SetHelpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/SetHelpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/SortableSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/SortableSet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/StackedSetMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/StackedSetMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/cachedMerge.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/cachedMerge.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/util/objectToMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/util/objectToMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpMainTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/web/JsonpMainTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/lib/webworker/WebWorkerMainTemplatePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/lib/webworker/WebWorkerMainTemplatePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/braces.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/braces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/parsers-new.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/parsers-orig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/parsers-parens.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/parsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/parsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/lib/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/webpack/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/webpack/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/lib/resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/lib/resolver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/lib/util/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/lib/util/log.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/chalk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/chalk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/chalk/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/chalk/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/supports-color/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/supports-color/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/supports-color/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/node_modules/supports-color/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-environment/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-environment/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/lib/actions/help.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/lib/actions/help.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/chalk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/chalk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/chalk/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/chalk/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/supports-color/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/supports-color/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/supports-color/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/node_modules/supports-color/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yeoman-generator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yeoman-generator/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/actorManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/actorManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/jsonConversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/jsonConversion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/jsonConversion.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/jsonConversion.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,12 +652,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.css">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="195">
+              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -42,31 +664,17 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="49" lean-forward="false" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
-              <folding>
-                <element signature="n#!!block;n#drawGraph#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="2505">
+              <caret line="167" column="55" selection-start-line="167" selection-start-column="55" selection-end-line="167" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="actorManagement.test.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/actorManagement.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actorManagement.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="actorManagement.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-              <folding />
+            <state relative-caret-position="329">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
         </entry>
@@ -74,19 +682,8 @@
       <file leaf-file-name="jsonConversion.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="44" column="43" lean-forward="true" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="673">
+              <caret line="301" column="11" selection-start-line="301" selection-start-column="4" selection-end-line="301" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -107,7 +704,6 @@
       <find>charge</find>
       <find>parseI</find>
       <find>source</find>
-      <find>console</find>
       <find>text</find>
       <find>group</find>
       <find>graph</find>
@@ -119,7 +715,6 @@
       <find>getActorData</find>
       <find>getAct</find>
       <find>createParentsUnionNode</find>
-      <find>nodeList</find>
       <find>tieList</find>
       <find>console.log</find>
       <find>main</find>
@@ -127,6 +722,9 @@
       <find>getCentral</find>
       <find>getActor</find>
       <find>json</find>
+      <find>nodeList</find>
+      <find>pushActorToList</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,17 +740,17 @@
         <option value="$PROJECT_DIR$/miserables.html" />
         <option value="$PROJECT_DIR$/scripts/sum.js" />
         <option value="$PROJECT_DIR$/tests/sum.test.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/dist/scripts/jsonConversion.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/tests/jsonConversion.test.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/tests/main.test.js" />
         <option value="$PROJECT_DIR$/scripts/ActorMgmt.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/tests/jsonConversion.test.js" />
         <option value="$PROJECT_DIR$/scripts/main.js" />
-        <option value="$PROJECT_DIR$/scripts/actorManagement.js" />
         <option value="$PROJECT_DIR$/tests/actorManagement.test.js" />
         <option value="$PROJECT_DIR$/scripts/jsonConversion.js" />
+        <option value="$PROJECT_DIR$/scripts/actorManagement.js" />
       </list>
     </option>
   </component>
@@ -171,30 +769,27 @@
   <component name="NamedScopeManager">
     <scope name="files" pattern="file[egoNahr]:scripts/*" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1258" />
-    <option name="height" value="796" />
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,13 +811,6 @@
             <path>
               <item name="egoNahr" type="b2602c69:ProjectViewProjectNode" />
               <item name="egoNahr" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="jsonConversion.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="egoNahr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="egoNahr" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -234,17 +822,19 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.selected.package.prettier" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -267,68 +857,78 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.getCentralActor takes an ID and returns a JSON with the full tree of the actor data (1)">
-    <configuration name="getActorData returns null the json object doesnt contain a name" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.buildNodeList creates a list out of an object with max degree of 3">
+    <configuration name="buildNodeList creates a list out of an object with max degree of 1 and complete links" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/tests/jsonConversion.test.js" />
-      <test-names>
-        <test-name value="getActorData returns null the json object doesnt contain a name" />
-      </test-names>
-    </configuration>
-    <configuration name="getActorData returns simple object with the input ID" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/tests/jsonConversion.test.js" />
-      <test-names>
-        <test-name value="getActorData returns simple object with the input ID" />
-      </test-names>
-    </configuration>
-    <configuration name="getCentralActor takes an ID and returns a JSON with the full tree of the actor data (1)" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <working-dir value="$PROJECT_DIR$" />
+      <working-dir value="$PROJECT_DIR$/tests" />
       <envs />
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/tests/actorManagement.test.js" />
       <test-names>
-        <test-name value="getCentralActor takes an ID and returns a JSON with the full tree of the actor data" />
+        <test-name value="buildNodeList creates a list out of an object with max degree of 1 and complete links" />
       </test-names>
     </configuration>
-    <configuration name="getCentralActor takes an ID and returns a JSON with the full tree of the actor data" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
+    <configuration name="buildNodeList creates a list out of an object with max degree of 1" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
-      <working-dir value="$PROJECT_DIR$" />
+      <working-dir value="$PROJECT_DIR$/tests" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/tests/main.test.js" />
+      <test-file value="$PROJECT_DIR$/tests/actorManagement.test.js" />
       <test-names>
-        <test-name value="getCentralActor takes an ID and returns a JSON with the full tree of the actor data" />
+        <test-name value="buildNodeList creates a list out of an object with max degree of 1" />
       </test-names>
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Jest.getActorData returns simple object with the input ID" />
-      <item index="1" class="java.lang.String" itemvalue="Jest.getActorData returns null the json object doesnt contain a name" />
-      <item index="2" class="java.lang.String" itemvalue="Jest.getCentralActor takes an ID and returns a JSON with the full tree of the actor data" />
-      <item index="3" class="java.lang.String" itemvalue="Jest.getCentralActor takes an ID and returns a JSON with the full tree of the actor data (1)" />
+    <configuration name="buildNodeList creates a list out of an object with max degree of 2" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <working-dir value="$PROJECT_DIR$/tests" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/actorManagement.test.js" />
+      <test-names>
+        <test-name value="buildNodeList creates a list out of an object with max degree of 2" />
+      </test-names>
+    </configuration>
+    <configuration name="buildNodeList creates a list out of an object with max degree of 3" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <working-dir value="$PROJECT_DIR$/tests" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/actorManagement.test.js" />
+      <test-names>
+        <test-name value="buildNodeList creates a list out of an object with max degree of 3" />
+      </test-names>
+    </configuration>
+    <configuration name="nodeList creation has format of original data (1)" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <working-dir value="$PROJECT_DIR$/tests" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/actorManagement.test.js" />
+      <test-names>
+        <test-name value="nodeList creation has format of original data" />
+      </test-names>
+    </configuration>
+    <list>
+      <item itemvalue="Jest.nodeList creation has format of original data (1)" />
+      <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 1" />
+      <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 1 and complete links" />
+      <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 2" />
+      <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 3" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Jest.getCentralActor takes an ID and returns a JSON with the full tree of the actor data (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Jest.getCentralActor takes an ID and returns a JSON with the full tree of the actor data" />
-        <item index="2" class="java.lang.String" itemvalue="Jest.getActorData returns null the json object doesnt contain a name" />
-        <item index="3" class="java.lang.String" itemvalue="Jest.getActorData returns simple object with the input ID" />
+      <list>
+        <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 3" />
+        <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 2" />
+        <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 1" />
+        <item itemvalue="Jest.buildNodeList creates a list out of an object with max degree of 1 and complete links" />
+        <item itemvalue="Jest.nodeList creation has format of original data (1)" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -353,75 +953,100 @@
       <workItem from="1522422886667" duration="2200000" />
       <workItem from="1522425303132" duration="13850000" />
       <workItem from="1522830015972" duration="57000" />
-      <workItem from="1522830124989" duration="2759000" />
+      <workItem from="1522830124989" duration="3178000" />
+      <workItem from="1523882785999" duration="1383000" />
+      <workItem from="1523952058183" duration="41059000" />
+      <workItem from="1524833082614" duration="1362000" />
+      <workItem from="1525023657025" duration="452000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="getActorData_returns_null_the_json_object_doesnt_contain_a_name - 2018.04.03 at 14h 19m 07s.xml">
-      <configuration name="getActorData returns null the json object doesnt contain a name" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.25 at 13h 39m 07s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="getActorData_returns_null_the_json_object_doesnt_contain_a_name - 2018.04.03 at 14h 20m 41s.xml">
-      <configuration name="getActorData returns null the json object doesnt contain a name" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.25 at 13h 43m 32s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="getActorData_returns_null_the_json_object_doesnt_contain_a_name - 2018.04.03 at 14h 37m 32s.xml">
-      <configuration name="getActorData returns null the json object doesnt contain a name" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.25 at 13h 43m 57s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="getActorData_returns_simple_object_with_the_input_ID - 2018.04.03 at 10h 43m 47s.xml">
-      <configuration name="getActorData returns simple object with the input ID" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.25 at 13h 45m 38s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="getCentralActor_takes_an_ID_and_returns_a_JSON_with_the_full_tree_of_the_actor_data - 2018.04.03 at 14h 56m 29s.xml">
-      <configuration name="getCentralActor takes an ID and returns a JSON with the full tree of the actor data" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.25 at 13h 46m 10s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="getCentralActor_takes_an_ID_and_returns_a_JSON_with_the_full_tree_of_the_actor_data_(1) - 2018.04.04 at 11h 11m 44s.xml">
-      <configuration name="getCentralActor takes an ID and returns a JSON with the full tree of the actor data (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.25 at 13h 50m 29s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.26 at 11h 24m 22s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.26 at 11h 25m 36s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.26 at 11h 27m 26s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="buildNodeList_creates_a_list_out_of_an_object_with_max_degree_of_3 - 2018.04.26 at 11h 28m 07s.xml">
+      <configuration name="buildNodeList creates a list out of an object with max degree of 3" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107974000" />
+    <option name="totallyTimeSpent" value="152649000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1258" height="796" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24494745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281027" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952926" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40085593" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.059901338" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49913943" weight="0.32904148" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50172114" side_tool="true" weight="0.36051503" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49913943" weight="0.32904148" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49827883" weight="0.3104435" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.2497979" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49913943" weight="0.32904148" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32952926" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281027" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40085593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24494745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32952926" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24494745" />
+      <window_info id="Structure" order="1" weight="0.2497979" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.40085593" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3281027" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Find" order="2" visible="true" weight="0.32952926" />
+      <window_info anchor="bottom" id="Messages" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,32 +1057,52 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="16" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4665">
+          <caret line="311" column="35" selection-start-line="311" selection-start-column="17" selection-end-line="311" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
-          <caret line="223" column="24" lean-forward="false" selection-start-line="223" selection-start-column="24" selection-end-line="223" selection-end-column="24" />
-          <folding />
+          <caret line="223" column="24" selection-start-line="223" selection-start-column="24" selection-end-line="223" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/npm-debug.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="240">
-          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/npm-debug.log" />
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <marker date="1522761403924" expanded="true" signature="62:403" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+            <marker date="1524060265223" expanded="true" signature="113:454" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -465,8 +1110,7 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding />
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -480,18 +1124,14 @@
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8100">
-          <caret line="540" column="0" lean-forward="false" selection-start-line="540" selection-start-column="0" selection-end-line="540" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#drawGraph#0" expanded="false" />
-          </folding>
+          <caret line="540" selection-start-line="540" selection-end-line="540" />
         </state>
       </provider>
     </entry>
@@ -500,9 +1140,9 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <marker date="1522761403924" expanded="true" signature="62:403" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+            <marker date="1524060265223" expanded="true" signature="113:454" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -510,59 +1150,43 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="57" lean-forward="false" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
-          <folding />
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/npm-debug.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/npm-debug.log" />
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
-          <caret line="462" column="0" lean-forward="false" selection-start-line="462" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#drawGraph#0" expanded="false" />
-          </folding>
+          <caret line="462" selection-start-line="462" selection-end-line="462" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="57" lean-forward="false" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
-          <folding />
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5145">
-          <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#drawGraph#0" expanded="false" />
-          </folding>
+          <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
         </state>
       </provider>
     </entry>
@@ -572,13 +1196,6 @@
     <entry file="file://$PROJECT_DIR$/miserables.json" />
     <entry file="file://$PROJECT_DIR$/miserables.html" />
     <entry file="file://$PROJECT_DIR$/miserables.json" />
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -589,7 +1206,7 @@
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -603,25 +1220,18 @@
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/d3.v3.min.js" />
-    <entry file="file://$PROJECT_DIR$/lib/d3.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/miserables.json" />
     <entry file="file://$PROJECT_DIR$/miserables.html" />
     <entry file="file://$PROJECT_DIR$/scripts/sum.js" />
@@ -629,29 +1239,11 @@
     <entry file="file://$PROJECT_DIR$/node_modules/babel-cli/lib/_babel-node.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
-          <caret line="115" column="2" lean-forward="false" selection-start-line="115" selection-start-column="2" selection-end-line="115" selection-end-column="2" />
+          <caret line="115" column="2" selection-start-line="115" selection-start-column="2" selection-end-line="115" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/bundle.js" />
-    <entry file="file://$PROJECT_DIR$/dist/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/scripts/jsonConversion.js.map">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="sourcemapFileViewerProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/scripts/jsonConversion.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2670">
@@ -662,99 +1254,80 @@
     <entry file="file://$PROJECT_DIR$/npm-debug.log">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="240">
-          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1522761404079" expanded="true" signature="739549:739555" ph="{&quot;version&quot;: &quot;1.0.3&quot;...}" />
-          </folding>
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-          <folding />
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
           <folding>
-            <marker date="1522761403924" expanded="true" signature="62:403" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+            <marker date="1524060265223" expanded="true" signature="113:454" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="49" lean-forward="false" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
-          <folding>
-            <element signature="n#!!block;n#drawGraph#0" expanded="false" />
-          </folding>
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/jsonConversion.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="44" column="43" lean-forward="true" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/actorManagement.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="380">
+          <caret line="840" lean-forward="true" selection-start-line="840" selection-end-line="840" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="195">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2505">
+          <caret line="167" column="55" selection-start-line="167" selection-start-column="55" selection-end-line="167" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/actorManagement.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="596" column="20" lean-forward="true" selection-start-line="596" selection-start-column="20" selection-end-line="596" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="673">
+          <caret line="301" column="11" selection-start-line="301" selection-start-column="4" selection-end-line="301" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>

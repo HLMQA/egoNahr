@@ -1,9 +1,7 @@
-
 const jsonConversion = require('./jsonConversion.js');
 const actorManagement = require('./actorManagement.js');
 
 
-var CENTRAL_DEPTH_LEVEL = 0;
 
 
 //  var ActorFinal = function (id, fullName, baptismDate, birthYear, birthPlace, deathYear, gender, occupation, firstAppearance, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList) {
@@ -28,18 +26,12 @@ var CENTRAL_DEPTH_LEVEL = 0;
 // };
 
 
-
 var simulation;
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-
-
-
-
 
 
 
@@ -156,23 +148,22 @@ function dragended(d) {
 
 
 
+
 function checkNode(a) {
     if (a.offSpringList) {
         // checkNode(a.offSpringList)
     }
     a.traversed = true;
-
 }
 
 // getActors(4);
 // getActors(42);
 // getActors(480);
 
-var centralActor = actorManagement.getCentralActor("490");
+var centralActor = actorManagement.getCentralActor("480");
 
 // traverseGraph(centralActor);
+console.log(actorManagement.buildNodeList(centralActor));
 
-
-console.log(jsonConversion.nodeList);
 drawGraph(jsonConversion.nodeList, jsonConversion.tieList);
 

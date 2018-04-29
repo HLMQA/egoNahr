@@ -35,7 +35,7 @@ var tieList = [];
 function getJSON(id) {
     var myActorData;
     var http = new XMLHttpRequest();
-    var url = "//projectcornelia.be/source_browser/public/router.php";
+    var url = "https://projectcornelia.be/source_browser/public/router.php";
     var params = "q=" + id + "&s=ALL-SOURCES&w=search-by-option";
 
     // TODO: now synchronous call. to be fixed
@@ -90,7 +90,7 @@ function parseJSON(id, actorJSON) {
     }
 
 
-    pushActorToList(centralActor);
+    pushActorToList(centralActor, nodeList);
 
 
     return centralActor;
@@ -117,7 +117,7 @@ function getFirstParentFromJSON(json) {
     var firstParentName = element.data.parents.data[0]["query-text"];
     if (firstParentID) {
         var thisFirstParent = new Node(firstParentID, firstParentName);
-        pushActorToList(thisFirstParent);
+        pushActorToList(thisFirstParent, nodeList);
         return (thisFirstParent);
     }
 }
@@ -129,7 +129,7 @@ function getSecondParentFromJSON(json) {
     var secondParentName = element.data.parents.data[2]["query-text"];
     if (secondParentID) {
         var thisSecondParent = new Node(secondParentID, secondParentName);
-        pushActorToList(thisSecondParent);
+        pushActorToList(thisSecondParent, nodeList);
         return (thisSecondParent);
     }
 }
@@ -190,7 +190,7 @@ function getSpouseID(json) {
 
     if (spouseID) {
         var thisSpouse = new Node(spouseID, spouseName);
-        pushActorToList(thisSpouse);
+        pushActorToList(thisSpouse, nodeList);
         return (thisSpouse);
     }
 }
@@ -223,7 +223,7 @@ function getOffspringList(json) {
                     thisChild.fullName = thisChildName
                 }
                 offSpringList.push(thisChild);
-                pushActorToList(thisChild);
+                pushActorToList(thisChild, nodeList);
             }
         }
         return (offSpringList);
@@ -257,13 +257,13 @@ function search(nameKey, myArray) {
 }
 
 
-function pushActorToList(actor) {
-    var isActorInList = nodeList.filter(function (e) {
+function pushActorToList(actor, list) {
+    var isActorInList = list.filter(function (e) {
         return e.ID === actor.ID
     });
     if (isActorInList.length === 0) {
 
-        nodeList.push(actor);
+        list.push(actor);
     }
     else {
         return;
@@ -288,7 +288,7 @@ function createParentsUnionNode(actor) {
     var secondParentID = relativeIDToString(actor.secondParent);
 
     var parentsMarriageNode = new Node(firstParentID + "+" + secondParentID);
-    pushActorToList(parentsMarriageNode);
+    pushActorToList(parentsMarriageNode, nodeList);
 
     if (firstParentID.length > 0) {
         firstParentToMarriageTie = new Tie(firstParentID, parentsMarriageNode.ID);
@@ -307,7 +307,7 @@ function createCentralActorUnionNode(actor) {
 
     var actorSpouseID = relativeIDToString(actor.spouse);
     var actorMarriageNode = new Node(actor.ID + "+" + actorSpouseID);
-    pushActorToList(actorMarriageNode);
+    pushActorToList(actorMarriageNode, nodeList);
     var actorToMarriageTie = new Tie(actor.ID, actorMarriageNode.ID);
     tieList.push(actorToMarriageTie);
 
@@ -333,6 +333,7 @@ exports.checkLabelExistence = checkLabelExistence;
 exports.getActorData = getActorData;
 exports.getJSON = getJSON;
 exports.Node = Node;
+exports.Tie = Tie;
 exports.nodeList = nodeList;
 exports.tieList = tieList;
 

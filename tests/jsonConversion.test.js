@@ -836,3 +836,5 @@ test('getActorData returns null the json object doesnt contain a name', () => {
     jsonConversion.getJSON.mockReturnValueOnce(jsonObject);
     expect(jsonConversion.getActorData("id")).toBe(null);
 });
+
+
