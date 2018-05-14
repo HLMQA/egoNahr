@@ -2,8 +2,6 @@ const jsonConversion = require('./jsonConversion.js');
 const actorManagement = require('./actorManagement.js');
 
 
-
-
 //  var ActorFinal = function (id, fullName, baptismDate, birthYear, birthPlace, deathYear, gender, occupation, firstAppearance, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList) {
 //     this.ID = id;
 //     this.firstName = firstName;
@@ -34,30 +32,35 @@ var svg = d3.select("svg"),
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 
-
-
-function drawGraph(nodes, links) {
+function drawGraph(data) {
 
     var graph = {};
-    graph["nodes"] = nodes;
-    graph["links"] = links;
+    graph["nodes"] = data.actors;
+    graph["links"] = data.ties;
+
+    // ORIGINAL -- GO BACK TO
+
+    // simulation = d3.forceSimulation()
+    //     .force("link", d3.forceLink().id(function (d) {
+    //         return "" + d.ID;
+    //     }))
+    //     .force("charge", d3.forceManyBody().strength(-400))
+    //     .force("center", d3.forceCenter(width / 2, height / 2))
+    //     .force("distanceMin", 100);
+
 
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
-            return "" + d.ID;
-        }))
-        .force("charge", d3.forceManyBody().strength(-250))
+            return d.ID;
+        }).distance(60).strength(1))
+        .force("charge", d3.forceManyBody().strength(-400))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
 
     // graph.nodes.filter(function (d) {
-    //     if (d.type === "root") {
-    //         d.fx = 100;
+    //     if (d.ID === 0) {
+    //         d.fy = height / 2;
     //     }
-    //     else if (d.type === "leaf") {
-    //         d.fx = 500;
-    //     }
-    //
     // });
 
     var link = svg.append("g")
@@ -70,7 +73,14 @@ function drawGraph(nodes, links) {
         .attr("class", "nodes")
         .selectAll("g")
         .data(graph.nodes)
-        .enter().append("g");
+        .enter().append("g")
+        .attr("height", 300)
+        .attr("fx", function (d) {
+            // if (d.isActor) {
+            d.fx = 500 + d.treeDepth * 200;
+            // }
+        })
+    ;
 
 
     var rectangle = node.append("rect")
@@ -92,11 +102,15 @@ function drawGraph(nodes, links) {
 
     var labels = node.append("text")
         .text(function (d) {
-            if (d.isActor)
-                return d.fullName;
+            if (d.isActor) {
+                var actorData = data.objects.filter(x => x.ID === d.ID);
+
+                return (actorData[0].fullName);
+            }
+            // else return d.ID;
         })
         .attr('x', -10)
-        .attr('y', -10);
+        .attr('y', -5);
 
 
     simulation
@@ -132,7 +146,6 @@ function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
     d.fx = d.x;
     d.fy = d.y;
-
 }
 
 function dragged(d) {
@@ -147,23 +160,12 @@ function dragended(d) {
 }
 
 
-
-
-function checkNode(a) {
-    if (a.offSpringList) {
-        // checkNode(a.offSpringList)
-    }
-    a.traversed = true;
-}
-
 // getActors(4);
 // getActors(42);
 // getActors(480);
 
-var centralActor = actorManagement.getCentralActor("480");
+var centralActor = actorManagement.getCentralActor("490");
 
-// traverseGraph(centralActor);
 console.log(actorManagement.buildNodeList(centralActor));
-
-drawGraph(jsonConversion.nodeList, jsonConversion.tieList);
+drawGraph(actorManagement.data);
 

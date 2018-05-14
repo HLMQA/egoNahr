@@ -59,12 +59,13 @@ function parseJSON(id, actorJSON) {
     // TODO: convert to date object
 
     var actorFullName = getFullNameFromJSON(actorJSON);
-    if (!actorFullName){
+    if (!actorFullName) {
         return null;
     }
 
     var firstParent = getFirstParentFromJSON(actorJSON);
     var secondParent = getSecondParentFromJSON(actorJSON);
+
 
     // var firstGodParent = getFirstGodParentFromJSON(actorJSON);
     // var secondGodParent = getSecondGodParentFromJSON(actorJSON);
@@ -79,15 +80,17 @@ function parseJSON(id, actorJSON) {
 
     var offSpringList = getOffspringList(actorJSON);
 
-    var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, offSpringList)
+    var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, offSpringList);
 
-    if (firstParent || secondParent) {
-        createParentsUnionNode(centralActor);
-    }
+    reciprocateRelationships(centralActor);
 
-    if (offSpringList || actorSpouse) {
-        createCentralActorUnionNode(centralActor);
-    }
+    // if (firstParent || secondParent) {
+    //     createParentsUnionNode(centralActor, nodeList, tieList);
+    // }
+    //
+    // if (offSpringList || actorSpouse) {
+    //     createCentralActorUnionNode(centralActor, nodeList, tieList);
+    // }
 
 
     pushActorToList(centralActor, nodeList);
@@ -97,10 +100,37 @@ function parseJSON(id, actorJSON) {
 
 }
 
+function reciprocateRelationships(actor) {
+    if (actor.spouse) {
+        actor.spouse.spouse = actor;
+    }
+    if (actor.firstParent) {
+        if (!actor.firstParent.offSpringList)
+            actor.firstParent.offSpringList = [];
+        actor.firstParent.offSpringList.push(actor);
+    }
+    if (actor.secondParent) {
+        if (!actor.secondParent.offSpringList)
+            actor.secondParent.offSpringList = [];
+        actor.secondParent.offSpringList.push(actor);
+    }
+
+    // if (actor.offSpringList[0]) {
+    //     for (var i = 0; i < offSpringList.length; i++) {
+    //         if (!actor.offSpringList[i].firstParent) {
+    //             actor.offSpringList[i].firstParent = actor;
+    //         }
+    //         else if (actor.offSpringList[i].firstParent && !actor.offSpringList[i].secondParent && (actor.offSpringList[i].firstParent.ID != actor.ID)) {
+    //             actor.offSpringList[i].secondParent = actor;
+    //         }
+    //     }
+    // }
+
+}
+
 function getFullNameFromJSON(json) {
     var element = checkLabelExistence(NAME_LABEL, json);
     if (!element || !element.data || !element.data[0] || !element.data[0][0]) {
-        console.log(element);
         return null;
     }
 
@@ -257,13 +287,13 @@ function search(nameKey, myArray) {
 }
 
 
-function pushActorToList(actor, list) {
-    var isActorInList = list.filter(function (e) {
+function pushActorToList(actor, listToPushTo) {
+    var isActorInList = listToPushTo.filter(function (e) {
         return e.ID === actor.ID
     });
     if (isActorInList.length === 0) {
 
-        list.push(actor);
+        listToPushTo.push(actor);
     }
     else {
         return;
@@ -277,29 +307,30 @@ function relativeIDToString(relative) {
         relativeID = relative.ID;
     else relativeID = "";
     return relativeID;
-
 }
 
 
-function createParentsUnionNode(actor) {
+function createParentsUnionNode(actor, nodes, ties) {
     var firstParentToMarriageTie, secondParentToMarriageTie;
 
-    var firstParentID = relativeIDToString(actor.firstParent);
-    var secondParentID = relativeIDToString(actor.secondParent);
+    if (actor.firstParent || actor.secondParent) {
 
-    var parentsMarriageNode = new Node(firstParentID + "+" + secondParentID);
-    pushActorToList(parentsMarriageNode, nodeList);
+        var firstParentID = relativeIDToString(actor.firstParent);
+        var secondParentID = relativeIDToString(actor.secondParent);
 
-    if (firstParentID.length > 0) {
-        firstParentToMarriageTie = new Tie(firstParentID, parentsMarriageNode.ID);
+        var parentsMarriageNode = new Node(firstParentID + "+" + secondParentID);
+        pushActorToList(parentsMarriageNode, nodes);
+
+        // if (firstParentID.length > 0) {
+        //     firstParentToMarriageTie = new Tie(firstParentID, parentsMarriageNode.ID);
+        // }
+        // if (secondParentID.length > 0) {
+        //     secondParentToMarriageTie = new Tie(secondParentID, parentsMarriageNode.ID);
+        // }
+
+        var marriageToCentralActorTie = new Tie(parentsMarriageNode.ID, actor.ID);
     }
-    if (secondParentID.length > 0) {
-        secondParentToMarriageTie = new Tie(secondParentID, parentsMarriageNode.ID);
-    }
-
-    var marriageToCentralActorTie = new Tie(parentsMarriageNode.ID, actor.ID);
-
-    tieList.push(firstParentToMarriageTie, secondParentToMarriageTie, marriageToCentralActorTie);
+    // ties.push(firstParentToMarriageTie, secondParentToMarriageTie, marriageToCentralActorTie);
 }
 
 
@@ -327,10 +358,10 @@ function createCentralActorUnionNode(actor) {
 }
 
 
-
 exports.search = search;
 exports.checkLabelExistence = checkLabelExistence;
 exports.getActorData = getActorData;
+exports.createParentsUnionNode = createParentsUnionNode;
 exports.getJSON = getJSON;
 exports.Node = Node;
 exports.Tie = Tie;

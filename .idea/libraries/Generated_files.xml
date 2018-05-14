@@ -3,7 +3,6 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/dist/scripts/actorManagement.js" />
-        <item url="file://$PROJECT_DIR$/dist/scripts/actorManagement.js" />
         <item url="file://$PROJECT_DIR$/dist/scripts/jsonConversion.js" />
         <item url="file://$PROJECT_DIR$/dist/scripts/main.js" />
       </sourceFilesUrls>
