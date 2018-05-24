@@ -9,8 +9,13 @@ var data = {
 };
 var maxRecursiveDepth;
 var listOfActors = [];
-var MARRIAGE_LABEL = "Marriage";
-var OFFSPRING_LABEL = "Offspring";
+
+var Labels = {
+    MARRIAGE_LABEL: "Marriage",
+    OFFSPRING_LABEL: "Offspring",
+    GODPARENTHOOD_LABEL: "Godparenthood"
+}
+
 
 var ActorNode = function (id, depth, treeDepth) {
     this.ID = "" + id;
@@ -28,7 +33,8 @@ function getCentralActor(id) {
         thisGrandChild = {};
     var centralActor = jsonConversion.getActorData(id);
     if (centralActor.offSpringList) {
-        for (var i = 0; i < centralActor.offSpringList.length; i++) {
+    var childrenListLength = centralActor.offSpringList.length;
+        for (var i = 0; i < childrenListLength; i++) {
             thisChild = jsonConversion.getActorData(centralActor.offSpringList[i].ID);
             assignOriginParentNodeToChild(thisChild, centralActor);
             if (thisChild.offSpringList) {
@@ -46,6 +52,7 @@ function getCentralActor(id) {
 }
 
 function assignOriginParentNodeToChild(actor, originParent) {
+
     if (actor.firstParent.ID = originParent.ID) {
         actor.firstParent = originParent;
     }
@@ -67,10 +74,11 @@ function buildNodeList(actor) {
     pushActorToList(centralNode, data.actors, recursiveDepth);
     pushActorToList(actor, data.objects, recursiveDepth);
 
+    console.log(data);
     data.actors = assignTreeDepthsToUnionNodes(data.actors);
     correctCoupleTies(data);
+    completeNonFamilyLevels(data);
     return (finalActorList);
-
 }
 
 function traverseGraph(actor, data, recursiveDepth, treeDepth) {
@@ -82,24 +90,12 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
             treeDepth++;
             var parentUnionNode = buildUnionNode(actor, recursiveDepth);
             for (var i = 0; i < actor.offSpringList.length; i++) {
-                var thisChild = actor.offSpringList[i];
-                var toUnionTie = new jsonConversion.Tie(actor.ID, parentUnionNode.ID, OFFSPRING_LABEL);
-                var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, thisChild.ID, OFFSPRING_LABEL);
+                var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.offSpringList[i], data, recursiveDepth, treeDepth, "parenthood");
+                // listOfActors.push(actor.offSpringList[i]);
 
-                toUnionTie = pushTieToList(toUnionTie, data.ties);
-                fromUnionTie = pushTieToList(fromUnionTie, data.ties);
-                recursiveDepth++;
-                data = traverseGraph(thisChild, data, recursiveDepth, treeDepth);
-
-                var thisNode = new ActorNode(thisChild.ID);
-                thisNode.recursiveDepth = recursiveDepth;
-                thisNode.treeDepth = treeDepth;
-
-                thisNode = pushActorToList(thisNode, data.actors, recursiveDepth);
-                thisChild = pushActorToList(thisChild, data.objects, recursiveDepth);
-
-                // listOfActors.push(thisChild);
-                recursiveDepth--;
+                data = updatedLevels[0];
+                treeDepth = updatedLevels[1];
+                recursiveDepth = updatedLevels[2];
             }
             treeDepth--;
 
@@ -107,59 +103,57 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
     }
 
     if (actor.spouse) {
-        // no change to treeDepth because spouse is on same level
-        var thisSpouse = actor.spouse;
-        var thisTie = new jsonConversion.Tie(actor.ID, thisSpouse.ID, MARRIAGE_LABEL);
-        thisTie = pushTieToList(thisTie, data.ties);
-        recursiveDepth++;
-        data = traverseGraph(thisSpouse, data, recursiveDepth, treeDepth);
-        var thisNode = new ActorNode(thisSpouse.ID, recursiveDepth, treeDepth);
-        thisNode.treeDepth = treeDepth;
-        thisNode = pushActorToList(thisNode, data.actors, recursiveDepth);
-        thisSpouse = pushActorToList(thisSpouse, data.objects, recursiveDepth);
+        var parentUnionNode = buildUnionNode(actor.spouse, recursiveDepth);
+        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.spouse, data, recursiveDepth, treeDepth);
+        data = updatedLevels[0];
+        treeDepth = updatedLevels[1];
+        recursiveDepth = updatedLevels[2];
 
-        recursiveDepth--;
     }
 
     if (actor.firstParent) {
-        treeDepth--;
         var parentUnionNode = buildUnionNode(actor.firstParent, recursiveDepth);
-        var thisFirstParent = actor.firstParent;
-        var toUnionTie = new jsonConversion.Tie(thisFirstParent.ID, parentUnionNode.ID, OFFSPRING_LABEL);
-        var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, actor.ID, OFFSPRING_LABEL);
-        toUnionTie = pushTieToList(toUnionTie, data.ties);
-        fromUnionTie = pushTieToList(fromUnionTie, data.ties);
-        recursiveDepth++;
-        data = traverseGraph(thisFirstParent, data, recursiveDepth, treeDepth);
-        var thisNode = new ActorNode(thisFirstParent.ID, recursiveDepth, treeDepth);
-        thisNode = pushActorToList(thisNode, data.actors, recursiveDepth);
-        thisFirstParent = pushActorToList(thisFirstParent, data.objects, recursiveDepth);
+        treeDepth--;
+        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.firstParent, data, recursiveDepth, treeDepth, Labels.OFFSPRING_LABEL);
+        data = updatedLevels[0];
+        treeDepth = updatedLevels[1];
+        recursiveDepth = updatedLevels[2];
         treeDepth++;
 
-        recursiveDepth--;
     }
 
     if (actor.secondParent) {
-        treeDepth--;
         var parentUnionNode = buildUnionNode(actor.secondParent, recursiveDepth);
-        var thisSecondParent = actor.secondParent;
-        var toUnionTie = new jsonConversion.Tie(thisSecondParent.ID, parentUnionNode.ID, OFFSPRING_LABEL);
-        var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, actor.ID, OFFSPRING_LABEL);
-        toUnionTie = pushTieToList(toUnionTie, data.ties);
-        fromUnionTie = pushTieToList(fromUnionTie, data.ties);
-        recursiveDepth++;
-        data = traverseGraph(thisSecondParent, data, recursiveDepth, treeDepth);
-        var thisNode = new ActorNode(thisSecondParent.ID, recursiveDepth, treeDepth);
-        thisNode.treeDepth = treeDepth;
-        thisNode = pushActorToList(thisNode, data.actors, recursiveDepth);
-        thisSecondParent = pushActorToList(thisSecondParent, data.objects, recursiveDepth);
+        treeDepth--;
+        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.secondParent, data, recursiveDepth, treeDepth, Labels.OFFSPRING_LABEL);
+        data = updatedLevels[0];
+        treeDepth = updatedLevels[1];
+        recursiveDepth = updatedLevels[2];
         treeDepth++;
-        recursiveDepth--;
     }
 
+    if (actor.firstGodParent) {
+        treeDepth--;
+        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.firstGodParent, data, recursiveDepth, treeDepth, Labels.GODPARENTHOOD_LABEL);
+        data = updatedLevels[0];
+        treeDepth = updatedLevels[1];
+        recursiveDepth = updatedLevels[2];
+        treeDepth++;
+    }
+
+    if (actor.secondGodParent) {
+        treeDepth--;
+
+        var tempTreeDepth = treeDepth;
+        var undefinedDepth = null;
+        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.secondGodParent, data, recursiveDepth, treeDepth, Labels.GODPARENTHOOD_LABEL);
+        data = updatedLevels[0];
+        treeDepth = tempTreeDepth;
+        recursiveDepth = updatedLevels[2];
+        treeDepth++;
+    }
     return (data);
 }
-
 
 function assignTreeDepthsToUnionNodes(nodeList) {
 
@@ -177,92 +171,115 @@ function assignTreeDepthsToUnionNodes(nodeList) {
 }
 
 function correctCoupleTies(data) {
-    for (var i = 0; i < data.actors.length; i++) {
-        var currentActor = data.actors[i];
-        if (currentActor.isActor) {
+    for (var i = 0; i < data.objects.length; i++) {
+        var currentActorObject = data.objects[i];
+        var currentActor = findActorNodeByID(currentActorObject.ID, data.actors);
+        var tiesToParentUnionNodes = data.ties.filter(function (el) {
+            return (el.target === currentActor.ID
+                && el.tieType === Labels.OFFSPRING_LABEL);
+        });
 
-            var tiesToParentUnionNodes = data.ties.filter(function (el) {
-                return el.target === currentActor.ID;
+        if (tiesToParentUnionNodes.length == 2) {
+            var mergedUnionNode = new ActorNode(tiesToParentUnionNodes[0].source + "" + tiesToParentUnionNodes[1].source.slice(0, -1), currentActor.recursiveDepth + 0.5, currentActor.treeDepth - 0.5);
+            mergedUnionNode = pushActorToList(mergedUnionNode, data.actors, currentActor.recursiveDepth + 0.5);
+
+            var newChildToUnionTie = new jsonConversion.Tie(mergedUnionNode.ID, currentActor.ID, Labels.OFFSPRING_LABEL, currentActorObject.baptismDate);
+            newChildToUnionTie = pushTieToList(newChildToUnionTie, data.ties);
+
+            // removeChildToIncompleteUnionTies:
+
+            for (var j = data.ties.length - 1; j >= 0; j--) {
+                if ((data.ties[j].target === currentActor.ID)
+                    && (data.ties[j].tieType === Labels.OFFSPRING_LABEL)
+                    && (
+                        (data.ties[j].source === tiesToParentUnionNodes[0].source)
+                        || (data.ties[j].source === tiesToParentUnionNodes[1].source)
+                    )
+                ) {
+                    data.ties.splice(j, 1);
+                }
+            }
+
+            // removeParentToIncompleteUnionTies:
+            // for each union node that is linked to a Parent (0 or 1) and no children, remove
+            // for each union node that's not a target in any of data.ties, remove
+
+            var potentialTiesToChildren = data.ties.filter(function (el) {
+                return el.source === tiesToParentUnionNodes[0];
             });
-
-            if (tiesToParentUnionNodes.length == 2) {
-                console.log(currentActor);
-                var mergedUnionNode = new ActorNode(tiesToParentUnionNodes[0].source + "" + tiesToParentUnionNodes[1].source.slice(0, -1), currentActor.recursiveDepth + 0.5, currentActor.treeDepth - 0.5);
-                mergedUnionNode = pushActorToList(mergedUnionNode, data.actors, currentActor.recursiveDepth + 0.5);
-
-                var newChildToUnionTie = new jsonConversion.Tie(mergedUnionNode.ID, currentActor.ID, OFFSPRING_LABEL);
-                console.log(newChildToUnionTie);
-                newChildToUnionTie = pushTieToList(newChildToUnionTie, data.ties);
-
-                // removeChildToIncompleteUnionTies:
+            if (!potentialTiesToChildren.length > 0) {
+                // data.ties.splice(j, 1);
 
                 for (var j = data.ties.length - 1; j >= 0; j--) {
-                    if ((data.ties[j].target === currentActor.ID)
-                        && (data.ties[j].tieType === OFFSPRING_LABEL)
-                        && (
-                            (data.ties[j].source === tiesToParentUnionNodes[0].source)
-                            || (data.ties[j].source === tiesToParentUnionNodes[1].source)
-                        )
+                    if (
+                        ((data.ties[j].source === tiesToParentUnionNodes[0].source.slice(0, -1))
+                            && (data.ties[j].target === tiesToParentUnionNodes[0].source))
+                        ||
+                        ((data.ties[j].source === tiesToParentUnionNodes[1].source.slice(0, -1))
+                            && (data.ties[j].target === tiesToParentUnionNodes[1].source))
+                        &&
+                        (data.ties[j].tieType === Labels.OFFSPRING_LABEL)
                     ) {
                         data.ties.splice(j, 1);
-                        // debugger;
                     }
                 }
 
-                // removeParentToIncompleteUnionTies:
-                // for each union node that is linked to a Parent (0 or 1) and no children, remove
-                // for each union node that's not a target in any of data.ties, remove
 
-                var potentialTiesToChildren = data.ties.filter(function (el) {
-                    return el.source === tiesToParentUnionNodes[0];
-                });
-                if (!potentialTiesToChildren.length > 0) {
-                    console.log("no more kids");
-                    // data.ties.splice(j, 1);
+                // for (var j = data.actors.length - 1; j >= 0; j--) {
+                //     if (data.actors[j].ID === tiesToParentUnionNodes[0].source) {
+                //         data.actors.splice(j, 1);
+                //         debugger;
+                //     }
+                // }
 
-                    for (var j = data.ties.length - 1; j >= 0; j--) {
-                        if (
-                            ((data.ties[j].source === tiesToParentUnionNodes[0].source.slice(0, -1))
-                                && (data.ties[j].target === tiesToParentUnionNodes[0].source))
-                            ||
-                            ((data.ties[j].source === tiesToParentUnionNodes[1].source.slice(0, -1))
-                                && (data.ties[j].target === tiesToParentUnionNodes[1].source))
-
-                            &&
-                            (data.ties[j].tieType === OFFSPRING_LABEL)
-                        ) {
-                            data.ties.splice(j, 1);
-                        }
-                    }
-
-
-                    // for (var j = data.actors.length - 1; j >= 0; j--) {
-                    //     if (data.actors[j].ID === tiesToParentUnionNodes[0].source) {
-                    //         data.actors.splice(j, 1);
-                    //         debugger;
-                    //     }
-                    // }
-
-
-                }
-
-
-                var newFirstParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[0].source.slice(0, -1), mergedUnionNode.ID, OFFSPRING_LABEL);
-                newFirstParentToUnionTie = pushTieToList(newFirstParentToUnionTie, data.ties);
-
-                var newSecondParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[1].source.slice(0, -1), mergedUnionNode.ID, OFFSPRING_LABEL);
-                newSecondParentToUnionTie = pushTieToList(newSecondParentToUnionTie, data.ties);
-
-                console.log(data);
 
             }
 
+            var newFirstParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[0].source.slice(0, -1), mergedUnionNode.ID, Labels.OFFSPRING_LABEL);
+            newFirstParentToUnionTie = pushTieToList(newFirstParentToUnionTie, data.ties);
 
-            // if there exist TWO ties where target is currentActor.ID
-            // new tie3 with ID (paernt1ID+paernt2ID), target = currentActor.ID
-            // new tie between each parent and Tie3
+            var newSecondParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[1].source.slice(0, -1), mergedUnionNode.ID, Labels.OFFSPRING_LABEL);
+            newSecondParentToUnionTie = pushTieToList(newSecondParentToUnionTie, data.ties);
+
+        }
 
 
+        // if there exist TWO ties where target is currentActor.ID
+        // new tie3 with ID (paernt1ID+paernt2ID), target = currentActor.ID
+        // new tie between each parent and Tie3
+
+
+    }
+
+    for (var i = 0; i < data.actors.length; i++) {
+        if (data.actors[i].ID.includes("+")
+            && (!findActorNodeByField(data.actors[i].ID, "source", data.ties))
+            && (!findActorNodeByField(data.actors[i].ID, "target", data.ties))
+        ) {
+            data.actors.splice(i, 1);
+            i--;
+        }
+
+    }
+}
+
+function completeNonFamilyLevels(data) {
+    for (var i = 0; i < data.actors.length; i++) {
+        var currentActor = data.actors[i];
+        if (currentActor.treeDepth == null) {
+            var godchildrenTies = data.ties.filter(function (el) {
+                return (el.target === currentActor.ID
+                    && el.tieType === Labels.GODPARENTHOOD_LABEL);
+            });
+
+            var godChild = data.actors.find(o => o.ID === godchildrenTies[0].source);
+
+
+            // var minimumGodChildDepth = Math.min.apply(0, godchildrenTies.map(function (elt) {
+            //     return elt.treeDepth;
+            // }));
+
+            data.actors[i].treeDepth = godChild.treeDepth - 1;
         }
     }
 }
@@ -271,12 +288,14 @@ function pushTieToList(tie, listToPushTo) {
 
     var index = -1;
     for (var i = 0; i < listToPushTo.length; i++) {
-        if (isEquivalent(tie, listToPushTo[i])) {
+        if ((jsonConversion.isEquivalent(tie.source, listToPushTo[i].source))
+            && (jsonConversion.isEquivalent(tie.target, listToPushTo[i].target))
+            && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))
+        ) {
             index = i;
             break;
         }
     }
-
     if (index < 0) {
         listToPushTo.push(tie);
     }
@@ -294,6 +313,9 @@ function pushActorToList(actor, listToPushTo, newDepth) {
         listToPushTo.push(actor);
     }
     else {
+        if (!(listToPushTo[index].treeDepth) && (actor.treeDepth)) {
+            listToPushTo[index].treeDepth = actor.treeDepth;
+        }
 
         if (listToPushTo[index].recursiveDepth > newDepth) {
             listToPushTo[index].recursiveDepth = newDepth;
@@ -314,7 +336,6 @@ function pushActorToList(actor, listToPushTo, newDepth) {
 
 // function buildUnionNode(parent, child) {
 //     var thisUnionNode;
-//     console.log(child)
 //     // if (!actor.offSpringList[i].firstParent) {
 //
 //     // if parent
@@ -323,6 +344,66 @@ function pushActorToList(actor, listToPushTo, newDepth) {
 //     }
 //     return thisUnionNode;
 // }
+
+function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLevel, depthLevel, relationship) {
+
+    var subActor = actor;
+
+// debugger;
+
+    if (relationship === "parenthood") {
+        var toUnionTie = new jsonConversion.Tie(parent.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL);
+        var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, subActor.ID, Labels.OFFSPRING_LABEL, subActor.baptismDate);
+
+        toUnionTie = pushTieToList(toUnionTie, graph.ties);
+        fromUnionTie = pushTieToList(fromUnionTie, graph.ties);
+
+    }
+
+
+    else if (relationship === Labels.GODPARENTHOOD_LABEL) {
+        var tie = new jsonConversion.Tie(parent.ID, subActor.ID, Labels.GODPARENTHOOD_LABEL, subActor.baptismDate);
+        tie = pushTieToList(tie, graph.ties);
+
+        recursiveLevel++;
+        graph = traverseGraph(subActor, graph, recursiveLevel, depthLevel);
+        var thisNode = new ActorNode(subActor.ID, recursiveLevel, null);
+
+        thisNode = pushActorToList(thisNode, graph.actors, recursiveLevel);
+        subActor = pushActorToList(subActor, graph.objects, recursiveLevel);
+        recursiveLevel--;
+
+
+        return ([graph, depthLevel, recursiveLevel]);
+
+    }
+
+
+    else if (relationship === Labels.MARRIAGE_LABEL) {
+        var tie = new jsonConversion.Tie(parent.ID, subActor.ID, Labels.MARRIAGE_LABEL);
+        tie = pushTieToList(tie, graph.ties);
+
+    }
+
+
+    else {
+        var toUnionTie = new jsonConversion.Tie(subActor.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "testA");
+        var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, parent.ID, Labels.OFFSPRING_LABEL, "testB");
+
+        toUnionTie = pushTieToList(toUnionTie, graph.ties);
+        fromUnionTie = pushTieToList(fromUnionTie, graph.ties);
+    }
+
+    recursiveLevel++;
+    graph = traverseGraph(subActor, graph, recursiveLevel, depthLevel);
+    var thisNode = new ActorNode(subActor.ID, recursiveLevel, depthLevel);
+    thisNode = pushActorToList(thisNode, graph.actors, recursiveLevel);
+    subActor = pushActorToList(subActor, graph.objects, recursiveLevel);
+    recursiveLevel--;
+
+
+    return ([graph, depthLevel, recursiveLevel]);
+}
 
 function buildUnionNode(actor, recursiveDepth) {
 
@@ -333,6 +414,15 @@ function buildUnionNode(actor, recursiveDepth) {
     parentUnionNode = pushActorToList(parentUnionNode, data.actors, recursiveDepth + 0.5);
 
     return parentUnionNode;
+}
+
+function findActorNodeByField(value, field, list) {
+
+    var index = list.map(function (x) {
+        return x[field];
+    }).indexOf(value);
+
+    return list[index];
 }
 
 function findActorNodeByID(id, list) {
@@ -362,27 +452,11 @@ function arraySortByTwoColumns(a, b) {
     }
 };
 
-function isEquivalent(a, b) {
-    var aProps = Object.getOwnPropertyNames(a);
-    var bProps = Object.getOwnPropertyNames(b);
-
-    if (aProps.length != bProps.length) {
-        return false;
-    }
-
-    for (var i = 0; i < aProps.length; i++) {
-        var propName = aProps[i];
-
-        if (a[propName] !== b[propName]) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 exports.getCentralActor = getCentralActor;
 exports.buildNodeList = buildNodeList;
 exports.arraySort = arraySort;
+exports.findActorNodeByID = findActorNodeByID;
 exports.arraySortByTwoColumns = arraySortByTwoColumns;
 exports.data = data;
+exports.Labels = Labels;

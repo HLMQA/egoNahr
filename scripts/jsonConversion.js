@@ -1,3 +1,6 @@
+var moment = require('../../node_modules/moment/moment.js');
+
+
 var exports = module.exports = {};
 
 var NAME_LABEL = "Name";
@@ -5,19 +8,33 @@ var MARRIAGE_LABEL = "Marriage";
 var BAPTISM_LABEL = "Baptism";
 var FUNERAL_LABEL = "Funeral";
 var OFFSPRING_LABEL = "Offspring";
+var BIRTH_LABEL = "Birth";
+var DEATH_LABEL = "Death";
+var GODPARENTHOOD_LABEL = "Godparent";
 
 
-var Node = function (id, fullName, firstParent, secondParent, spouse, offSpringList) {
+var Node = function (id, fullName, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList, baptismDate, funeralDate, eventList) {
     this.ID = "" + id;
     this.fullName = fullName;
     this.firstParent = firstParent;
     this.secondParent = secondParent;
     this.offSpringList = offSpringList;
     this.spouse = spouse;
+
+    this.firstGodParent = firstGodParent;
+    this.secondGodParent = secondGodParent;
+
+    this.baptismDate = baptismDate;
+    this.funeralDate = funeralDate;
+
     if (this.ID.includes("+")) {
         this.isActor = false;
     }
     else this.isActor = true;
+    if (this.funeralDate && this.baptismDate)
+        this.lifeSpan = this.funeralDate.diff(this.baptismDate, 'years');
+
+    this.eventList = [];
 };
 
 var Tie = function (source, target, tieType, tieStartYear, tieEndYear) {
@@ -27,6 +44,13 @@ var Tie = function (source, target, tieType, tieStartYear, tieEndYear) {
     this.tieStartYear = tieStartYear;
     this.tieEndYear = tieEndYear;
 };
+
+var Event = function (eventTime, label, target) {
+    this.eventTime = eventTime;
+    this.label = label;
+    this.target = target;
+}
+
 
 var nodeList = [];
 var tieList = [];
@@ -56,33 +80,37 @@ function getJSON(id) {
 function parseJSON(id, actorJSON) {
     var myActorData;
 
-    // TODO: convert to date object
-
-    var actorFullName = getFullNameFromJSON(actorJSON);
+    var actorFullName = getFullNameFromJSON(actorJSON, id);
     if (!actorFullName) {
         return null;
     }
 
-    var firstParent = getFirstParentFromJSON(actorJSON);
-    var secondParent = getSecondParentFromJSON(actorJSON);
+    var firstParent = getFirstParentFromJSON(actorJSON, id);
+    var secondParent = getSecondParentFromJSON(actorJSON, id);
 
 
-    // var firstGodParent = getFirstGodParentFromJSON(actorJSON);
-    // var secondGodParent = getSecondGodParentFromJSON(actorJSON);
+    var firstGodParent = getFirstGodParentFromJSON(actorJSON, id);
+    var secondGodParent = getSecondGodParentFromJSON(actorJSON, id);
     //
-    // var actorBaptismDate = getBaptismDate(actorJSON);
+
+
+    var actorBaptismDate = getBaptismDate(actorJSON, id);
     // var actorBaptismPlace = getBaptismPlace(actorJSON);
     // var actorBaptismSource = getBaptismSource(actorJSON);
     //
-    // var actorFuneralDate = getFuneralDate(actorJSON);
+    var actorFuneralDate = getFuneralDate(actorJSON, id);
 
-    var actorSpouse = getSpouseID(actorJSON);
+    var actorSpouse = getSpouseID(actorJSON, id);
 
-    var offSpringList = getOffspringList(actorJSON);
+    var offSpringList = getOffspringList(actorJSON, id);
 
-    var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, offSpringList);
+    var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, firstGodParent, secondGodParent, offSpringList, actorBaptismDate, actorFuneralDate);
 
-    reciprocateRelationships(centralActor);
+    pushEventToList(new Event(actorBaptismDate, BIRTH_LABEL, id), centralActor.eventList);
+    pushEventToList(new Event(actorFuneralDate, DEATH_LABEL, id), centralActor.eventList);
+
+
+    // reciprocateRelationships(centralActor);
 
     // if (firstParent || secondParent) {
     //     createParentsUnionNode(centralActor, nodeList, tieList);
@@ -96,6 +124,7 @@ function parseJSON(id, actorJSON) {
     pushActorToList(centralActor, nodeList);
 
 
+    // console.log(centralActor);
     return centralActor;
 
 }
@@ -140,49 +169,67 @@ function getFullNameFromJSON(json) {
     }
 }
 
-function getFirstParentFromJSON(json) {
+function getFirstParentFromJSON(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
     var firstParentID = element.data.parents.data[0]["query-value"];
     var firstParentName = element.data.parents.data[0]["query-text"];
+    var firstParentEvent = moment(element.value, "DD MMMM YYYY", true);
+
     if (firstParentID) {
         var thisFirstParent = new Node(firstParentID, firstParentName);
-        pushActorToList(thisFirstParent, nodeList);
+        thisFirstParent = pushActorToList(thisFirstParent, nodeList);
+        pushEventToList(new Event(firstParentEvent, OFFSPRING_LABEL, id), thisFirstParent.eventList);
         return (thisFirstParent);
     }
 }
 
-function getSecondParentFromJSON(json) {
+function getSecondParentFromJSON(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
     var secondParentID = element.data.parents.data[2]["query-value"];
     var secondParentName = element.data.parents.data[2]["query-text"];
+    var secondParentEvent = moment(element.value, "DD MMMM YYYY", true);
     if (secondParentID) {
         var thisSecondParent = new Node(secondParentID, secondParentName);
-        pushActorToList(thisSecondParent, nodeList);
+        thisSecondParent = pushActorToList(thisSecondParent, nodeList);
+        pushEventToList(new Event(secondParentEvent, OFFSPRING_LABEL, id), thisSecondParent.eventList);
         return (thisSecondParent);
     }
 }
 
-function getFirstGodParentFromJSON(json) {
+function getFirstGodParentFromJSON(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
-    var firstGodParentID = element.data.godparents.data[0]["query-text"];
+    var firstGodParentID = element.data.godparents.data[0]["query-value"];
+    var firstGodParentName = element.data.godparents.data[0]["query-text"];
+    var firstGodParentEvent = moment(element.value, "DD MMMM YYYY", true);
     if (firstGodParentID) {
-        return (firstGodParentID);
+        var thisFirstGodParent = new Node(firstGodParentID, firstGodParentName);
+
+        thisFirstGodParent = pushActorToList(thisFirstGodParent, nodeList);
+        pushEventToList(new Event(firstGodParentEvent, GODPARENTHOOD_LABEL, id), thisFirstGodParent.eventList);
+
+        return (thisFirstGodParent);
     }
 }
 
-function getSecondGodParentFromJSON(json) {
+function getSecondGodParentFromJSON(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
-    var secondGodParentID = element.data.godparents.data[2]["query-text"];
+    var secondGodParentID = element.data.godparents.data[2]["query-value"];
+    var secondGodParentName = element.data.godparents.data[2]["query-text"];
+    var secondGodParentEvent = moment(element.value, "DD MMMM YYYY", true);
     if (secondGodParentID) {
-        return (secondGodParentID);
+        var thisSecondGodParent = new Node(secondGodParentID, secondGodParentName);
+        thisSecondGodParent = pushActorToList(thisSecondGodParent, nodeList);
+        pushEventToList(new Event(secondGodParentEvent, GODPARENTHOOD_LABEL, id), thisSecondGodParent.eventList);
+
+        return (thisSecondGodParent);
     }
 }
 
-function getBaptismPlace(json) {
+function getBaptismPlace(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
 
@@ -192,17 +239,20 @@ function getBaptismPlace(json) {
     }
 }
 
-function getBaptismDate(json) {
+function getBaptismDate(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
 
-    var baptismDate = element.data.place.data[0].text;
+    var baptismDate = element.value;
     if (baptismDate) {
-        return (baptismDate);
+        var dateObject = moment(baptismDate, "DD MMMM YYYY", true);
+        // Date.parse(baptismDate);
+        if (dateObject)
+            return (dateObject);
     }
 }
 
-function getBaptismSource(json) {
+function getBaptismSource(json, id) {
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
 
@@ -212,7 +262,7 @@ function getBaptismSource(json) {
     }
 }
 
-function getSpouseID(json) {
+function getSpouseID(json, id) {
     var element = checkLabelExistence(MARRIAGE_LABEL, json);
     if (!element) return null;
     var spouseID = element.data[0].data.spouse.data[0]["query-value"];
@@ -225,35 +275,42 @@ function getSpouseID(json) {
     }
 }
 
-function getFuneralDate(json) {
+function getFuneralDate(json, id) {
     var element = checkLabelExistence(FUNERAL_LABEL, json);
     if (!element) return null;
 
     var funeralDate = element.value;
     if (funeralDate) {
-        return (funeralDate);
+        var dateObject = moment(funeralDate, "DD MMMM YYYY", true);
+        if (dateObject)
+            return (dateObject);
     }
 }
 
-function getOffspringList(json) {
+function getOffspringList(json, id) {
     var element = checkLabelExistence(OFFSPRING_LABEL, json);
     if (!element) return null;
 
     var rawOffspringArray = element.data.offsprings.data;
 
     if (rawOffspringArray) {
-        var offSpringNameList = [];
         var offSpringList = [];
         for (var i = 0; i < rawOffspringArray.length; i++) {
             if (rawOffspringArray[i]["query-type"] === "actor") {
                 var thisChildID = rawOffspringArray[i]["query-value"];
                 var thisChild = new Node(thisChildID);
+
                 if (rawOffspringArray[i + 2]["query-type"] === "year") {
                     var thisChildName = rawOffspringArray[i]["query-text"];
                     thisChild.fullName = thisChildName
                 }
+                // thisChild.eventList = pushEventToList(new Event("test", OFFSPRING_LABEL, id), thisChild.eventList);
+
+
                 offSpringList.push(thisChild);
-                pushActorToList(thisChild, nodeList);
+
+                thisChild = pushActorToList(thisChild, nodeList);
+
             }
         }
         return (offSpringList);
@@ -265,6 +322,7 @@ function getActorData(id) {
     var myActorJSON = exports.getJSON(id);
     var myActorObject = parseJSON(id, myActorJSON);
 
+    console.log(myActorObject)
     return myActorObject;
 }
 
@@ -278,6 +336,8 @@ function checkLabelExistence(label, json) {
 }
 
 function search(nameKey, myArray) {
+    if (!myArray)
+        return null;
     for (var i = 0; i < myArray.length; i++) {
         if (myArray[i].label === nameKey) {
             return myArray[i];
@@ -288,15 +348,44 @@ function search(nameKey, myArray) {
 
 
 function pushActorToList(actor, listToPushTo) {
-    var isActorInList = listToPushTo.filter(function (e) {
-        return e.ID === actor.ID
-    });
-    if (isActorInList.length === 0) {
+    // var isActorInList = listToPushTo.filter(function (e) {
+    //     return e.ID === actor.ID
+    // });
+    var index = -1;
 
+    index = listToPushTo.map(function (e) {
+        return e.ID;
+    }).indexOf(actor.ID);
+
+
+    if (index === -1) {
         listToPushTo.push(actor);
+        return actor;
     }
     else {
-        return;
+        return listToPushTo[index];
+    }
+}
+
+function pushEventToList(event, listToPushTo) {
+    var index = -1;
+
+    for (var i = 0; i < listToPushTo.length; i++) {
+        if (isEquivalent(event, listToPushTo[i])) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index < 0) {
+        listToPushTo.push(event);
+        return listToPushTo;
+    }
+
+    else {
+        console.log("already exists");
+        console.log(listToPushTo)
+        return listToPushTo;
     }
 }
 
@@ -358,6 +447,25 @@ function createCentralActorUnionNode(actor) {
 }
 
 
+function isEquivalent(a, b) {
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    if (aProps.length != bProps.length) {
+        return false;
+    }
+
+    for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+
+        if (a[propName] !== b[propName]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 exports.search = search;
 exports.checkLabelExistence = checkLabelExistence;
 exports.getActorData = getActorData;
@@ -367,5 +475,6 @@ exports.Node = Node;
 exports.Tie = Tie;
 exports.nodeList = nodeList;
 exports.tieList = tieList;
+exports.isEquivalent = isEquivalent;
 
 // export {exports};
