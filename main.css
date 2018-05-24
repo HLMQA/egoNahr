@@ -3,8 +3,8 @@
 }
 
 .links line {
-    stroke: #666;
-    stroke-opacity: 0.6;
+    stroke: #000;
+    stroke-opacity: 1;
 }
 
 .nodes circle {
