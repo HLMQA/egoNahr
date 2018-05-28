@@ -12,6 +12,7 @@ var BIRTH_LABEL = "Birth";
 var DEATH_LABEL = "Death";
 var GODPARENTHOOD_LABEL = "Godparent";
 
+var DATE_FORMAT = "D MMMM YYYY";
 
 var Node = function (id, fullName, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList, baptismDate, funeralDate, eventList) {
     this.ID = "" + id;
@@ -45,7 +46,8 @@ var Tie = function (source, target, tieType, tieStartYear, tieEndYear) {
     this.tieEndYear = tieEndYear;
 };
 
-var Event = function (eventTime, label, target) {
+var Event = function (source, eventTime, label, target) {
+    this.source = source;
     this.eventTime = eventTime;
     this.label = label;
     this.target = target;
@@ -106,8 +108,10 @@ function parseJSON(id, actorJSON) {
 
     var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, firstGodParent, secondGodParent, offSpringList, actorBaptismDate, actorFuneralDate);
 
-    pushEventToList(new Event(actorBaptismDate, BIRTH_LABEL, id), centralActor.eventList);
-    pushEventToList(new Event(actorFuneralDate, DEATH_LABEL, id), centralActor.eventList);
+    if (actorBaptismDate)
+        pushEventToList(new Event(centralActor.ID, actorBaptismDate, BIRTH_LABEL, id), centralActor.eventList);
+    if (actorFuneralDate)
+        pushEventToList(new Event(centralActor.ID, actorFuneralDate, DEATH_LABEL, id), centralActor.eventList);
 
 
     // reciprocateRelationships(centralActor);
@@ -174,12 +178,12 @@ function getFirstParentFromJSON(json, id) {
     if (!element) return null;
     var firstParentID = element.data.parents.data[0]["query-value"];
     var firstParentName = element.data.parents.data[0]["query-text"];
-    var firstParentEvent = moment(element.value, "DD MMMM YYYY", true);
+    var firstParentEvent = moment(element.value, DATE_FORMAT, true);
 
     if (firstParentID) {
         var thisFirstParent = new Node(firstParentID, firstParentName);
         thisFirstParent = pushActorToList(thisFirstParent, nodeList);
-        pushEventToList(new Event(firstParentEvent, OFFSPRING_LABEL, id), thisFirstParent.eventList);
+        pushEventToList(new Event(thisFirstParent.ID, firstParentEvent, OFFSPRING_LABEL, id), thisFirstParent.eventList);
         return (thisFirstParent);
     }
 }
@@ -189,11 +193,11 @@ function getSecondParentFromJSON(json, id) {
     if (!element) return null;
     var secondParentID = element.data.parents.data[2]["query-value"];
     var secondParentName = element.data.parents.data[2]["query-text"];
-    var secondParentEvent = moment(element.value, "DD MMMM YYYY", true);
+    var secondParentEvent = moment(element.value, DATE_FORMAT, true);
     if (secondParentID) {
         var thisSecondParent = new Node(secondParentID, secondParentName);
         thisSecondParent = pushActorToList(thisSecondParent, nodeList);
-        pushEventToList(new Event(secondParentEvent, OFFSPRING_LABEL, id), thisSecondParent.eventList);
+        pushEventToList(new Event(thisSecondParent.ID, secondParentEvent, OFFSPRING_LABEL, id), thisSecondParent.eventList);
         return (thisSecondParent);
     }
 }
@@ -203,12 +207,12 @@ function getFirstGodParentFromJSON(json, id) {
     if (!element) return null;
     var firstGodParentID = element.data.godparents.data[0]["query-value"];
     var firstGodParentName = element.data.godparents.data[0]["query-text"];
-    var firstGodParentEvent = moment(element.value, "DD MMMM YYYY", true);
+    var firstGodParentEvent = moment(element.value, DATE_FORMAT, true);
     if (firstGodParentID) {
         var thisFirstGodParent = new Node(firstGodParentID, firstGodParentName);
 
         thisFirstGodParent = pushActorToList(thisFirstGodParent, nodeList);
-        pushEventToList(new Event(firstGodParentEvent, GODPARENTHOOD_LABEL, id), thisFirstGodParent.eventList);
+        pushEventToList(new Event(thisFirstGodParent.ID, firstGodParentEvent, GODPARENTHOOD_LABEL, id), thisFirstGodParent.eventList);
 
         return (thisFirstGodParent);
     }
@@ -219,11 +223,11 @@ function getSecondGodParentFromJSON(json, id) {
     if (!element) return null;
     var secondGodParentID = element.data.godparents.data[2]["query-value"];
     var secondGodParentName = element.data.godparents.data[2]["query-text"];
-    var secondGodParentEvent = moment(element.value, "DD MMMM YYYY", true);
+    var secondGodParentEvent = moment(element.value, DATE_FORMAT, true);
     if (secondGodParentID) {
         var thisSecondGodParent = new Node(secondGodParentID, secondGodParentName);
         thisSecondGodParent = pushActorToList(thisSecondGodParent, nodeList);
-        pushEventToList(new Event(secondGodParentEvent, GODPARENTHOOD_LABEL, id), thisSecondGodParent.eventList);
+        pushEventToList(new Event(thisSecondGodParent.ID, secondGodParentEvent, GODPARENTHOOD_LABEL, id), thisSecondGodParent.eventList);
 
         return (thisSecondGodParent);
     }
@@ -245,7 +249,7 @@ function getBaptismDate(json, id) {
 
     var baptismDate = element.value;
     if (baptismDate) {
-        var dateObject = moment(baptismDate, "DD MMMM YYYY", true);
+        var dateObject = moment(baptismDate, DATE_FORMAT, true);
         // Date.parse(baptismDate);
         if (dateObject)
             return (dateObject);
@@ -281,7 +285,7 @@ function getFuneralDate(json, id) {
 
     var funeralDate = element.value;
     if (funeralDate) {
-        var dateObject = moment(funeralDate, "DD MMMM YYYY", true);
+        var dateObject = moment(funeralDate, DATE_FORMAT, true);
         if (dateObject)
             return (dateObject);
     }
@@ -322,7 +326,7 @@ function getActorData(id) {
     var myActorJSON = exports.getJSON(id);
     var myActorObject = parseJSON(id, myActorJSON);
 
-    console.log(myActorObject)
+    // console.log(myActorObject)
     return myActorObject;
 }
 
@@ -383,8 +387,6 @@ function pushEventToList(event, listToPushTo) {
     }
 
     else {
-        console.log("already exists");
-        console.log(listToPushTo)
         return listToPushTo;
     }
 }

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddc5100c-4d5f-4300-99be-1bb75204a0b3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/date.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/chrome-trace-event/.npmignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/create-ecdh/.npmignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/create-hash/.npmignore" beforeDir="false" />
@@ -57,7 +58,6 @@
       <change beforePath="$PROJECT_DIR$/scripts/actorManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/actorManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/jsonConversion.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/jsonConversion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -71,41 +71,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actorManagement.test.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/actorManagement.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="649" column="52" selection-start-line="649" selection-start-column="52" selection-end-line="649" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="125" column="34" lean-forward="true" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
+            <state relative-caret-position="745">
+              <caret line="305" column="10" lean-forward="true" selection-start-line="305" selection-start-column="10" selection-end-line="305" selection-end-column="10" />
+              <folding>
+                <marker date="1527526531307" expanded="true" signature="2920:3477" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file leaf-file-name="d3.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/d3/dist/d3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-              <folding>
-                <marker date="1526035554226" expanded="true" signature="144:485" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
-              </folding>
+            <state relative-caret-position="15">
+              <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -113,14 +95,42 @@
       <file leaf-file-name="actorManagement.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
+            <state relative-caret-position="394">
+              <caret line="408" column="35" selection-start-line="408" selection-start-column="35" selection-end-line="408" selection-end-column="35" />
               <folding>
-                <element signature="n#!!block;n#pushTieToList#0" />
+                <element signature="n#!!block;n#assignTreeDepthsToUnionNodes#0" />
+                <element signature="n#!!block;n#completeNonFamilyLevels#0" />
+                <element signature="n#!!block;n#findActorNodeByID#0" />
                 <element signature="n#!!block;n#arraySort#0" />
                 <element signature="n#!!block;n#arraySortByTwoColumns#0" />
-                <element signature="n#!!block;n#isEquivalent#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jsonConversion.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-533">
+              <caret line="111" column="33" lean-forward="true" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -137,36 +147,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>actor</find>
-      <find>getCentral</find>
-      <find>getActor</find>
-      <find>json</find>
-      <find>nodeList</find>
-      <find>new Tie</find>
-      <find>LABEL</find>
-      <find>tieList</find>
-      <find>list</find>
-      <find>listToPushTo</find>
-      <find>parent</find>
-      <find>114</find>
-      <find>136</find>
-      <find>111</find>
-      <find>console.log</find>
-      <find>Node</find>
-      <find>155</find>
-      <find>get</find>
-      <find>consol</find>
-      <find>230</find>
-      <find>pushActorToList</find>
-      <find>data.ties</find>
-      <find>fullNa</find>
-      <find>.depth</find>
-      <find>recip</find>
-      <find>actorData</find>
-      <find>charge</find>
-      <find>thisChild</find>
-      <find>cons</find>
+      <find>Date</find>
+      <find>Date(</find>
+      <find>moment</find>
+      <find>Tie</find>
+      <find>debugg</find>
+      <find>parenthood</find>
+      <find>index</find>
+      <find>white</find>
+      <find>con</find>
+      <find>tie</find>
+      <find>date</find>
+      <find>equivalent</find>
+      <find>myArray</find>
+      <find>isEquivalent</find>
+      <find>red</find>
+      <find>getJSON</find>
+      <find>getActorData</find>
+      <find>secondParent</find>
+      <find>baptism</find>
+      <find>if (!</find>
       <find>console</find>
+      <find>buildNo</find>
+      <find>eventTime</find>
+      <find>eve</find>
+      <find>event</find>
+      <find>OFFSPRING_LABEL</find>
+      <find>MMMM</find>
+      <find>debugger</find>
+      <find>DEATH</find>
+      <find>console.log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,20 +188,20 @@
         <option value="$PROJECT_DIR$/readme.json" />
         <option value="$PROJECT_DIR$/collapsibletree.html" />
         <option value="$PROJECT_DIR$/miserables.json" />
-        <option value="$PROJECT_DIR$/main.css" />
         <option value="$PROJECT_DIR$/miserables.html" />
         <option value="$PROJECT_DIR$/scripts/sum.js" />
         <option value="$PROJECT_DIR$/tests/sum.test.js" />
         <option value="$PROJECT_DIR$/dist/scripts/jsonConversion.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/tests/main.test.js" />
         <option value="$PROJECT_DIR$/scripts/ActorMgmt.js" />
         <option value="$PROJECT_DIR$/tests/jsonConversion.test.js" />
         <option value="$PROJECT_DIR$/tests/actorManagement.test.js" />
-        <option value="$PROJECT_DIR$/scripts/jsonConversion.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/main.css" />
         <option value="$PROJECT_DIR$/scripts/actorManagement.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/scripts/jsonConversion.js" />
         <option value="$PROJECT_DIR$/scripts/main.js" />
       </list>
     </option>
@@ -221,7 +231,7 @@
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="1440" />
-    <option name="width" value="2560" />
+    <option name="width" value="1140" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -232,6 +242,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -258,18 +269,17 @@
             <path>
               <item name="egoNahr" type="b2602c69:ProjectViewProjectNode" />
               <item name="egoNahr" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="egoNahr" type="b2602c69:ProjectViewProjectNode" />
               <item name="egoNahr" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -283,14 +293,14 @@
     <property name="node.js.selected.package.prettier" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
@@ -406,7 +416,12 @@
       <workItem from="1525023657025" duration="32362000" />
       <workItem from="1525348056650" duration="24685000" />
       <workItem from="1525856997577" duration="117000" />
-      <workItem from="1525860746753" duration="18025000" />
+      <workItem from="1525860746753" duration="22075000" />
+      <workItem from="1526298609288" duration="8938000" />
+      <workItem from="1526368709393" duration="14716000" />
+      <workItem from="1526472346235" duration="26625000" />
+      <workItem from="1527083014170" duration="18440000" />
+      <workItem from="1527515598811" duration="7341000" />
     </task>
     <servers />
   </component>
@@ -443,7 +458,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227386000" />
+    <option name="totallyTimeSpent" value="307496000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -455,28 +470,48 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="0" width="2560" height="1440" extended-state="0" />
+    <frame x="1440" y="0" width="1140" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12734374" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.27982455" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49913943" weight="0.32904148" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50172114" side_tool="true" weight="0.36051503" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50172114" side_tool="true" visible="true" weight="0.074927956" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49913943" weight="0.32904148" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49827883" weight="0.3514151" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49827883" weight="0.34921816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497979" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49913943" weight="0.32904148" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32857144" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32857144" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2855153" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.2497979" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49913943" weight="0.32904148" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49913943" weight="0.32904148" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49827883" weight="0.34921816" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49913943" weight="0.32904148" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.50172114" side_tool="true" visible="true" weight="0.07348703" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32857144" />
+      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -486,7 +521,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="22" />
+      <option name="time" value="24" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -495,7 +530,7 @@
         <state relative-caret-position="120">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <marker date="1526035554226" expanded="true" signature="144:485" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+            <marker date="1527514364652" expanded="true" signature="144:536" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -535,7 +570,7 @@
         <state relative-caret-position="120">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <marker date="1526035554226" expanded="true" signature="144:485" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+            <marker date="1527514364652" expanded="true" signature="144:536" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -657,21 +692,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/jsonConversion.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-672">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12075">
+          <caret line="818" column="14" selection-start-line="818" selection-start-column="14" selection-end-line="818" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="163" column="9" lean-forward="true" selection-start-line="163" selection-start-column="9" selection-end-line="163" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dist/scripts/actorManagement.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
+        <state relative-caret-position="744">
+          <caret line="299" column="53" lean-forward="true" selection-start-line="299" selection-start-column="53" selection-end-line="299" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/date.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="52" column="81" lean-forward="true" selection-start-line="52" selection-start-column="81" selection-end-line="52" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/actorManagement.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssh.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssh.txt.pub">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29115">
+          <caret line="1941" column="5" selection-start-line="1941" selection-start-column="5" selection-end-line="1941" selection-end-column="5" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/npm-debug.log">
       <provider selected="true" editor-type-id="text-editor">
@@ -682,24 +750,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state>
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/jsonConversion.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/bundle.js.map">
-      <provider editor-type-id="sourcemapFileViewerProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/bundle.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -710,52 +764,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+        <state relative-caret-position="330">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
-            <marker date="1526035554226" expanded="true" signature="144:485" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+            <marker date="1527514364652" expanded="true" signature="144:536" ph="{&quot;babel-cli&quot;: &quot;^6.26.0&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/d3/dist/d3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="408" column="35" selection-start-line="408" selection-start-column="35" selection-end-line="408" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!block;n#assignTreeDepthsToUnionNodes#0" />
+            <element signature="n#!!block;n#completeNonFamilyLevels#0" />
+            <element signature="n#!!block;n#findActorNodeByID#0" />
+            <element signature="n#!!block;n#arraySort#0" />
+            <element signature="n#!!block;n#arraySortByTwoColumns#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/jsonConversion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="84" column="4" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/actorManagement.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="649" column="52" selection-start-line="649" selection-start-column="52" selection-end-line="649" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/actorManagement.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!block;n#pushTieToList#0" />
-            <element signature="n#!!block;n#arraySort#0" />
-            <element signature="n#!!block;n#arraySortByTwoColumns#0" />
-            <element signature="n#!!block;n#isEquivalent#0" />
-          </folding>
+        <state relative-caret-position="-533">
+          <caret line="111" column="33" lean-forward="true" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="125" column="34" lean-forward="true" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
+        <state relative-caret-position="745">
+          <caret line="305" column="10" lean-forward="true" selection-start-line="305" selection-start-column="10" selection-end-line="305" selection-end-column="10" />
+          <folding>
+            <marker date="1527526531307" expanded="true" signature="2920:3477" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
