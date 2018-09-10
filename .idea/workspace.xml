@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddc5100c-4d5f-4300-99be-1bb75204a0b3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/chrome-trace-event/.npmignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/create-ecdh/.npmignore" beforeDir="false" />
@@ -54,7 +52,6 @@
       <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/webpack/node_modules/braces/node_modules/define-property/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -71,10 +68,10 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="772">
-              <caret line="268" column="12" selection-start-line="268" selection-start-column="12" selection-end-line="268" selection-end-column="12" />
+            <state relative-caret-position="649">
+              <caret line="356" column="58" lean-forward="true" selection-start-line="356" selection-start-column="58" selection-end-line="356" selection-end-column="58" />
               <folding>
-                <marker date="1536573705980" expanded="true" signature="3061:3618" ph="..." />
+                <marker date="1536573727983" expanded="true" signature="3061:3618" ph="..." />
               </folding>
             </state>
           </provider>
@@ -408,7 +405,7 @@
       <workItem from="1528709678704" duration="5000" />
       <workItem from="1528886652307" duration="734000" />
       <workItem from="1533632489903" duration="258000" />
-      <workItem from="1536567843756" duration="4173000" />
+      <workItem from="1536567843756" duration="4446000" />
     </task>
     <servers />
   </component>
@@ -445,7 +442,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="332887000" />
+    <option name="totallyTimeSpent" value="333160000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -789,10 +786,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="268" column="12" selection-start-line="268" selection-start-column="12" selection-end-line="268" selection-end-column="12" />
+        <state relative-caret-position="649">
+          <caret line="356" column="58" lean-forward="true" selection-start-line="356" selection-start-column="58" selection-end-line="356" selection-end-column="58" />
           <folding>
-            <marker date="1536573705980" expanded="true" signature="3061:3618" ph="..." />
+            <marker date="1536573727983" expanded="true" signature="3061:3618" ph="..." />
           </folding>
         </state>
       </provider>
