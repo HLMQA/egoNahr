@@ -27,10 +27,11 @@ var simulation;
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
-    midX = width * 9 / 10;
+    midX = width * 9 / 10,
+    sliderHeight = height * 7 / 8;
 
 
-var lifeSpanWidth = 180;
+var lifeSpanWidth = 200;
 
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -54,6 +55,12 @@ function drawGraph(data) {
     var lifeSpanRange = (d3.extent(data.objects.map(function (e) {
         return e.lifeSpan;
     })));
+
+
+    var eventPosition = d3.scaleLinear()
+        .range([0, lifeSpanWidth])
+        .domain([0, 100]);
+
 
     var rangeSliderMin = d3.min(eventList, function (d) {
         if (d.eventTime)
@@ -118,19 +125,20 @@ function drawGraph(data) {
         .selectAll("g")
         .data(graph.nodes)
         .enter().append("g")
+        .attr("class", "actorObject")
         .attr("height", 300)
         .attr("x", function (d) {
             // if (d.isActor) {
             d.fx = 400 + d.treeDepth * 300;
             // }
-        })
-    ;
+        });
 
 
     var rectangle = node.append("rect")
+        .attr("class", "rect")
         .attr("width", function (d) {
             if (d.isActor) {
-                return 180;
+                return lifeSpanWidth;
             }
             else return 0;
         })
@@ -152,9 +160,22 @@ function drawGraph(data) {
             .on("end", dragended));
 
 
+    // var eventBar = node.append("rect")
+    //     .attr("width", 2)
+    //     .attr("height", 6)
+    //     .attr("x", function (d) {
+    //         if (d.isActor) {
+    //             var actorData = data.objects.filter(x => x.ID === d.ID);
+    //             return (eventPosition(actorData[0].fullName);x
+    //         }
+    //     })
+    //     .attr("y", 3)
+    //     .attr('fill', 'red');
+
     var text = svg.selectAll('text')
         .data(graph.nodes)
         .enter().append("svg:text")
+        .attr("class", "label")
         .style("font-size", "11px")
         .text(function (d) {
             if (d.isActor) {
@@ -228,14 +249,27 @@ function drawGraph(data) {
         node.style('stroke', function (l) {
             // debugger;
             if (l.ID === d.ID || l.ID === d.ID) {
-                // console.log(this.childNodes[0]);
-                return "gold";
+                return "red";
             }
             else
-                return "#eee";
+                return "blue";
         });
         link.style('stroke', function (l) {
+            var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
             if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+                return "gold";
+            }
+            if (!actorObject.firstParent) {
+                var firstParentID = ""
+            } else var firstParentID = actorObject.firstParent.ID;
+            if (!actorObject.secondParent) {
+                var secondParentID = ""
+            } else var secondParentID = actorObject.secondParent.ID;
+
+
+                // debugger;
+
+            if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
                 return "gold";
             }
             else
@@ -257,9 +291,8 @@ function drawGraph(data) {
 
     var rangeSliderY = d3.scaleLinear()
         .domain([+rangeSliderMin - 5, +rangeSliderMax + 5])
-        .range([0, height - 100])
+        .range([0, sliderHeight])
         .clamp(true);
-
 
 
     var barChartX = d3.scaleLinear()
@@ -270,7 +303,7 @@ function drawGraph(data) {
 
 
     var g = svg.append("g")
-        .attr("height", height);
+        .attr("height", sliderHeight);
 
     g.append("g")
         .attr("transform", "translate(" + midX + ", 50)")
@@ -282,12 +315,16 @@ function drawGraph(data) {
 
 
     var barChart = g.append("g")
-        .attr("transform", "translate(" + midX + ", 0)");
+        .attr("transform", "translate(" + midX + ", 50)");
 
     var bars = barChart.selectAll(".bar")
         .data(yearFrequencyList)
         .enter()
-        .append("g");
+        .append("g")
+        .attr("transform", function (d) {
+            return "translate(0, " + rangeSliderY(+d.year) + ")";
+        });
+
 
     var squares = bars.selectAll(".squares")
         .data(function (d) {
@@ -295,11 +332,11 @@ function drawGraph(data) {
         })
         .enter()
         .append("rect")
+        .attr("class", function (d) {
+            return d.label;
+        })
         .attr("x", function (d, i) {
             return (-10 - (i * 11));
-        })
-        .attr("y", function (d) {
-            return rangeSliderY(+d.eventTime.year());
         })
         .attr("height", function (d) {
             return (rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1);
@@ -308,14 +345,109 @@ function drawGraph(data) {
             return (rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1);
         })
         .attr("fill", function (d) {
-                return ("#f1dd97")
+            return ("#f1dd97")
+        }).on("mouseover", function (d) {
+            showToolTip(d, graph)
+        }).on("mouseout", function () {
+            d3.select("#tooltip").classed("hidden", true);
+
         });
 
 
+    var collapseCheckBox = d3.select("#collapseCheckBox");
+    collapseCheckBox.on("change", function (d) {
+        var selected = this.checked;
+        if (selected) {
+
+            d3.selectAll(".actorObject").attr("x", function (d) {
+                if (d.recursiveDepth > 1 && d.isActor) {
+                    d.fx = 650 + d.treeDepth * 300;
+                }
+            })
+            d3.selectAll(".rect")
+                .attr("width", function (d) {
+
+                        if (d.recursiveDepth > 1) {
+                            return 6;
+                        }
+                        else if (d.isActor) {
+                            return lifeSpanWidth;
+                        }
+                        else return 0;
+
+                    }
+                );
+
+            simulation.force("link").distance(function (d) {
+                if (d.recursiveDepth > 1)
+                    return 30;
+                else return 80;
+            });
+
+            simulation.force("charge", d3.forceManyBody()
+                .strength(function (d) {
+                    if (d.recursiveDepth > 1)
+                        return -100;
+                    else return -500;
+                }));
+            simulation.alpha(1).restart();
 
 
+            d3.selectAll(".label")
+                .text(function (d) {
+                        if (d.recursiveDepth > 1) {
+                            return "";
+                        }
+                        else if (d.isActor) {
+                            var actorData = data.objects.filter(x => x.ID === d.ID);
+                            return (actorData[0].fullName);
+                        }
 
+                    }
+                );
+
+        }
+
+        else {
+            console.log("unselected");
+        }
+
+    });
 }
+
+function showToolTip(element, graph) {
+
+    console.log(element);
+
+
+    var xPosition = d3.event.pageX;
+    var yPosition = d3.event.pageY;
+
+
+    d3.select("#tooltip")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px")
+        .select("#source")
+        .text(element.source);
+
+
+    d3.select("#tooltip")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px")
+        .select("#target")
+        .text(element.target);
+
+
+    d3.select("#tooltip")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px")
+        .select("#label")
+        .text(element.label);
+
+
+    d3.select("#tooltip").classed("hidden", false);
+}
+
 
 function createEventFrequencyList(eventList, minYear, maxYear) {
 
@@ -333,7 +465,6 @@ function createEventFrequencyList(eventList, minYear, maxYear) {
             var thisEventYear = eventList[i].eventTime.year();
             return (d.year === +thisEventYear);
         });
-
 
 
         if (foundYear[0]) {
