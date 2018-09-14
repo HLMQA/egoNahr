@@ -32,11 +32,15 @@ function getCentralActor(id) {
     var thisChild = {},
         thisGrandChild = {};
     var centralActor = jsonConversion.getActorData(id);
+    assignSpouseToSpouse(centralActor);
     if (centralActor.offSpringList) {
         var childrenListLength = centralActor.offSpringList.length;
         for (var i = 0; i < childrenListLength; i++) {
+            assignSpouseToSpouse(centralActor);
             thisChild = jsonConversion.getActorData(centralActor.offSpringList[i].ID);
             assignOriginParentNodeToChild(thisChild, centralActor);
+            assignSpouseToSpouse(thisChild);
+
             if (thisChild.offSpringList) {
                 for (var j = 0; j < thisChild.offSpringList.length; j++) {
                     thisGrandChild = jsonConversion.getActorData(thisChild.offSpringList[j].ID);
@@ -48,18 +52,43 @@ function getCentralActor(id) {
             centralActor.offSpringList[i] = thisChild;
         }
     }
+
+
     return (centralActor);
 }
 
 function assignOriginParentNodeToChild(actor, originParent) {
 
-    if (actor.firstParent.ID = originParent.ID) {
+    var actorFirstParent = actor.firstParent;
+    var actorSecondParent = actor.secondParent;
+
+    if (!actorFirstParent && !actorSecondParent) {
         actor.firstParent = originParent;
     }
-    else if (actor.secondParent.ID = originParent.ID) {
+    else if (actorFirstParent && (actor.firstParent.ID === originParent.ID)) {
+        actor.firstParent = originParent;
+    }
+    else if (actorSecondParent && (actor.secondParent.ID === originParent.ID)) {
         actor.secondParent = originParent;
     }
 }
+
+function assignSpouseToSpouse(actor, actorSpouse) {
+
+    // var actorFirstParent = actor.firstParent;
+    // var actorSecondParent = actor.secondParent;
+
+    // if (!actor.spouse) {
+    //     actor.firstParent = originParent;
+    // }
+    if (actor.spouse && (!actor.spouse.spouse)) {
+        actor.spouse.spouse = actor;
+    }
+    // else if (actorSecondParent && (actor.secondParent.ID === originParent.ID)) {
+    //     actor.secondParent = originParent;
+    // }
+}
+
 
 function buildNodeList(actor) {
 
@@ -103,8 +132,9 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
     }
 
     if (actor.spouse) {
+
         var parentUnionNode = buildUnionNode(actor.spouse, recursiveDepth);
-        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.spouse, data, recursiveDepth, treeDepth);
+        var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.spouse, data, recursiveDepth, treeDepth, Labels.MARRIAGE_LABEL);
         data = updatedLevels[0];
         treeDepth = updatedLevels[1];
         recursiveDepth = updatedLevels[2];
@@ -179,8 +209,10 @@ function correctCoupleTies(data) {
                 && el.tieType === Labels.OFFSPRING_LABEL);
         });
 
+
         if (tiesToParentUnionNodes.length == 2) {
             var mergedUnionNode = new ActorNode(tiesToParentUnionNodes[0].source + "" + tiesToParentUnionNodes[1].source.slice(0, -1), currentActor.recursiveDepth + 0.5, currentActor.treeDepth - 0.5);
+            debugger;
             mergedUnionNode = pushActorToList(mergedUnionNode, data.actors, currentActor.recursiveDepth + 0.5);
 
             var newChildToUnionTie = new jsonConversion.Tie(mergedUnionNode.ID, currentActor.ID, Labels.OFFSPRING_LABEL, currentActorObject.baptismDate);
@@ -287,11 +319,69 @@ function completeNonFamilyLevels(data) {
 function pushTieToList(tie, listToPushTo) {
 
     var index = -1;
+
+    if (tie.source.includes("+")) {
+        var res = tie.source.split("+");
+        if (parseInt(res[1]) < parseInt(res[0])) {
+            tie.source = res[1] + "+" + res[0];
+        }
+    }
+
+    if (tie.target.includes("+")) {
+        var res = tie.target.split("+");
+        if (parseInt(res[1]) < parseInt(res[0])) {
+            tie.target = res[1] + "+" + res[0];
+        }
+    }
+
     for (var i = 0; i < listToPushTo.length; i++) {
-        if ((jsonConversion.isEquivalent(tie.source, listToPushTo[i].source))
+
+        if (tie.target.includes("+")) {
+            var reverseID = reverseStringID(tie.target);
+
+            debugger;
+
+            if ((jsonConversion.isEquivalent(tie.source, listToPushTo[i].source))
+                && (jsonConversion.isEquivalent(tie.target, listToPushTo[i].target) ||
+                    jsonConversion.isEquivalent(reverseID, listToPushTo[i].target)
+                )
+                && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))
+            ) {
+                debugger;
+                if (jsonConversion.isEquivalent(reverseID, listToPushTo[i].target)
+                ) {
+                    tie.target = reverseID;
+                }
+                index = i;
+                break;
+            }
+        }
+        else if (tie.source.includes("+")) {
+            var reverseID = reverseStringID(tie.source);
+
+
+            if ((jsonConversion.isEquivalent(tie.target, listToPushTo[i].target))
+                && (jsonConversion.isEquivalent(tie.source, listToPushTo[i].source) ||
+                    jsonConversion.isEquivalent(reverseID, listToPushTo[i].source)
+                )
+                && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))
+            ) {
+                debugger;
+                if (jsonConversion.isEquivalent(reverseID, listToPushTo[i].source)
+                ) {
+                    tie.source = reverseID;
+                }
+
+                index = i;
+                break;
+            }
+        }
+
+        else if (((jsonConversion.isEquivalent(tie.source, listToPushTo[i].source))
             && (jsonConversion.isEquivalent(tie.target, listToPushTo[i].target))
-            && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))
+            && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType)))
         ) {
+            // debugger;
             index = i;
             break;
         }
@@ -303,16 +393,34 @@ function pushTieToList(tie, listToPushTo) {
         return;
 }
 
+function reverseStringID(string) {
+    var res = string.split("+");
+    var reverseID = res[1] + "+" + res[0];
+    return (reverseID);
+}
+
 function pushActorToList(actor, listToPushTo, newDepth) {
-    var index = listToPushTo.map(function (x) {
-        return x.ID;
-    }).indexOf(actor.ID);
+
+    var index, reverseID;
+
+
+    if (actor.ID.includes("+")) {
+
+        var res = actor.ID.split("+");
+        reverseID = res[1] + "+" + res[0];
+        index = listToPushTo.findIndex(x => (x.ID === actor.ID) || (x.ID === reverseID));
+    }
+    else
+        index = listToPushTo.findIndex(x => x.ID === (actor.ID));
+
 
     if (index < 0) {
+
         actor.recursiveDepth = newDepth;
         listToPushTo.push(actor);
     }
     else {
+
         if (!(listToPushTo[index].treeDepth) && (actor.treeDepth)) {
             listToPushTo[index].treeDepth = actor.treeDepth;
         }
@@ -347,18 +455,18 @@ function pushActorToList(actor, listToPushTo, newDepth) {
 
 function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLevel, depthLevel, relationship) {
 
-
     var subActor = actor;
 
-// debugger;
+
+    console.log(graph.ties);
 
     if (relationship === "parenthood") {
+        // if (relationship === Labels.OFFSPRING_LABEL) {
         var toUnionTie = new jsonConversion.Tie(parent.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL);
         var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, subActor.ID, Labels.OFFSPRING_LABEL, subActor.baptismDate);
 
         toUnionTie = pushTieToList(toUnionTie, graph.ties);
         fromUnionTie = pushTieToList(fromUnionTie, graph.ties);
-
     }
 
 
@@ -381,8 +489,8 @@ function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLeve
 
 
     else if (relationship === Labels.MARRIAGE_LABEL) {
-        var tie = new jsonConversion.Tie(parent.ID, subActor.ID, Labels.MARRIAGE_LABEL);
-        tie = pushTieToList(tie, graph.ties);
+        // var tie = new jsonConversion.Tie(parent.ID, subActor.ID, Labels.MARRIAGE_LABEL);
+        // tie = pushTieToList(tie, graph.ties);
 
     }
 
@@ -429,17 +537,19 @@ function findActorNodeByField(value, field, list) {
 function correctTieOrders(graph) {
     for (var i = 0; i < graph.ties.length; i++) {
 
-        var elder = findActorNodeByID(graph.ties[i].source, graph.actors)
-        var youngin = findActorNodeByID(graph.ties[i].target, graph.actors)
+        var elder = findActorNodeByID(graph.ties[i].source, graph.actors);
+        var youngin = findActorNodeByID(graph.ties[i].target, graph.actors);
 
-        if (elder.treeDepth > youngin.treeDepth) {
-            var temp = youngin;
-            youngin = elder;
-            elder = temp;
+        // debugger;
+        if (!elder)
+            if (elder.treeDepth > youngin.treeDepth) {
+                var temp = youngin;
+                youngin = elder;
+                elder = temp;
 
-            graph.ties[i].source = elder;
-            graph.ties[i].target = youngin;
-        }
+                graph.ties[i].source = elder;
+                graph.ties[i].target = youngin;
+            }
     }
 }
 
@@ -477,3 +587,9 @@ exports.findActorNodeByID = findActorNodeByID;
 exports.arraySortByTwoColumns = arraySortByTwoColumns;
 exports.data = data;
 exports.Labels = Labels;
+
+
+// ||
+// (jsonConversion.isEquivalent(tie.source, listToPushTo[i].target)
+//     && (jsonConversion.isEquivalent(tie.target, listToPushTo[i].source))
+//     && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))

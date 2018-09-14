@@ -45,6 +45,7 @@ var yearFrequency = function (year, frequency) {
 
 function drawGraph(data) {
 
+
     var graph = {};
     graph["nodes"] = data.actors;
     graph["links"] = data.ties;
@@ -504,7 +505,7 @@ function dragended(d) {
 // getActors(42);
 // getActors(480);
 
-var centralActor = actorManagement.getCentralActor("490");
+var centralActor = actorManagement.getCentralActor("4");
 
 
 console.log(actorManagement.buildNodeList(centralActor));
