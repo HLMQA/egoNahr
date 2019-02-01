@@ -1,3 +1,4 @@
 - open terminal 
 - navigate to folder 
 - run `npm run watch-dev`
+- run `open -a Google\ Chrome --args --disable-web-security --user-data-dir` to open chrome without running into COSR error
