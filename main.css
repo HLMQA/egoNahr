@@ -80,9 +80,32 @@ text {
 
 }
 
+.handle {
+    fill: #fff;
+    stroke: #000;
+    stroke-opacity: 0.5;
+    stroke-width: 1.25px;
+}
 
 
+.track,
+.track-inset,
+.track-overlay {
+    stroke-linecap: round;
+}
 
+
+.track-inset {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.track-overlay {
+    pointer-events: stroke;
+    stroke-width: 10px;
+    stroke: transparent;
+    cursor: crosshair;
+}
 
 #linksDiv {
     position: absolute;

@@ -1,0 +1,3 @@
+- open terminal 
+- navigate to folder 
+- run `node node_modules/.bin/webpack --config webpack.config.js --watch`

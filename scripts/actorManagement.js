@@ -212,7 +212,6 @@ function correctCoupleTies(data) {
 
         if (tiesToParentUnionNodes.length == 2) {
             var mergedUnionNode = new ActorNode(tiesToParentUnionNodes[0].source + "" + tiesToParentUnionNodes[1].source.slice(0, -1), currentActor.recursiveDepth + 0.5, currentActor.treeDepth - 0.5);
-            debugger;
             mergedUnionNode = pushActorToList(mergedUnionNode, data.actors, currentActor.recursiveDepth + 0.5);
 
             var newChildToUnionTie = new jsonConversion.Tie(mergedUnionNode.ID, currentActor.ID, Labels.OFFSPRING_LABEL, currentActorObject.baptismDate);
@@ -339,7 +338,6 @@ function pushTieToList(tie, listToPushTo) {
         if (tie.target.includes("+")) {
             var reverseID = reverseStringID(tie.target);
 
-            debugger;
 
             if ((jsonConversion.isEquivalent(tie.source, listToPushTo[i].source))
                 && (jsonConversion.isEquivalent(tie.target, listToPushTo[i].target) ||
@@ -347,7 +345,6 @@ function pushTieToList(tie, listToPushTo) {
                 )
                 && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))
             ) {
-                debugger;
                 if (jsonConversion.isEquivalent(reverseID, listToPushTo[i].target)
                 ) {
                     tie.target = reverseID;
@@ -366,7 +363,6 @@ function pushTieToList(tie, listToPushTo) {
                 )
                 && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType))
             ) {
-                debugger;
                 if (jsonConversion.isEquivalent(reverseID, listToPushTo[i].source)
                 ) {
                     tie.source = reverseID;

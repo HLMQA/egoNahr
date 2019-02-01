@@ -118,7 +118,7 @@ function drawGraph(data) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
                 return 1;
             }
-            else return 1.5;
+            else return 2;
         });
 
     var node = svg.append("g")
@@ -161,13 +161,39 @@ function drawGraph(data) {
             .on("end", dragended));
 
 
+    var rectangle = node.append("rect")
+        .attr("class", "rect")
+        .attr("width", function (d) {
+            if (d.isActor) {
+                return lifeSpanWidth;
+            }
+            else return 0;
+        })
+        .attr("height", 6)
+        .attr("x", 0)
+        .attr("y", 3)
+        .attr('fill', 'none')
+        .attr('stroke', function (d) {
+            var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
+            if (actorObject && actorObject.baptismDate && actorObject.funeralDate) {
+                return 'black';
+            }
+            else
+                return 'black';
+        })
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+
+
     // var eventBar = node.append("rect")
     //     .attr("width", 2)
     //     .attr("height", 6)
     //     .attr("x", function (d) {
     //         if (d.isActor) {
     //             var actorData = data.objects.filter(x => x.ID === d.ID);
-    //             return (eventPosition(actorData[0].fullName);x
+    //             return (eventPosition(actorData[0].fullName);
     //         }
     //     })
     //     .attr("y", 3)
@@ -268,7 +294,7 @@ function drawGraph(data) {
             } else var secondParentID = actorObject.secondParent.ID;
 
 
-                // debugger;
+            // debugger;
 
             if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
                 return "gold";
@@ -305,6 +331,8 @@ function drawGraph(data) {
 
     var g = svg.append("g")
         .attr("height", sliderHeight);
+
+
 
     g.append("g")
         .attr("transform", "translate(" + midX + ", 50)")
@@ -353,6 +381,39 @@ function drawGraph(data) {
             d3.select("#tooltip").classed("hidden", true);
 
         });
+
+
+    var slider = g.append("g")
+        .attr("transform", "translate(" + midX + ", 50)")
+        .attr("class", "slider");
+
+    slider.append("line")
+        .attr("class", "track")
+        .attr("y1", rangeSliderY.range()[0])
+        .attr("y2", rangeSliderY.range()[1])
+        .select(function () {
+            return this.parentNode.appendChild(this.cloneNode(true));
+        })
+        .attr("class", "track-inset")
+        .select(function () {
+            return this.parentNode.appendChild(this.cloneNode(true));
+        })
+        .attr("class", "track-overlay")
+        .call(d3.drag()
+            .on("start.interrupt", function () {
+                slider.interrupt();
+
+            })
+            .on("start drag", function () {
+                handle.attr("cy", rangeSliderY(rangeSliderY.invert(d3.event.y)));
+                // draw(rangeSliderY.invert(d3.event.y));
+            }));
+
+
+    var handle = slider.insert("circle", ".track-overlay")
+        .attr("class", "handle")
+        .attr("r", 7)
+        .attr("cy", 0);
 
 
     var collapseCheckBox = d3.select("#collapseCheckBox");
