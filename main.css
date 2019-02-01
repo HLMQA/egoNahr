@@ -8,8 +8,8 @@
 }
 
 .nodes circle {
-    stroke: #fff;
-    stroke-width: 2px;
+    stroke: black;
+    stroke-width: 1px;
 }
 
 text {

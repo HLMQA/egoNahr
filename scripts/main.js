@@ -121,7 +121,7 @@ function drawGraph(data) {
             else return 2;
         });
 
-    var node = svg.append("g")
+    var actorNodes = svg.append("g")
         .attr("class", "nodes")
         .selectAll("g")
         .data(graph.nodes)
@@ -135,25 +135,19 @@ function drawGraph(data) {
         });
 
 
-    var rectangle = node.append("rect")
-        .attr("class", "rect")
-        .attr("width", function (d) {
-            if (d.isActor) {
-                return lifeSpanWidth;
-            }
-            else return 0;
-        })
-        .attr("height", 6)
-        .attr("x", 0)
-        .attr("y", 3)
+    var underlines = actorNodes.append("line")
+        .attr("class", "line")
+        .attr("x1", 0)
+        .attr("x2", lifeSpanWidth)
+        .attr("y1", 5)
+        .attr("y2", 5)
         .attr('fill', 'white')
         .attr('stroke', function (d) {
-            var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
-            if (actorObject && actorObject.baptismDate && actorObject.funeralDate) {
+            if (d.isActor){
                 return 'black';
             }
             else
-                return 'black';
+                return 'none';
         })
         .call(d3.drag()
             .on("start", dragstarted)
@@ -161,26 +155,26 @@ function drawGraph(data) {
             .on("end", dragended));
 
 
-    var rectangle = node.append("rect")
-        .attr("class", "rect")
-        .attr("width", function (d) {
+    var eventNodes = actorNodes.append("g")
+        .attr("class", "event")
+        .selectAll("circle")
+        .data(function (d) {
             if (d.isActor) {
-                return lifeSpanWidth;
+                var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
+                return (actorObject.eventList);
             }
-            else return 0;
+            else return [];
         })
-        .attr("height", 6)
-        .attr("x", 0)
-        .attr("y", 3)
+        .enter().append("circle")
+        .attr("r", function (d) {
+            // if (d.isActor) {
+                return 3;
+            // }
+            // else return 0;
+        })
+        .attr("cx", function(d, i){return i * 12 + 20})
+        .attr("cy", 15)
         .attr('fill', 'none')
-        .attr('stroke', function (d) {
-            var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
-            if (actorObject && actorObject.baptismDate && actorObject.funeralDate) {
-                return 'black';
-            }
-            else
-                return 'black';
-        })
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
@@ -264,7 +258,7 @@ function drawGraph(data) {
                 return d.target.y + 5;
             });
 
-        node
+        actorNodes
             .attr("transform", function (d) {
                 return "translate(" + d.x + "," + d.y + ")";
             })
@@ -272,8 +266,8 @@ function drawGraph(data) {
     }
 
 
-    node.on('mouseover', function (d) {
-        node.style('stroke', function (l) {
+    actorNodes.on('mouseover', function (d) {
+        actorNodes.style('stroke', function (l) {
             // debugger;
             if (l.ID === d.ID || l.ID === d.ID) {
                 return "red";
@@ -305,7 +299,7 @@ function drawGraph(data) {
 
     });
 
-    node.on('mouseout', function () {
+    actorNodes.on('mouseout', function () {
         link.style('stroke', function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
                 return "#eee";
@@ -331,7 +325,6 @@ function drawGraph(data) {
 
     var g = svg.append("g")
         .attr("height", sliderHeight);
-
 
 
     g.append("g")
@@ -476,6 +469,8 @@ function drawGraph(data) {
 
     });
 }
+
+
 
 function showToolTip(element, graph) {
 
