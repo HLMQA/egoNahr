@@ -12,6 +12,24 @@
     stroke-width: 1px;
 }
 
+.eventUnit.pastCircle {
+    stroke: #B2B2B2;
+    fill: #B2B2B2;
+}
+
+
+.eventUnit.currentCircle {
+    stroke: black;
+    fill: black;
+    stroke-width: 1px;
+}
+
+.eventUnit.futureCircle {
+    stroke: black;
+    fill: white;
+    stroke-width: 1px;
+}
+
 text {
     font-family: sans-serif;
     font-size: 10px;

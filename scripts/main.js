@@ -143,7 +143,7 @@ function drawGraph(data) {
         .attr("y2", 5)
         .attr('fill', 'white')
         .attr('stroke', function (d) {
-            if (d.isActor){
+            if (d.isActor) {
                 return 'black';
             }
             else
@@ -156,7 +156,7 @@ function drawGraph(data) {
 
 
     var eventNodes = actorNodes.append("g")
-        .attr("class", "event")
+        .attr("class", "eventArray")
         .selectAll("circle")
         .data(function (d) {
             if (d.isActor) {
@@ -166,13 +166,16 @@ function drawGraph(data) {
             else return [];
         })
         .enter().append("circle")
+        .attr("class", "eventUnit")
         .attr("r", function (d) {
             // if (d.isActor) {
-                return 3;
+            return 3;
             // }
             // else return 0;
         })
-        .attr("cx", function(d, i){return i * 12 + 20})
+        .attr("cx", function (d, i) {
+            return i * 12 + 20
+        })
         .attr("cy", 15)
         .attr('fill', 'none')
         .call(d3.drag()
@@ -471,6 +474,41 @@ function drawGraph(data) {
 }
 
 
+function changeYear(year) {
+
+// mark event nodes according to year
+    changeEventStatus(year)
+
+// change line status according to year
+
+
+}
+
+function changeEventStatus(year) {
+
+    d3.selectAll(".eventUnit")
+        .filter(function (d) {
+            return (d.eventTime.year() < year)
+        })
+        .attr("class", "eventUnit pastCircle");
+
+
+    d3.selectAll(".eventUnit")
+        .filter(function (d) {
+            return (d.eventTime.year() === year)
+        })
+        .attr("class", "eventUnit currentCircle");
+
+
+    d3.selectAll(".eventUnit")
+        .filter(function (d) {
+            return (d.eventTime.year() > year)
+        })
+        .attr("class", "eventUnit futureCircle");
+
+
+}
+
 
 function showToolTip(element, graph) {
 
@@ -557,6 +595,15 @@ function dragended(d) {
 }
 
 
+d3.select("#yearField").on("input", function () {
+    update(+this.value);
+});
+
+function update(inputYear) {
+    changeYear(inputYear);
+}
+
+
 // getActors(4);
 // getActors(42);
 // getActors(480);
@@ -566,4 +613,5 @@ var centralActor = actorManagement.getCentralActor("4");
 
 console.log(actorManagement.buildNodeList(centralActor));
 drawGraph(actorManagement.data);
+update(1655);
 
