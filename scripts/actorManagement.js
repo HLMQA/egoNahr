@@ -132,7 +132,6 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
     }
 
     if (actor.spouse) {
-
         var parentUnionNode = buildUnionNode(actor.spouse, recursiveDepth);
         var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.spouse, data, recursiveDepth, treeDepth, Labels.MARRIAGE_LABEL);
         data = updatedLevels[0];
@@ -186,7 +185,6 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
 }
 
 function assignTreeDepthsToUnionNodes(nodeList) {
-
     for (var i = 0; i < nodeList.length; i++) {
         if (!nodeList[i].isActor) {
             var actorID = nodeList[i].ID;
@@ -255,15 +253,6 @@ function correctCoupleTies(data) {
                     }
                 }
 
-
-                // for (var j = data.actors.length - 1; j >= 0; j--) {
-                //     if (data.actors[j].ID === tiesToParentUnionNodes[0].source) {
-                //         data.actors.splice(j, 1);
-                //         debugger;
-                //     }
-                // }
-
-
             }
 
             var newFirstParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[0].source.slice(0, -1), mergedUnionNode.ID, Labels.OFFSPRING_LABEL);
@@ -304,11 +293,6 @@ function completeNonFamilyLevels(data) {
             });
 
             var godChild = data.actors.find(o => o.ID === godchildrenTies[0].source);
-
-
-            // var minimumGodChildDepth = Math.min.apply(0, godchildrenTies.map(function (elt) {
-            //     return elt.treeDepth;
-            // }));
 
             data.actors[i].treeDepth = godChild.treeDepth - 1;
         }
@@ -401,7 +385,6 @@ function pushActorToList(actor, listToPushTo, newDepth) {
 
 
     if (actor.ID.includes("+")) {
-
         var res = actor.ID.split("+");
         reverseID = res[1] + "+" + res[0];
         index = listToPushTo.findIndex(x => (x.ID === actor.ID) || (x.ID === reverseID));
@@ -435,6 +418,12 @@ function pushActorToList(actor, listToPushTo, newDepth) {
             return actor;
         }
     }
+
+    var res = actor.ID.split("+");
+    reverseID = res[1] + "+" + res[0];
+    if (parseFloat(res[1]) < parseFloat(res[0]))
+        actor.ID = reverseID;
+
     return actor;
 }
 
@@ -537,17 +526,36 @@ function correctTieOrders(graph) {
         var youngin = findActorNodeByID(graph.ties[i].target, graph.actors);
 
         // debugger;
-        if (!elder)
-            if (elder.treeDepth > youngin.treeDepth) {
-                var temp = youngin;
-                youngin = elder;
-                elder = temp;
-
-                graph.ties[i].source = elder;
-                graph.ties[i].target = youngin;
+        if (!elder) {
+            if (graph.ties[i].source.includes("+") && !graph.ties[i].source.includes(youngin.ID)) {
+                var temp = graph.ties[i].source;
+                graph.ties[i].source = graph.ties[i].target;
+                graph.ties[i].target = temp;
             }
+        }
+
+        else if (!youngin) {
+            if (graph.ties[i].target.includes("+") && !graph.ties[i].target.includes(elder.ID)) {
+
+                var temp = graph.ties[i].source;
+                graph.ties[i].source = graph.ties[i].target;
+                graph.ties[i].target = temp;
+
+            }
+        }
+
+
+        else if (elder.treeDepth > youngin.treeDepth) {
+            var temp = youngin;
+            youngin = elder;
+            elder = temp;
+
+            graph.ties[i].source = elder;
+            graph.ties[i].target = youngin;
+        }
     }
 }
+
 
 function findActorNodeByID(id, list) {
 

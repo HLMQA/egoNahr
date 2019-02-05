@@ -27,7 +27,7 @@ var simulation;
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
-    midX = width * 9 / 10,
+    midX = 50,
     sliderHeight = height * 7 / 8;
 
 
@@ -326,7 +326,7 @@ function drawGraph(data) {
         })]);
 
 
-    var g = svg.append("g")
+    var g = d3.select("#sideBar").append("g")
         .attr("height", sliderHeight);
 
 
@@ -607,6 +607,7 @@ function update(inputYear) {
 // getActors(4);
 // getActors(42);
 // getActors(480);
+// getActors(16);
 
 var centralActor = actorManagement.getCentralActor("4");
 
