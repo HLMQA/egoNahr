@@ -7,6 +7,10 @@
     stroke-opacity: 1;
 }
 
+.underline.line {
+    stroke-width: 1px;
+
+}
 .nodes circle {
     stroke: black;
     stroke-width: 1px;

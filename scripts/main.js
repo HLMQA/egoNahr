@@ -1,26 +1,7 @@
 const jsonConversion = require('./jsonConversion.js');
 const actorManagement = require('./actorManagement.js');
 const d3 = require('d3');
-//  var ActorFinal = function (id, fullName, baptismDate, birthYear, birthPlace, deathYear, gender, occupation, firstAppearance, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList) {
-//     this.ID = id;
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.fullName = fullName;
-//     this.baptismDate = baptismDate;
-//     this.birthYear = birthYear;
-//     this.birthPlace = birthPlace;
-//     this.deathYear = deathYear;
-//     this.gender = gender;
-//     this.occupation = occupation;
-//     this.firstAppearance = firstAppearance;
-//     this.firstParent = firstParent;
-//     this.secondParent = secondParent;
-//     this.firstGodParent = firstGodParent;
-//     this.secondGodParent = secondGodParent;
-//     this.offSpringList = offSpringList;
-//
-//     this.spouse = spouse;
-// };
+
 
 
 var simulation;
@@ -75,17 +56,6 @@ function drawGraph(data) {
     var yearFrequencyList = (createEventFrequencyList(eventList, rangeSliderMin, rangeSliderMax));
 
 
-    // ORIGINAL -- GO BACK TO
-
-    // simulation = d3.forceSimulation()
-    //     .force("link", d3.forceLink().id(function (d) {
-    //         return "" + d.ID;
-    //     }))
-    //     .force("charge", d3.forceManyBody().strength(-400))
-    //     .force("center", d3.forceCenter(width / 2, height / 2))
-    //     .force("distanceMin", 100);
-
-
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
@@ -93,15 +63,9 @@ function drawGraph(data) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.2;
             return 1;
         }))
-        .force("charge", d3.forceManyBody().strength(-400))
+        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(1).distanceMax(350))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-
-    // graph.nodes.filter(function (d) {
-    //     if (d.ID === 0) {
-    //         d.fy = height / 2;
-    //     }
-    // });
 
     var link = svg.append("g")
         .attr("class", "links")
@@ -136,7 +100,7 @@ function drawGraph(data) {
 
 
     var underlines = actorNodes.append("line")
-        .attr("class", "line")
+        .attr("class", "underline line")
         .attr("x1", 0)
         .attr("x2", lifeSpanWidth)
         .attr("y1", 5)
@@ -161,7 +125,9 @@ function drawGraph(data) {
         .data(function (d) {
             if (d.isActor) {
                 var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
-                return (actorObject.eventList);
+                return (actorObject.eventList.sort(function(x, y){
+                    return d3.ascending(x.eventTime.year(), y.eventTime.year());
+                }));
             }
             else return [];
         })
@@ -174,27 +140,15 @@ function drawGraph(data) {
             // else return 0;
         })
         .attr("cx", function (d, i) {
-            return i * 12 + 20
+            return i * 12 + 5
         })
-        .attr("cy", 15)
+        .attr("cy", 14)
         .attr('fill', 'none')
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
 
-
-    // var eventBar = node.append("rect")
-    //     .attr("width", 2)
-    //     .attr("height", 6)
-    //     .attr("x", function (d) {
-    //         if (d.isActor) {
-    //             var actorData = data.objects.filter(x => x.ID === d.ID);
-    //             return (eventPosition(actorData[0].fullName);
-    //         }
-    //     })
-    //     .attr("y", 3)
-    //     .attr('fill', 'red');
 
     var text = svg.selectAll('text')
         .data(graph.nodes)
@@ -206,19 +160,8 @@ function drawGraph(data) {
                 var actorData = data.objects.filter(x => x.ID === d.ID);
                 return (actorData[0].fullName);
             }
-            // else return d.ID;
         });
 
-    // var labels = node.append("text")
-    //     .text(function (d) {
-    //         if (d.isActor) {
-    //             var actorData = data.objects.filter(x => x.ID === d.ID);
-    //             return (actorData[0].fullName);
-    //         }
-    //         // else return d.ID;
-    //     })
-    //     .attr('x', -15)
-    //     .attr('y', 0);
 
 
     simulation
@@ -402,7 +345,7 @@ function drawGraph(data) {
             })
             .on("start drag", function () {
                 handle.attr("cy", rangeSliderY(rangeSliderY.invert(d3.event.y)));
-                // draw(rangeSliderY.invert(d3.event.y));
+                update(float2int(rangeSliderY.invert(d3.event.y)));
             }));
 
 
@@ -595,12 +538,21 @@ function dragended(d) {
 }
 
 
+
 d3.select("#yearField").on("input", function () {
     update(+this.value);
 });
 
+
+
+
 function update(inputYear) {
+    console.log(inputYear)
     changeYear(inputYear);
+}
+
+function float2int (value) {
+    return value | 0;
 }
 
 

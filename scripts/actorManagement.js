@@ -254,20 +254,16 @@ function correctCoupleTies(data) {
                 }
 
             }
-
             var newFirstParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[0].source.slice(0, -1), mergedUnionNode.ID, Labels.OFFSPRING_LABEL);
             newFirstParentToUnionTie = pushTieToList(newFirstParentToUnionTie, data.ties);
 
             var newSecondParentToUnionTie = new jsonConversion.Tie(tiesToParentUnionNodes[1].source.slice(0, -1), mergedUnionNode.ID, Labels.OFFSPRING_LABEL);
             newSecondParentToUnionTie = pushTieToList(newSecondParentToUnionTie, data.ties);
-
         }
-
 
         // if there exist TWO ties where target is currentActor.ID
         // new tie3 with ID (paernt1ID+paernt2ID), target = currentActor.ID
         // new tie between each parent and Tie3
-
 
     }
 
@@ -279,7 +275,6 @@ function correctCoupleTies(data) {
             data.actors.splice(i, 1);
             i--;
         }
-
     }
 }
 
@@ -291,9 +286,7 @@ function completeNonFamilyLevels(data) {
                 return (el.target === currentActor.ID
                     && el.tieType === Labels.GODPARENTHOOD_LABEL);
             });
-
             var godChild = data.actors.find(o => o.ID === godchildrenTies[0].source);
-
             data.actors[i].treeDepth = godChild.treeDepth - 1;
         }
     }
@@ -361,7 +354,6 @@ function pushTieToList(tie, listToPushTo) {
             && (jsonConversion.isEquivalent(tie.target, listToPushTo[i].target))
             && (jsonConversion.isEquivalent(tie.tieType, listToPushTo[i].tieType)))
         ) {
-            // debugger;
             index = i;
             break;
         }
@@ -382,7 +374,6 @@ function reverseStringID(string) {
 function pushActorToList(actor, listToPushTo, newDepth) {
 
     var index, reverseID;
-
 
     if (actor.ID.includes("+")) {
         var res = actor.ID.split("+");
@@ -424,19 +415,10 @@ function pushActorToList(actor, listToPushTo, newDepth) {
     if (parseFloat(res[1]) < parseFloat(res[0]))
         actor.ID = reverseID;
 
+
     return actor;
 }
 
-// function buildUnionNode(parent, child) {
-//     var thisUnionNode;
-//     // if (!actor.offSpringList[i].firstParent) {
-//
-//     // if parent
-//     if (child.firstParent || child.secondParent) {
-//         thisUnionNode = new ActorNode(child.firstParent.ID + "x" + child.secondParent.ID);
-//     }
-//     return thisUnionNode;
-// }
 
 function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLevel, depthLevel, relationship) {
 
@@ -501,6 +483,8 @@ function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLeve
 
 function buildUnionNode(actor, recursiveDepth) {
 
+    // debugger;
+
     var actorSpouseID = "";
     if (actor.spouse)
         actorSpouseID = actor.spouse.ID;
@@ -525,7 +509,6 @@ function correctTieOrders(graph) {
         var elder = findActorNodeByID(graph.ties[i].source, graph.actors);
         var youngin = findActorNodeByID(graph.ties[i].target, graph.actors);
 
-        // debugger;
         if (!elder) {
             if (graph.ties[i].source.includes("+") && !graph.ties[i].source.includes(youngin.ID)) {
                 var temp = graph.ties[i].source;
