@@ -90,10 +90,20 @@ function parseJSON(id, actorJSON) {
     var firstParent = getFirstParentFromJSON(actorJSON, id);
     var secondParent = getSecondParentFromJSON(actorJSON, id);
 
+    // I m not sure this case ever happens, but making sure the data is consistent in case it does
+    if (!firstParent && secondParent) {
+        firstParent = secondParent;
+        secondParent = null;
+    }
 
     var firstGodParent = getFirstGodParentFromJSON(actorJSON, id);
     var secondGodParent = getSecondGodParentFromJSON(actorJSON, id);
 
+    // I m not sure this case ever happens, but making sure the data is consistent in case it does
+    if (!firstGodParent && secondGodParent) {
+        firstGodParent = secondGodParent;
+        secondGodParent = null;
+    }
 
     var actorBaptismDate = getBaptismDate(actorJSON, id);
     // var actorBaptismPlace = getBaptismPlace(actorJSON);
@@ -127,7 +137,6 @@ function parseJSON(id, actorJSON) {
     pushActorToList(centralActor, nodeList);
 
 
-    // console.log(centralActor);
     return centralActor;
 
 }
