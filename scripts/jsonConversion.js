@@ -93,7 +93,6 @@ function parseJSON(id, actorJSON) {
 
     var firstGodParent = getFirstGodParentFromJSON(actorJSON, id);
     var secondGodParent = getSecondGodParentFromJSON(actorJSON, id);
-    //
 
 
     var actorBaptismDate = getBaptismDate(actorJSON, id);
@@ -294,7 +293,6 @@ function getFuneralDate(json, id) {
 function getOffspringList(json, id) {
     var element = checkLabelExistence(OFFSPRING_LABEL, json);
     if (!element) return null;
-
     var rawOffspringArray = element.data.offsprings.data;
 
     if (rawOffspringArray) {

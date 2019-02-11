@@ -561,10 +561,12 @@ function float2int (value) {
 // getActors(480);
 // getActors(16);
 
-var centralActor = actorManagement.getCentralActor("4");
+var centralActorID = "16";
+var centralActor = actorManagement.getCentralActor(centralActorID);
 
 
 console.log(actorManagement.buildNodeList(centralActor));
+console.log(actorManagement.data);
 drawGraph(actorManagement.data);
 update(1655);
 
