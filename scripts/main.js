@@ -11,7 +11,7 @@ var svg = d3.select("svg"),
     sliderHeight = height * 7 / 8;
 
 
-var lifeSpanWidth = 200;
+var lifeSpanWidth = 250;
 
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -67,7 +67,6 @@ function drawGraph(data) {
         .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(550))
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("collisionForce", collisionForce);
-    debugger;
 
 
     var link = svg.append("g")
@@ -97,7 +96,7 @@ function drawGraph(data) {
         .attr("height", 300)
         .attr("x", function (d) {
             // if (d.isActor) {
-            d.fx = 400 + d.treeDepth * 300;
+            d.fx = width/2 - lifeSpanWidth/2 + d.treeDepth * width/4;
             // }
         });
 
