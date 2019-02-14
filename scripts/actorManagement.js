@@ -1,6 +1,7 @@
 var exports = module.exports = {};
 
 const jsonConversion = require('./jsonConversion.js');
+const _ = require("underscore");
 
 var data = {
     actors: [],
@@ -128,8 +129,6 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
     // traversedActors.push(actor.ID);
 
 
-    if (actor.ID === "1890") debugger;
-
     if (recursiveDepth > maxRecursiveDepth) {
         return data;
     }
@@ -170,16 +169,20 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
         }
 
         // if (actor.firstParent) {
-        //     var firstParent = jsonConversion.getActorData(actor.firstParent.ID);
         //
-        //     var parentUnionNode = buildUnionNode(firstParent, recursiveDepth);
-        //     treeDepth--;
-        //     var updatedLevels = buildActorSubgraph(parentUnionNode, actor, firstParent, data, recursiveDepth, treeDepth, Labels.OFFSPRING_LABEL);
-        //     data = updatedLevels[0];
-        //     treeDepth = updatedLevels[1];
-        //     recursiveDepth = updatedLevels[2];
-        //     treeDepth++;
+        //     var existingParentUnionNode = findUnionNode(actor);
         //
+        //     if (existingParentUnionNode[0]) {
+        //         var parentUnionNode = existingParentUnionNode[0];
+        //
+        //         treeDepth--;
+        //         var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.firstParent, data, recursiveDepth, treeDepth, Labels.OFFSPRING_LABEL);
+        //         data = updatedLevels[0];
+        //         treeDepth = updatedLevels[1];
+        //         recursiveDepth = updatedLevels[2];
+        //         treeDepth++;
+        //
+        //     }
         // }
         //
         // if (actor.secondParent) {
@@ -510,27 +513,40 @@ function pushActorToList(actor, listToPushTo, newDepth) {
 
             actor.recursiveDepth = newDepth;
             listToPushTo.push(actor);
+            return (actor);
         }
     }
     else {
+        // merge list of children from current and new actor object. Concatenates and removes duplicates
+        if (!listToPushTo[index].eventList && actor.eventList) {
+            listToPushTo[index].eventList = [];
+            listToPushTo[index].eventList = concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
+        }
+        else if (listToPushTo[index].eventList && !actor.eventList) {
+            actor.eventList = [];
+            listToPushTo[index].eventList = concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
+        }
+        else if (listToPushTo[index].eventList && actor.eventList) {
+            listToPushTo[index].eventList = concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
+        }
 
         if (!(listToPushTo[index].treeDepth) && (actor.treeDepth)) {
             listToPushTo[index].treeDepth = actor.treeDepth;
+            return listToPushTo[index];
         }
 
         if (listToPushTo[index].recursiveDepth > newDepth) {
             listToPushTo[index].recursiveDepth = newDepth;
-            return actor;
+            return listToPushTo[index];
 
         }
         else if (listToPushTo[index].recursiveDepth < newDepth) {
             actor.recursiveDepth = listToPushTo[index].recursiveDepth;
-            return actor;
+            return listToPushTo[index];
         }
         else if (!listToPushTo[index].recursiveDepth && newDepth <= maxRecursiveDepth) {
-
             listToPushTo[index].recursiveDepth = newDepth;
-            return actor;
+            return listToPushTo[index];
         }
     }
 
@@ -551,15 +567,16 @@ function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLeve
 
 
     if (relationship === "parenthood") {
-        // if (relationship === Labels.OFFSPRING_LABEL) {
         var toUnionTie = new jsonConversion.Tie(parent.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL);
         var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, subActor.ID, Labels.OFFSPRING_LABEL, subActor.baptismDate);
 
+
+        if (subActor.baptismDate) {
+            jsonConversion.pushEventToList(new jsonConversion.lifeEvent(parent.ID, subActor.baptismDate, Labels.OFFSPRING_LABEL, subActor.ID), parent.eventList);
+        }
         toUnionTie = pushTieToList(toUnionTie, graph.ties);
         fromUnionTie = pushTieToList(fromUnionTie, graph.ties);
     }
-
-
     else if (relationship === Labels.GODPARENTHOOD_LABEL) {
         var tie = new jsonConversion.Tie(parent.ID, subActor.ID, Labels.GODPARENTHOOD_LABEL, subActor.baptismDate);
         tie = pushTieToList(tie, graph.ties);
@@ -587,10 +604,13 @@ function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLeve
 
 
     else if (relationship === Labels.OFFSPRING_LABEL) {
-
+        debugger;
         var toUnionTie = new jsonConversion.Tie(subActor.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "testA");
         var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, parent.ID, Labels.OFFSPRING_LABEL, "testB");
 
+        if (subActor.baptismDate) {
+            jsonConversion.pushEventToList(new jsonConversion.lifeEvent(parent.ID, subActor.baptismDate, Labels.OFFSPRING_LABEL, subActor.ID), parent.eventList);
+        }
 
         toUnionTie = pushTieToList(toUnionTie, graph.ties);
         fromUnionTie = pushTieToList(fromUnionTie, graph.ties);
@@ -609,7 +629,6 @@ function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLeve
 }
 
 function buildUnionNode(actor, recursiveDepth) {
-
 
     var actorSpouseID = "";
     if (actor.spouse)
@@ -670,6 +689,18 @@ function correctTieOrders(graph) {
     }
 }
 
+function concatenateWithNoDuplicate(array) {
+    var a = array.concat();
+    for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+            if (_.isEqual(a[i], a[j])) {
+                a.splice(j--, 1);
+            }
+        }
+    }
+
+    return a;
+}
 
 function findActorNodeByID(id, list) {
 

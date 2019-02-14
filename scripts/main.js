@@ -3,10 +3,9 @@ const actorManagement = require('./actorManagement.js');
 const d3 = require('d3');
 
 
-
 var simulation;
 var svg = d3.select("svg"),
-    width = +svg.attr("width"),
+    width = +svg._groups[0][0].clientWidth,
     height = +svg.attr("height"),
     midX = 50,
     sliderHeight = height * 7 / 8;
@@ -55,16 +54,20 @@ function drawGraph(data) {
 
     var yearFrequencyList = (createEventFrequencyList(eventList, rangeSliderMin, rangeSliderMax));
 
+    var collisionForce = d3.forceCollide(12).strength(1).iterations(100);
+
 
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
         }).distance(60).strength(function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.2;
-            return 1;
+            return 2;
         }))
-        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(1).distanceMax(350))
-        .force("center", d3.forceCenter(width / 2, height / 2));
+        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(550))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collisionForce", collisionForce);
+    debugger;
 
 
     var link = svg.append("g")
@@ -125,7 +128,7 @@ function drawGraph(data) {
         .data(function (d) {
             if (d.isActor) {
                 var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
-                return (actorObject.eventList.sort(function(x, y){
+                return (actorObject.eventList.sort(function (x, y) {
                     return d3.ascending(x.eventTime.year(), y.eventTime.year());
                 }));
             }
@@ -161,7 +164,6 @@ function drawGraph(data) {
                 return (actorData[0].fullName);
             }
         });
-
 
 
     simulation
@@ -538,12 +540,9 @@ function dragended(d) {
 }
 
 
-
 d3.select("#yearField").on("input", function () {
     update(+this.value);
 });
-
-
 
 
 function update(inputYear) {
@@ -551,7 +550,7 @@ function update(inputYear) {
     changeYear(inputYear);
 }
 
-function float2int (value) {
+function float2int(value) {
     return value | 0;
 }
 
@@ -561,7 +560,7 @@ function float2int (value) {
 // getActors(480);
 // getActors(16);
 
-var centralActorID = "16";
+var centralActorID = "6";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
 

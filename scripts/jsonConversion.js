@@ -46,7 +46,7 @@ var Tie = function (source, target, tieType, tieStartYear, tieEndYear) {
     this.tieEndYear = tieEndYear;
 };
 
-var Event = function (source, eventTime, label, target) {
+var lifeEvent = function (source, eventTime, label, target) {
     this.source = source;
     this.eventTime = eventTime;
     this.label = label;
@@ -118,9 +118,9 @@ function parseJSON(id, actorJSON) {
     var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, firstGodParent, secondGodParent, offSpringList, actorBaptismDate, actorFuneralDate);
 
     if (actorBaptismDate)
-        pushEventToList(new Event(centralActor.ID, actorBaptismDate, BIRTH_LABEL, id), centralActor.eventList);
+        pushEventToList(new lifeEvent(centralActor.ID, actorBaptismDate, BIRTH_LABEL, id), centralActor.eventList);
     if (actorFuneralDate)
-        pushEventToList(new Event(centralActor.ID, actorFuneralDate, DEATH_LABEL, id), centralActor.eventList);
+        pushEventToList(new lifeEvent(centralActor.ID, actorFuneralDate, DEATH_LABEL, id), centralActor.eventList);
 
 
     // reciprocateRelationships(centralActor);
@@ -191,7 +191,7 @@ function getFirstParentFromJSON(json, id) {
     if (firstParentID) {
         var thisFirstParent = new Node(firstParentID, firstParentName);
         thisFirstParent = pushActorToList(thisFirstParent, nodeList);
-        pushEventToList(new Event(thisFirstParent.ID, firstParentEvent, OFFSPRING_LABEL, id), thisFirstParent.eventList);
+        pushEventToList(new lifeEvent(thisFirstParent.ID, firstParentEvent, OFFSPRING_LABEL, id), thisFirstParent.eventList);
         return (thisFirstParent);
     }
 }
@@ -205,7 +205,7 @@ function getSecondParentFromJSON(json, id) {
     if (secondParentID) {
         var thisSecondParent = new Node(secondParentID, secondParentName);
         thisSecondParent = pushActorToList(thisSecondParent, nodeList);
-        pushEventToList(new Event(thisSecondParent.ID, secondParentEvent, OFFSPRING_LABEL, id), thisSecondParent.eventList);
+        pushEventToList(new lifeEvent(thisSecondParent.ID, secondParentEvent, OFFSPRING_LABEL, id), thisSecondParent.eventList);
         return (thisSecondParent);
     }
 }
@@ -220,7 +220,7 @@ function getFirstGodParentFromJSON(json, id) {
         var thisFirstGodParent = new Node(firstGodParentID, firstGodParentName);
 
         thisFirstGodParent = pushActorToList(thisFirstGodParent, nodeList);
-        pushEventToList(new Event(thisFirstGodParent.ID, firstGodParentEvent, GODPARENTHOOD_LABEL, id), thisFirstGodParent.eventList);
+        pushEventToList(new lifeEvent(thisFirstGodParent.ID, firstGodParentEvent, GODPARENTHOOD_LABEL, id), thisFirstGodParent.eventList);
 
         return (thisFirstGodParent);
     }
@@ -235,7 +235,7 @@ function getSecondGodParentFromJSON(json, id) {
     if (secondGodParentID) {
         var thisSecondGodParent = new Node(secondGodParentID, secondGodParentName);
         thisSecondGodParent = pushActorToList(thisSecondGodParent, nodeList);
-        pushEventToList(new Event(thisSecondGodParent.ID, secondGodParentEvent, GODPARENTHOOD_LABEL, id), thisSecondGodParent.eventList);
+        pushEventToList(new lifeEvent(thisSecondGodParent.ID, secondGodParentEvent, GODPARENTHOOD_LABEL, id), thisSecondGodParent.eventList);
 
         return (thisSecondGodParent);
     }
@@ -315,7 +315,7 @@ function getOffspringList(json, id) {
                     var thisChildName = rawOffspringArray[i]["query-text"];
                     thisChild.fullName = thisChildName
                 }
-                // thisChild.eventList = pushEventToList(new Event("test", OFFSPRING_LABEL, id), thisChild.eventList);
+                // thisChild.eventList = pushEventToList(new lifeEvent("test", OFFSPRING_LABEL, id), thisChild.eventList);
 
 
                 offSpringList.push(thisChild);
@@ -378,18 +378,18 @@ function pushActorToList(actor, listToPushTo) {
     }
 }
 
-function pushEventToList(event, listToPushTo) {
+function pushEventToList(lifeEvent, listToPushTo) {
     var index = -1;
 
     for (var i = 0; i < listToPushTo.length; i++) {
-        if (isEquivalent(event, listToPushTo[i])) {
+        if (isEquivalent(lifeEvent, listToPushTo[i])) {
             index = i;
             break;
         }
     }
 
     if (index < 0) {
-        listToPushTo.push(event);
+        listToPushTo.push(lifeEvent);
         return listToPushTo;
     }
 
@@ -479,9 +479,11 @@ exports.search = search;
 exports.checkLabelExistence = checkLabelExistence;
 exports.getActorData = getActorData;
 exports.createParentsUnionNode = createParentsUnionNode;
+exports.pushEventToList = pushEventToList;
 exports.getJSON = getJSON;
 exports.Node = Node;
 exports.Tie = Tie;
+exports.lifeEvent = lifeEvent;
 exports.nodeList = nodeList;
 exports.tieList = tieList;
 exports.isEquivalent = isEquivalent;
