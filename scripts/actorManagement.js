@@ -1,6 +1,7 @@
 var exports = module.exports = {};
 
 const jsonConversion = require('./jsonConversion.js');
+const util = require('./util.js');
 const _ = require("underscore");
 
 var data = {
@@ -9,9 +10,7 @@ var data = {
     objects: []
 };
 var maxRecursiveDepth;
-var listOfActors = [];
 
-var traversedActors = [];
 
 var Labels = {
     MARRIAGE_LABEL: "Marriage",
@@ -42,7 +41,9 @@ function getCentralActor(id) {
         var childrenListLength = centralActor.offSpringList.length;
 
         for (var i = 0; i < childrenListLength; i++) {
-            thisChild = jsonConversion.getActorData(centralActor.offSpringList[i].ID);
+            centralActor.offSpringList[i] = jsonConversion.getActorData(centralActor.offSpringList[i].ID);
+            thisChild = centralActor.offSpringList[i];
+
             assignOriginParentNodeToChild(thisChild, centralActor);
             assignSpouseToSpouse(thisChild);
 
@@ -102,8 +103,8 @@ function buildNodeList(actor) {
     var centralNode = new ActorNode(actor.ID, recursiveDepth, treeDepth);
 
     var finalActorList = traverseGraph(actor, data, recursiveDepth, treeDepth);
-    pushActorToList(centralNode, data.actors, recursiveDepth);
-    pushActorToList(actor, data.objects, recursiveDepth);
+    centralNode = pushActorToList(centralNode, data.actors, recursiveDepth);
+    actor = pushActorToList(actor, data.objects, recursiveDepth);
 
     data.actors = assignTreeDepthsToUnionNodes(data.actors);
     correctCoupleTies(data);
@@ -226,8 +227,10 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
             treeDepth++;
             var parentUnionNode = buildUnionNode(actor, recursiveDepth);
             for (var i = 0; i < actor.offSpringList.length; i++) {
+                actor.offSpringList[i] = jsonConversion.getActorData(actor.offSpringList[i].ID);
+                pushActorToList(actor.offSpringList[i], data.objects, recursiveDepth+1);
+
                 var updatedLevels = buildActorSubgraph(parentUnionNode, actor, actor.offSpringList[i], data, recursiveDepth, treeDepth, "parenthood");
-                // listOfActors.push(actor.offSpringList[i]);
                 data = updatedLevels[0];
                 treeDepth = updatedLevels[1];
                 recursiveDepth = updatedLevels[2];
@@ -253,6 +256,7 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
             var parentUnionNode = buildUnionNode(firstParent, recursiveDepth);
             treeDepth--;
             var updatedLevels = buildActorSubgraph(parentUnionNode, actor, firstParent, data, recursiveDepth, treeDepth, Labels.OFFSPRING_LABEL);
+
             data = updatedLevels[0];
             treeDepth = updatedLevels[1];
             recursiveDepth = updatedLevels[2];
@@ -306,7 +310,7 @@ function assignTreeDepthsToUnionNodes(nodeList) {
             var actorID = nodeList[i].ID;
             // treeDepth = average depth of before+ and +after
             var res = actorID.split("+");
-            var firstParent = findActorNodeByID(res[0], nodeList);
+            var firstParent = util.findActorNodeByID(res[0], nodeList);
             nodeList[i].treeDepth = firstParent.treeDepth + 0.5;
         }
     }
@@ -317,7 +321,7 @@ function assignTreeDepthsToUnionNodes(nodeList) {
 function correctCoupleTies(data) {
     for (var i = 0; i < data.objects.length; i++) {
         var currentActorObject = data.objects[i];
-        var currentActor = findActorNodeByID(currentActorObject.ID, data.actors);
+        var currentActor = util.findActorNodeByID(currentActorObject.ID, data.actors);
         var tiesToParentUnionNodes = data.ties.filter(function (el) {
             return (el.target === currentActor.ID
                 && el.tieType === Labels.OFFSPRING_LABEL);
@@ -384,8 +388,8 @@ function correctCoupleTies(data) {
 
     for (var i = 0; i < data.actors.length; i++) {
         if (data.actors[i].ID.includes("+")
-            && (!findActorNodeByField(data.actors[i].ID, "source", data.ties))
-            && (!findActorNodeByField(data.actors[i].ID, "target", data.ties))
+            && (!util.findActorNodeByField(data.actors[i].ID, "source", data.ties))
+            && (!util.findActorNodeByField(data.actors[i].ID, "target", data.ties))
         ) {
             data.actors.splice(i, 1);
             i--;
@@ -435,7 +439,7 @@ function pushTieToList(tie, listToPushTo) {
     for (var i = 0; i < listToPushTo.length; i++) {
 
         if (tie.target.includes("+")) {
-            var reverseID = reverseStringID(tie.target);
+            var reverseID = util.reverseStringID(tie.target);
 
 
             if ((jsonConversion.isEquivalent(tie.source, listToPushTo[i].source))
@@ -453,7 +457,7 @@ function pushTieToList(tie, listToPushTo) {
             }
         }
         else if (tie.source.includes("+")) {
-            var reverseID = reverseStringID(tie.source);
+            var reverseID = util.reverseStringID(tie.source);
 
             if ((jsonConversion.isEquivalent(tie.target, listToPushTo[i].target))
                 && (jsonConversion.isEquivalent(tie.source, listToPushTo[i].source) ||
@@ -486,11 +490,6 @@ function pushTieToList(tie, listToPushTo) {
         return;
 }
 
-function reverseStringID(string) {
-    var res = string.split("+");
-    var reverseID = res[1] + "+" + res[0];
-    return (reverseID);
-}
 
 function pushActorToList(actor, listToPushTo, newDepth) {
 
@@ -506,6 +505,12 @@ function pushActorToList(actor, listToPushTo, newDepth) {
         index = listToPushTo.findIndex(x => x.ID === (actor.ID));
     }
 
+    if (actor.ID.includes("+")) {
+        var res = actor.ID.split("+");
+        reverseID = res[1] + "+" + res[0];
+        if (parseFloat(res[1]) < parseFloat(res[0]))
+            actor.ID = reverseID;
+    }
 
     if (index < 0) {
 
@@ -517,45 +522,48 @@ function pushActorToList(actor, listToPushTo, newDepth) {
         }
     }
     else {
-        // merge list of children from current and new actor object. Concatenates and removes duplicates
+
+
+        // merge list of events from current and new actor object. Concatenates and removes duplicates
         if (!listToPushTo[index].eventList && actor.eventList) {
             listToPushTo[index].eventList = [];
-            listToPushTo[index].eventList = concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
+            listToPushTo[index].eventList = util.concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
         }
         else if (listToPushTo[index].eventList && !actor.eventList) {
             actor.eventList = [];
-            listToPushTo[index].eventList = concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
+            listToPushTo[index].eventList = util.concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
         }
         else if (listToPushTo[index].eventList && actor.eventList) {
-            listToPushTo[index].eventList = concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
+            listToPushTo[index].eventList = util.concatenateWithNoDuplicate(listToPushTo[index].eventList.concat(actor.eventList));
         }
 
+        // if one of the objects comes from the json, and not the other, replace by the one from the json
+        if (!listToPushTo[index].jsonOrigin && actor.jsonOrigin) {
+            debugger;
+            listToPushTo[index] = actor;
+        }
+
+
+        // reajusts the treedepth position
         if (!(listToPushTo[index].treeDepth) && (actor.treeDepth)) {
             listToPushTo[index].treeDepth = actor.treeDepth;
-            return listToPushTo[index];
         }
 
+        // reajusts the recursiveDepth value
         if (listToPushTo[index].recursiveDepth > newDepth) {
             listToPushTo[index].recursiveDepth = newDepth;
-            return listToPushTo[index];
+
 
         }
         else if (listToPushTo[index].recursiveDepth < newDepth) {
             actor.recursiveDepth = listToPushTo[index].recursiveDepth;
-            return listToPushTo[index];
         }
         else if (!listToPushTo[index].recursiveDepth && newDepth <= maxRecursiveDepth) {
             listToPushTo[index].recursiveDepth = newDepth;
-            return listToPushTo[index];
         }
     }
 
-    if (actor.ID.includes("+")) {
-        var res = actor.ID.split("+");
-        reverseID = res[1] + "+" + res[0];
-        if (parseFloat(res[1]) < parseFloat(res[0]))
-            actor.ID = reverseID;
-    }
+
 
     return actor;
 }
@@ -604,12 +612,12 @@ function buildActorSubgraph(parentUnionNode, parent, actor, graph, recursiveLeve
 
 
     else if (relationship === Labels.OFFSPRING_LABEL) {
-        debugger;
         var toUnionTie = new jsonConversion.Tie(subActor.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "testA");
         var fromUnionTie = new jsonConversion.Tie(parentUnionNode.ID, parent.ID, Labels.OFFSPRING_LABEL, "testB");
 
-        if (subActor.baptismDate) {
-            jsonConversion.pushEventToList(new jsonConversion.lifeEvent(parent.ID, subActor.baptismDate, Labels.OFFSPRING_LABEL, subActor.ID), parent.eventList);
+        if (parent.baptismDate) {
+            debugger;
+            jsonConversion.pushEventToList(new jsonConversion.lifeEvent(subActor.ID, parent.baptismDate, Labels.OFFSPRING_LABEL, parent.ID), subActor.eventList);
         }
 
         toUnionTie = pushTieToList(toUnionTie, graph.ties);
@@ -634,26 +642,20 @@ function buildUnionNode(actor, recursiveDepth) {
     if (actor.spouse)
         actorSpouseID = actor.spouse.ID;
 
+    debugger;
+
     var parentUnionNode = new ActorNode(actor.ID + "+" + actorSpouseID);
     parentUnionNode = pushActorToList(parentUnionNode, data.actors, recursiveDepth + 0.5);
 
     return parentUnionNode;
 }
 
-function findActorNodeByField(value, field, list) {
-
-    var index = list.map(function (x) {
-        return x[field];
-    }).indexOf(value);
-
-    return list[index];
-}
 
 function correctTieOrders(graph) {
     for (var i = 0; i < graph.ties.length; i++) {
 
-        var elder = findActorNodeByID(graph.ties[i].source, graph.actors);
-        var youngin = findActorNodeByID(graph.ties[i].target, graph.actors);
+        var elder = util.findActorNodeByID(graph.ties[i].source, graph.actors);
+        var youngin = util.findActorNodeByID(graph.ties[i].target, graph.actors);
 
         // for cases where ID in source & target cannot be found in graph.ties
         if (!elder && !youngin) {
@@ -689,50 +691,8 @@ function correctTieOrders(graph) {
     }
 }
 
-function concatenateWithNoDuplicate(array) {
-    var a = array.concat();
-    for (var i = 0; i < a.length; ++i) {
-        for (var j = i + 1; j < a.length; ++j) {
-            if (_.isEqual(a[i], a[j])) {
-                a.splice(j--, 1);
-            }
-        }
-    }
-
-    return a;
-}
-
-function findActorNodeByID(id, list) {
-
-    var index = list.map(function (x) {
-        return x.ID;
-    }).indexOf(id);
-
-    return list[index];
-}
-
-function arraySort(a, b) {
-    return (a.ID > b.ID) ? 1 : ((b.ID > a.ID) ? -1 : 0);
-}
-
-function arraySortByTwoColumns(a, b) {
-    var aSource = a.source;
-    var bSource = b.source;
-    var aTarget = a.target;
-    var bTarget = b.target;
-
-    if (aSource == bSource) {
-        return (aTarget < bTarget) ? -1 : (aTarget > bTarget) ? 1 : 0;
-    }
-    else {
-        return (aSource < bSource) ? -1 : 1;
-    }
-};
 
 exports.getCentralActor = getCentralActor;
 exports.buildNodeList = buildNodeList;
-exports.arraySort = arraySort;
-exports.findActorNodeByID = findActorNodeByID;
-exports.arraySortByTwoColumns = arraySortByTwoColumns;
 exports.data = data;
 exports.Labels = Labels;

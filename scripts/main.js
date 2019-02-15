@@ -1,5 +1,6 @@
 const jsonConversion = require('./jsonConversion.js');
 const actorManagement = require('./actorManagement.js');
+const util = require('./util.js');
 const d3 = require('d3');
 
 
@@ -11,7 +12,7 @@ var svg = d3.select("svg"),
     sliderHeight = height * 7 / 8;
 
 
-var lifeSpanWidth = 250;
+var lifeSpanWidth = 200;
 
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -126,7 +127,7 @@ function drawGraph(data) {
         .selectAll("circle")
         .data(function (d) {
             if (d.isActor) {
-                var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
+                var actorObject = util.findActorNodeByID(d.ID, data.objects);
                 return (actorObject.eventList.sort(function (x, y) {
                     return d3.ascending(x.eventTime.year(), y.eventTime.year());
                 }));
@@ -223,7 +224,7 @@ function drawGraph(data) {
                 return "blue";
         });
         link.style('stroke', function (l) {
-            var actorObject = actorManagement.findActorNodeByID(d.ID, data.objects);
+            var actorObject = util.findActorNodeByID(d.ID, data.objects);
             if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
                 return "gold";
             }
@@ -559,9 +560,8 @@ function float2int(value) {
 // getActors(480);
 // getActors(16);
 
-var centralActorID = "6";
+var centralActorID = "16";
 var centralActor = actorManagement.getCentralActor(centralActorID);
-
 
 console.log(actorManagement.buildNodeList(centralActor));
 console.log(actorManagement.data);

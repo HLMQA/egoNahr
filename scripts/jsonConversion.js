@@ -1,4 +1,5 @@
 var moment = require('../../node_modules/moment/moment.js');
+const _ = require("underscore");
 
 
 var exports = module.exports = {};
@@ -8,13 +9,13 @@ var MARRIAGE_LABEL = "Marriage";
 var BAPTISM_LABEL = "Baptism";
 var FUNERAL_LABEL = "Funeral";
 var OFFSPRING_LABEL = "Offspring";
-var BIRTH_LABEL = "Birth";
-var DEATH_LABEL = "Death";
+var BIRTH_LABEL = "Baptism";
+var DEATH_LABEL = "Funeral";
 var GODPARENTHOOD_LABEL = "Godparent";
 
 var DATE_FORMAT = "D MMMM YYYY";
 
-var Node = function (id, fullName, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList, baptismDate, funeralDate, eventList) {
+var Node = function (id, fullName, firstParent, secondParent, spouse, firstGodParent, secondGodParent, offSpringList, baptismDate, funeralDate, eventList, jsonOrigin) {
     this.ID = "" + id;
     this.fullName = fullName;
     this.firstParent = firstParent;
@@ -35,7 +36,14 @@ var Node = function (id, fullName, firstParent, secondParent, spouse, firstGodPa
     if (this.funeralDate && this.baptismDate)
         this.lifeSpan = this.funeralDate.diff(this.baptismDate, 'years');
 
-    this.eventList = [];
+    if (eventList)
+        this.eventList = eventList;
+    else
+        this.eventList = [];
+    if (!jsonOrigin)
+        this.jsonOrigin = false;
+    else
+        this.jsonOrigin = jsonOrigin
 };
 
 var Tie = function (source, target, tieType, tieStartYear, tieEndYear) {
@@ -81,6 +89,7 @@ function getJSON(id) {
 
 function parseJSON(id, actorJSON) {
     var myActorData;
+    var actorEventList = [];
 
     var actorFullName = getFullNameFromJSON(actorJSON, id);
     if (!actorFullName) {
@@ -115,13 +124,13 @@ function parseJSON(id, actorJSON) {
 
     var offSpringList = getOffspringList(actorJSON, id);
 
-    var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, firstGodParent, secondGodParent, offSpringList, actorBaptismDate, actorFuneralDate);
 
     if (actorBaptismDate)
-        pushEventToList(new lifeEvent(centralActor.ID, actorBaptismDate, BIRTH_LABEL, id), centralActor.eventList);
+        pushEventToList(new lifeEvent(id, actorBaptismDate, BIRTH_LABEL, id), actorEventList);
     if (actorFuneralDate)
-        pushEventToList(new lifeEvent(centralActor.ID, actorFuneralDate, DEATH_LABEL, id), centralActor.eventList);
+        pushEventToList(new lifeEvent(id, actorFuneralDate, DEATH_LABEL, id), actorEventList);
 
+    var centralActor = new Node(id, actorFullName, firstParent, secondParent, actorSpouse, firstGodParent, secondGodParent, offSpringList, actorBaptismDate, actorFuneralDate, actorEventList, true);
 
     // reciprocateRelationships(centralActor);
 
@@ -132,7 +141,6 @@ function parseJSON(id, actorJSON) {
     // if (offSpringList || actorSpouse) {
     //     createCentralActorUnionNode(centralActor, nodeList, tieList);
     // }
-
 
     pushActorToList(centralActor, nodeList);
 
@@ -382,7 +390,7 @@ function pushEventToList(lifeEvent, listToPushTo) {
     var index = -1;
 
     for (var i = 0; i < listToPushTo.length; i++) {
-        if (isEquivalent(lifeEvent, listToPushTo[i])) {
+        if (_.isEqual(lifeEvent, listToPushTo[i])) {
             index = i;
             break;
         }
