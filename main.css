@@ -65,6 +65,13 @@ text {
 
 }
 
+div#container {
+    height: 200px;
+    width: 150px;
+    border:2px solid #000;
+    overflow: scroll;
+}
+
 #tooltip.hidden {
     display: none;
 }
@@ -76,18 +83,26 @@ text {
     line-height: 20px;
 }
 
-.Birth {
+
+.squares {
+    overflow:auto;
+
+}
+
+
+.Baptism {
     fill: blueviolet;
 }
 
 
-.Death {
+.Funeral {
     fill: black;
 }
 
 
 .Offspring{
     fill: #b3dd72;
+
 }
 
 .Godparent {

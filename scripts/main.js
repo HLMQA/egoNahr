@@ -5,8 +5,13 @@ const d3 = require('d3');
 
 
 var simulation;
+
+
+
+
 var svg = d3.select("svg"),
-    width = +svg._groups[0][0].clientWidth,
+    // width = +svg._groups[0][0].clientWidth,
+    width = 1000,
     height = +svg.attr("height"),
     midX = 50,
     sliderHeight = height * 7 / 8;
@@ -88,6 +93,11 @@ function drawGraph(data) {
             else return 2;
         });
 
+
+
+
+
+
     var actorNodes = svg.append("g")
         .attr("class", "nodes")
         .selectAll("g")
@@ -97,7 +107,7 @@ function drawGraph(data) {
         .attr("height", 300)
         .attr("x", function (d) {
             // if (d.isActor) {
-            d.fx = width/2 - lifeSpanWidth/2 + d.treeDepth * width/4;
+            d.fx = 1 * width / 2 - lifeSpanWidth / 2 + d.treeDepth * width / 4;
             // }
         });
 
@@ -236,8 +246,6 @@ function drawGraph(data) {
             } else var secondParentID = actorObject.secondParent.ID;
 
 
-            // debugger;
-
             if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
                 return "gold";
             }
@@ -303,11 +311,12 @@ function drawGraph(data) {
         .enter()
         .append("rect")
         .attr("class", function (d) {
-            return d.label;
+            return "squares " + d.label;
         })
         .attr("x", function (d, i) {
             return (-10 - (i * 11));
         })
+        .attr("max-width", "10px")
         .attr("height", function (d) {
             return (rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1);
         })
@@ -544,9 +553,25 @@ d3.select("#yearField").on("input", function () {
     update(+this.value);
 });
 
+d3.select("#idField").on("keydown", function () {
+    if (d3.event.keyCode !== 13)
+        return;
+
+    console.log(+this.value);
+
+    var centralActorID = this.value;
+    var centralActor = actorManagement.getCentralActor(centralActorID);
+
+    var populatedActorData = actorManagement.buildNodeList(centralActor);
+    console.log(populatedActorData);
+
+    d3.selectAll("svg > *").remove();
+
+    drawGraph(populatedActorData);
+});
 
 function update(inputYear) {
-    console.log(inputYear)
+    console.log(inputYear);
     changeYear(inputYear);
 }
 
@@ -560,11 +585,11 @@ function float2int(value) {
 // getActors(480);
 // getActors(16);
 
-var centralActorID = "16";
+
+var centralActorID = "120";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
-console.log(actorManagement.buildNodeList(centralActor));
-console.log(actorManagement.data);
-drawGraph(actorManagement.data);
-update(1655);
+var populatedActorData = actorManagement.buildNodeList(centralActor);
+console.log(populatedActorData);
+drawGraph(populatedActorData);
 
