@@ -40,6 +40,7 @@ var Node = function (id, fullName, firstParent, secondParent, spouse, firstGodPa
         this.eventList = eventList;
     else
         this.eventList = [];
+
     if (!jsonOrigin)
         this.jsonOrigin = false;
     else
@@ -190,9 +191,11 @@ function getFullNameFromJSON(json) {
 }
 
 function getFirstParentFromJSON(json, id) {
+
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
     var firstParentID = element.data.parents.data[0]["query-value"];
+
     var firstParentName = element.data.parents.data[0]["query-text"];
     var firstParentEvent = moment(element.value, DATE_FORMAT, true);
 
@@ -205,6 +208,7 @@ function getFirstParentFromJSON(json, id) {
 }
 
 function getSecondParentFromJSON(json, id) {
+
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
     var secondParentID = element.data.parents.data[2]["query-value"];
@@ -219,6 +223,7 @@ function getSecondParentFromJSON(json, id) {
 }
 
 function getFirstGodParentFromJSON(json, id) {
+
     var element = checkLabelExistence(BAPTISM_LABEL, json);
     if (!element) return null;
     var firstGodParentID = element.data.godparents.data[0]["query-value"];
@@ -327,6 +332,9 @@ function getOffspringList(json, id) {
 
 
                 offSpringList.push(thisChild);
+                var thisChildEvent = moment(element.value, DATE_FORMAT, true);
+
+                // pushEventToList(new lifeEvent(thisChild.ID, thisChildEvent, OFFSPRING_LABEL, id), thisSecondGodParent.eventList);
 
                 thisChild = pushActorToList(thisChild, nodeList);
 

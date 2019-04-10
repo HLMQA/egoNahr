@@ -7,8 +7,6 @@ const d3 = require('d3');
 var simulation;
 
 
-
-
 var svg = d3.select("svg"),
     // width = +svg._groups[0][0].clientWidth,
     width = 1000,
@@ -92,10 +90,6 @@ function drawGraph(data) {
             }
             else return 2;
         });
-
-
-
-
 
 
     var actorNodes = svg.append("g")
@@ -282,6 +276,16 @@ function drawGraph(data) {
     var g = d3.select("#sideBar").append("g")
         .attr("height", sliderHeight);
 
+ var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
+    g.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(" + midX + ", 50)")
+        .call(d3.axisRight(rangeSliderY)
+            .ticks(minorTickNumber, ".0f")
+            .tickSize(-5))
+        // .selectAll(".tick")
+        // .exit()
+        .classed("minor", true);
 
     g.append("g")
         .attr("transform", "translate(" + midX + ", 50)")
@@ -304,6 +308,8 @@ function drawGraph(data) {
         });
 
 
+    var squareWidth = 0;
+
     var squares = bars.selectAll(".squares")
         .data(function (d) {
             return d.eventsPerYear
@@ -313,15 +319,16 @@ function drawGraph(data) {
         .attr("class", function (d) {
             return "squares " + d.label;
         })
-        .attr("x", function (d, i) {
-            return (-10 - (i * 11));
-        })
-        .attr("max-width", "10px")
         .attr("height", function (d) {
-            return (rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1);
+            return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
         })
         .attr("width", function (d) {
-            return (rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1);
+            squareWidth = (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+            return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+        })
+        .attr("x", function (d, i) {
+            debugger;
+            return (-squareWidth - (i * (squareWidth + 1) + 1));
         })
         .attr("fill", function (d) {
             return ("#f1dd97")
@@ -586,7 +593,7 @@ function float2int(value) {
 // getActors(16);
 
 
-var centralActorID = "120";
+var centralActorID = "160";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
 var populatedActorData = actorManagement.buildNodeList(centralActor);
