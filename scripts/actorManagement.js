@@ -237,7 +237,6 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
         }
 
 
-
         if (actor.firstParent) {
 
             var firstParent = jsonConversion.getActorData(actor.firstParent.ID);
@@ -270,7 +269,6 @@ function traverseGraph(actor, data, recursiveDepth, treeDepth) {
 
         if (actor.spouse) {
             var spouse = jsonConversion.getActorData(actor.spouse.ID);
-            debugger;
             spouse = pushActorToList(spouse, data.objects, recursiveDepth);
             var parentUnionNode = buildUnionNode(spouse, recursiveDepth);
             var updatedLevels = buildActorSubgraph(parentUnionNode, actor, spouse, data, recursiveDepth, treeDepth, Labels.MARRIAGE_LABEL);
@@ -544,7 +542,6 @@ function pushActorToList(actor, listToPushTo, newDepth) {
 
         // if one of the objects comes from the json, and not the other, replace by the one from the json
         if (!listToPushTo[index].jsonOrigin && actor.jsonOrigin) {
-            debugger;
             listToPushTo[index] = actor;
         }
 
@@ -647,6 +644,17 @@ function buildUnionNode(actor, recursiveDepth) {
 
     var parentUnionNode = new ActorNode(actor.ID + "+" + actorSpouseID);
     parentUnionNode = pushActorToList(parentUnionNode, data.actors, recursiveDepth + 0.5);
+
+
+
+    var actorToUnionNodeTie = new jsonConversion.Tie(actor.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "marriageStartYear", "marriageEndYear");
+    pushTieToList(actorToUnionNodeTie, data.ties);
+
+    if (actorSpouseID != "") {
+        var spouseToUnionNodeTie = new jsonConversion.Tie(actorSpouseID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "marriageStartYear", "marriageEndYear")
+        pushTieToList(spouseToUnionNodeTie, data.ties);
+    }
+
 
     return parentUnionNode;
 }

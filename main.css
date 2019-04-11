@@ -7,6 +7,10 @@
     stroke-opacity: 1;
 }
 
+.links.Marriage {
+    display: none;
+}
+
 .underline.line {
     stroke-width: 1px;
 

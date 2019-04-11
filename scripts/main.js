@@ -74,10 +74,12 @@ function drawGraph(data) {
 
 
     var link = svg.append("g")
-        .attr("class", "links")
         .selectAll("line")
         .data(graph.links)
         .enter().append("line")
+        .attr("class", function (d) {
+            return ("links " + d.tieType);
+        })
         .style("stroke", function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
                 return "#eee";
@@ -165,7 +167,13 @@ function drawGraph(data) {
         .text(function (d) {
             if (d.isActor) {
                 var actorData = data.objects.filter(x => x.ID === d.ID);
-                return (actorData[0].fullName);
+                var birthDate = "?",
+                    deathDate = "?";
+                if (actorData[0].baptismDate)
+                    birthDate = actorData[0].baptismDate.year();
+                if (actorData[0].funeralDate)
+                    deathDate = actorData[0].funeralDate.year();
+                return (actorData[0].fullName + " (" + birthDate + "-" + deathDate + ")");
             }
         });
 
@@ -190,7 +198,6 @@ function drawGraph(data) {
 
         link
             .attr("x1", function (d) {
-                // debugger;
                 if (d.source.isActor) {
                     return d.source.x + lifeSpanWidth;
                 }
@@ -276,7 +283,7 @@ function drawGraph(data) {
     var g = d3.select("#sideBar").append("g")
         .attr("height", sliderHeight);
 
- var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
+    var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
     g.append("g")
         .attr("class", "grid")
         .attr("transform", "translate(" + midX + ", 50)")
@@ -327,7 +334,6 @@ function drawGraph(data) {
             return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
         })
         .attr("x", function (d, i) {
-            debugger;
             return (-squareWidth - (i * (squareWidth + 1) + 1));
         })
         .attr("fill", function (d) {

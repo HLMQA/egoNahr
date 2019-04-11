@@ -92,6 +92,7 @@ function parseJSON(id, actorJSON) {
     var myActorData;
     var actorEventList = [];
 
+
     var actorFullName = getFullNameFromJSON(actorJSON, id);
     if (!actorFullName) {
         return null;

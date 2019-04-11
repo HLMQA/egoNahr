@@ -4,11 +4,9 @@ var exports = module.exports = {};
 const _ = require("underscore");
 
 function findActorNodeByID(id, list) {
-
     var index = list.map(function (x) {
         return x.ID;
     }).indexOf(id);
-
     return list[index];
 }
 
