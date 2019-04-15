@@ -166,3 +166,43 @@ div#container {
     top: 800px;
 
 }
+
+
+
+#tooltip,
+#eventTooltip {
+    position: absolute;
+    width: 240px;
+    height: auto;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 3px 16px silver;
+    pointer-events: none;
+
+    overflow: hidden;
+    top: 10%;
+    right: 10%;
+    /*bottom: 10%;*/
+    left: 10%;
+    padding: 10px 30px;
+    display: block;
+    border-radius: 4px;
+    transition: all 0.5s;
+
+}
+
+#tooltip.hidden,
+#eventTooltip.hidden {
+    display: none;
+}
+
+#tooltip p,
+#eventTooltip p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 20px;
+}
+

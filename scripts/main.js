@@ -16,7 +16,7 @@ var svg = d3.select("svg"),
 
 
 var lifeSpanWidth = 200;
-
+var eventList;
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -34,7 +34,7 @@ function drawGraph(data) {
     graph["nodes"] = data.actors;
     graph["links"] = data.ties;
 
-    var eventList = data.objects.map(a => a.eventList);
+    eventList = data.objects.map(a => a.eventList);
     eventList = [].concat.apply([], eventList);
 
     var lifeSpanRange = (d3.extent(data.objects.map(function (e) {
@@ -65,7 +65,7 @@ function drawGraph(data) {
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
         }).distance(60).strength(function (d) {
-            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.2;
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.7;
             return 2;
         }))
         .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(550))
@@ -152,11 +152,7 @@ function drawGraph(data) {
             return i * 12 + 5
         })
         .attr("cy", 14)
-        .attr('fill', 'none')
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+        .attr('fill', 'none');
 
 
     var text = svg.selectAll('text')
@@ -175,7 +171,48 @@ function drawGraph(data) {
                     deathDate = actorData[0].funeralDate.year();
                 return (actorData[0].fullName + " (" + birthDate + "-" + deathDate + ")");
             }
+        })
+        .on('mouseover', function (d) {
+            actorNodes.style('stroke', function (l) {
+                if (l.ID === d.ID || l.ID === d.ID) {
+                    return "red";
+                }
+                else
+                    return "blue";
+            });
+            link.style('stroke', function (l) {
+                var actorObject = util.findActorNodeByID(d.ID, data.objects);
+                if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+                    return "gold";
+                }
+                if (!actorObject.firstParent) {
+                    var firstParentID = ""
+                } else var firstParentID = actorObject.firstParent.ID;
+                if (!actorObject.secondParent) {
+                    var secondParentID = ""
+                } else var secondParentID = actorObject.secondParent.ID;
+
+
+                if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
+                    return "gold";
+                }
+                else
+                    return "#eee";
+            });
+            showPopUp(d, data, "actor");
+
         });
+
+    text.on('mouseout', function () {
+        link.style('stroke', function (d) {
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
+                return "#eee";
+            }
+            else return "black";
+        });
+
+        d3.select("#tooltip").classed("hidden", true);
+    });
 
 
     simulation
@@ -225,15 +262,15 @@ function drawGraph(data) {
     }
 
 
-    actorNodes.on('mouseover', function (d) {
+    underlines.on('mouseover', function (d) {
         actorNodes.style('stroke', function (l) {
-            // debugger;
             if (l.ID === d.ID || l.ID === d.ID) {
                 return "red";
             }
             else
                 return "blue";
         });
+
         link.style('stroke', function (l) {
             var actorObject = util.findActorNodeByID(d.ID, data.objects);
             if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
@@ -253,19 +290,27 @@ function drawGraph(data) {
             else
                 return "#eee";
         });
-
+        showPopUp(d, data, "actor");
     });
 
-    actorNodes.on('mouseout', function () {
+    underlines.on('mouseout', function () {
         link.style('stroke', function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
                 return "#eee";
             }
             else return "black";
         });
+        d3.select("#tooltip").classed("hidden", true);
 
     });
 
+    eventNodes.on('mouseover', function (d) {
+        showPopUp(d, data, "event")
+    })
+        .on('mouseout', function (d) {
+            d3.select("#eventTooltip").classed("hidden", true);
+
+        });
 
     var rangeSliderY = d3.scaleLinear()
         .domain([+rangeSliderMin - 5, +rangeSliderMax + 5])
@@ -478,9 +523,7 @@ function changeEventStatus(year) {
 
 
 function showToolTip(element, graph) {
-
     console.log(element);
-
 
     var xPosition = d3.event.pageX;
     var yPosition = d3.event.pageY;
@@ -593,13 +636,84 @@ function float2int(value) {
 }
 
 
+function showPopUp(element, data, type) {
+
+    if (type === "actor") {
+
+        var currentActor = util.findActorNodeByID(element.ID, data.objects);
+
+        var xPosition = d3.event.clientX;
+        var yPosition = d3.event.clientY;
+
+        d3.select("#tooltip")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#ID")
+            .text(currentActor.fullName);
+
+        d3.select("#tooltip")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#birthYear")
+            .text(function (d) {
+                if (currentActor.baptismDate) {
+                    return currentActor.baptismDate.format("MMM Do YYYY");
+                }
+                else return ("NA")
+            });
+
+        d3.select("#tooltip")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#deathYear")
+            .text(function (d) {
+                if (currentActor.funeralDate) {
+                    return currentActor.funeralDate.format("MMM Do YYYY");
+                }
+                else return ("NA")
+
+            });
+
+        // d3.select("#tooltip")
+        //     .style("left", xPosition + "px")
+        //     .style("top", yPosition + "px")
+        //     .select("#occupation")
+        //     .text(currentActor.occupation);
+
+        d3.select("#tooltip").classed("hidden", false);
+    }
+    if (type === "event") {
+
+        var xPosition = d3.event.clientX;
+        var yPosition = d3.event.clientY;
+
+        d3.select("#eventTooltip")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#eventYear")
+            .text(element.eventTime.format("MMM Do YYYY"));
+
+        d3.select("#eventTooltip")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#eventType")
+            .text(function (d) {
+                    return element.label;
+            });
+
+        d3.select("#eventTooltip").classed("hidden", false);
+
+    }
+
+}
+
 // getActors(4);
 // getActors(42);
 // getActors(480);
 // getActors(16);
 
 
-var centralActorID = "160";
+var centralActorID = "493";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
 var populatedActorData = actorManagement.buildNodeList(centralActor);
