@@ -15,10 +15,25 @@ var svg = d3.select("svg"),
     sliderHeight = height * 7 / 8;
 
 
-var lifeSpanWidth = 200;
+var lifeSpanWidth = 5;
 var eventList;
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+svg.append("svg:defs").selectAll("marker")
+    .data(["end"])      // Different link/path types can be defined here
+    .enter().append("svg:marker")    // This section adds in the arrows
+    .attr("id", String)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 10)
+    .attr("refY", 0)
+    .attr("markerWidth", 5)
+    .attr("markerHeight", 5)
+    .attr("orient", "auto")
+    .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5");
+
+
 
 var yearFrequency = function (year, frequency) {
     this.year = year;
@@ -91,7 +106,7 @@ function drawGraph(data) {
                 return 1;
             }
             else return 2;
-        });
+        }).attr("marker-end", "url(#end)");
 
 
     var actorNodes = svg.append("g")
@@ -100,12 +115,10 @@ function drawGraph(data) {
         .data(graph.nodes)
         .enter().append("g")
         .attr("class", "actorObject")
-        .attr("height", 300)
-        .attr("x", function (d) {
-            // if (d.isActor) {
-            d.fx = 1 * width / 2 - lifeSpanWidth / 2 + d.treeDepth * width / 4;
-            // }
-        });
+        .attr("height", 300);
+    // .attr("x", function (d) {
+    // d.fx = 1 * width / 2 - lifeSpanWidth / 2 + d.treeDepth * width / 4;
+    // });
 
 
     var underlines = actorNodes.append("line")
@@ -241,7 +254,7 @@ function drawGraph(data) {
                 else return d.source.x + 80;
             })
             .attr("y1", function (d) {
-                return d.source.y + 5;
+                return d.source.y;
             })
             .attr("x2", function (d) {
 
@@ -251,7 +264,7 @@ function drawGraph(data) {
                 else return d.target.x + 80;
             })
             .attr("y2", function (d) {
-                return d.target.y + 5;
+                return d.target.y;
             });
 
         actorNodes
@@ -698,7 +711,7 @@ function showPopUp(element, data, type) {
             .style("top", yPosition + "px")
             .select("#eventType")
             .text(function (d) {
-                    return element.label;
+                return element.label;
             });
 
         d3.select("#eventTooltip").classed("hidden", false);
