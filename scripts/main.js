@@ -31,22 +31,6 @@ function drawGraph(data) {
     var gradient = [];
 
 
-    // var gradient = d3.select("svg").append("defs")
-    //     .append("linearGradient")
-    //     .attr("id", "gradient")
-    //     .attr("spreadMethod", "pad");
-    // //start color white
-    // gradient.append("stop")
-    //     .attr("offset", "0%")
-    //     .attr("stop-color", "#f2f2f2")
-    //     .attr("stop-opacity", 1);
-    // //end color steel blue
-    // gradient.append("stop")
-    //     .attr("offset", "100%")
-    //     .attr("stop-color", "#404040")
-    //     .attr("stop-opacity", 1);
-
-
     svg.append("svg:defs").selectAll("marker")
         .data(["end"])      // Different link/path types can be defined here
         .enter().append("svg:marker")    // This section adds in the arrows
@@ -161,9 +145,7 @@ function drawGraph(data) {
         .enter().append("g")
         .attr("class", "actorObject")
         .attr("height", 300);
-    // .attr("x", function (d) {
-    // d.fx = 1 * width / 2 - lifeSpanWidth / 2 + d.treeDepth * width / 4;
-    // });
+    
 
 
     var underlines = actorNodes.append("line")
@@ -195,7 +177,6 @@ function drawGraph(data) {
             }
             else return ("label")
         })
-        .style("font-size", "11px")
         .text(function (d) {
             if (d.isActor) {
                 var actorData = data.objects.filter(x => x.ID === d.ID);
@@ -570,8 +551,8 @@ d3.select("#idField").on("keydown", function () {
 
     console.log(+this.value);
 
-    var centralActorID = this.value;
-    var centralActor = actorManagement.getCentralActor(centralActorID);
+    centralActorID = this.value;
+    centralActor = actorManagement.getCentralActor(centralActorID);
 
     var populatedActorData = actorManagement.buildNodeList(centralActor);
     console.log(populatedActorData);
@@ -629,11 +610,6 @@ function showPopUp(element, data, type) {
 
             });
 
-        // d3.select("#tooltip")
-        //     .style("left", xPosition + "px")
-        //     .style("top", yPosition + "px")
-        //     .select("#occupation")
-        //     .text(currentActor.occupation);
 
         d3.select("#tooltip").classed("hidden", false);
     }

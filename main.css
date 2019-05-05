@@ -45,9 +45,15 @@ text {
     font-size: 10px;
 }
 
+.label {
+    font-weight: normal;
+    font-size: 12px;
+
+}
+
+
 .label.centralActor {
     font-weight: bold;
-    color: #008CBA;
 
 }
 
