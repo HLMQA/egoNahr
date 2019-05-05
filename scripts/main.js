@@ -145,7 +145,22 @@ function drawGraph(data) {
         .enter().append("g")
         .attr("class", "actorObject")
         .attr("height", 300);
-    
+
+    var actorHaloRadius = 20,
+        marriageHaloRadius = 5;
+
+    var actorCircles = actorNodes
+        .append("circle")
+        .attr("class", "halo")
+        .attr("r", function (d) {
+            if (d.isActor) {
+                return actorHaloRadius;
+            }
+            else return marriageHaloRadius;
+        })
+        .each(function (d) {
+            d.circle = this;
+        });
 
 
     var underlines = actorNodes.append("line")
@@ -276,42 +291,62 @@ function drawGraph(data) {
                 return "translate(" + d.x + "," + d.y + ")";
             });
 
-        link
-            .attr("x1", function (d) {
-                if (d.source.isActor) {
-                    return d.source.x;
-                }
-                else return d.source.x;
-            })
-            .attr("y1", function (d) {
-                return d.source.y;
-            })
-            .attr("x2", function (d) {
+        link.each(setPath);
 
-                if (d.target.isActor) {
-                    return d.target.x;
-                }
-                else return d.target.x;
-            })
-            .attr("y2", function (d) {
-                return d.target.y;
-            });
+    }
 
-        d3.selectAll(".links")
-            .attr("d", function (d, i) {
+    function setPath(d, i, n) {
+        var radius = 10;
 
-                var radius = 10;
+        var sourceX = d.source.x;
+        var sourceY = d.source.y;
+        var targetX = d.target.x;
+        var targetY = d.target.y;
 
-                var linkVector = new Vector2(d.target.x - d.source.x, d.target.y - d.source.y).getUnitVector();
-                var gradientVector = linkVector.scale(0.5);
+        var theta = Math.atan((targetX - sourceX) / (targetY - sourceY));
+        var phi = Math.atan((targetY - sourceY) / (targetX - sourceX));
 
-                gradient[i]
-                    .attr("x1", 0.5 - gradientVector.X)
-                    .attr("y1", 0.5 - gradientVector.Y)
-                    .attr("x2", 0.5 + gradientVector.X)
-                    .attr("y2", 0.5 + gradientVector.Y);
+        var sinTheta = d.source.circle.getAttribute("r") * Math.sin(theta);
+        var cosTheta = d.source.circle.getAttribute("r") * Math.cos(theta);
+        var sinPhi = d.target.circle.getAttribute("r") * Math.sin(phi);
+        var cosPhi = d.target.circle.getAttribute("r") * Math.cos(phi);
 
-            });
+        // Set the position of the link's end point at the source node
+        // such that it is on the edge closest to the target node
+        if (d.target.y > d.source.y) {
+            sourceX = sourceX + sinTheta;
+            sourceY = sourceY + cosTheta;
+        }
+        else {
+            sourceX = sourceX - sinTheta;
+            sourceY = sourceY - cosTheta;
+        }
+
+        // Set the position of the link's end point at the target node
+        // such that it is on the edge closest to the source node
+        if (d.source.x > d.target.x) {
+            targetX = targetX + cosPhi;
+            targetY = targetY + sinPhi;
+        }
+        else {
+            targetX = targetX - cosPhi;
+            targetY = targetY - sinPhi;
+        }
+
+        d3.select(this).attr("x1", sourceX)
+            .attr("y1", sourceY)
+            .attr("x2", targetX)
+            .attr("y2", targetY);
+
+        var linkVector = new Vector2(targetX - sourceX, targetY - sourceY).getUnitVector();
+        var gradientVector = linkVector.scale(0.5);
+
+
+        gradient[i]
+            .attr("x1", 0.5 - gradientVector.X)
+            .attr("y1", 0.5 - gradientVector.Y)
+            .attr("x2", 0.5 + gradientVector.X)
+            .attr("y2", 0.5 + gradientVector.Y);
 
 
     }

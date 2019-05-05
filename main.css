@@ -57,6 +57,11 @@ text {
 
 }
 
+.halo {
+    stroke: none;
+    opacity: 0;
+}
+
 #tooltip {
     position: absolute;
     width: 240px;
