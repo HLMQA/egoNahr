@@ -3,8 +3,10 @@
 }
 
 .links line {
-    stroke: #000;
+    stroke: red;
     stroke-opacity: 1;
+    fill: url(#gradient);
+
 }
 
 .links.Marriage {
@@ -43,7 +45,11 @@ text {
     font-size: 10px;
 }
 
+.label.centralActor {
+    font-weight: bold;
+    color: #008CBA;
 
+}
 
 #tooltip {
     position: absolute;
@@ -110,11 +116,14 @@ div#container {
     fill: #b3dd72;
     fill: black;
 
+
+
 }
 
 .Godparent {
     fill: #98e5f5;
     fill: black;
+
 
 }
 
@@ -205,4 +214,5 @@ div#container {
     font-size: 13px;
     line-height: 20px;
 }
+
 
