@@ -29,20 +29,30 @@ var yearFrequency = function (year, frequency) {
 function drawGraph(data) {
 
     var gradient = [];
+    var color = d3.schemeCategory20;
 
+    var godParentMarkerColor = "#b7b7b7";
+    var parentMarkerColor = "#000000";
 
-    svg.append("svg:defs").selectAll("marker")
-        .data(["end"])      // Different link/path types can be defined here
-        .enter().append("svg:marker")    // This section adds in the arrows
-        .attr("id", String)
-        .attr("viewBox", "0 -5 10 10")
-        .attr("refX", 10)
-        .attr("refY", 0)
-        .attr("markerWidth", 5)
-        .attr("markerHeight", 5)
-        .attr("orient", "auto")
-        .append("svg:path")
-        .attr("d", "M0,-5L10,0L0,5");
+    var defs = svg.append("svg:defs");
+
+    function marker(color) {
+        defs.append("svg:marker")
+            .attr("id", color.replace("#", ""))
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 5) // This sets how far back it sits, kinda
+            .attr("refY", 0)
+            .attr("markerWidth", 9)
+            .attr("markerHeight", 9)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse")
+            .append("svg:path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .style("fill", color);
+
+        return "url(" + color + ")";
+    };
+
 
     var graph = {};
     graph["nodes"] = data.actors;
@@ -107,19 +117,23 @@ function drawGraph(data) {
             return d.target.y;
         })
         .style("stroke", function (d, i) {
-            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
-                return "#eee";
-            }
-            else return "url(#gradient" + i + ")";
+            return "url(#gradient" + i + ")";
         })
         .style("stroke-width", function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
-                return 1;
+                return 2;
             }
             else return 2;
-        }).attr("marker-end", "url(#end)");
+        }).attr("marker-end", function (d) {
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
+                return marker(godParentMarkerColor);
+            }
+            else return marker(parentMarkerColor);
+        });
+
 
     for (var i = 0; i < graph.links.length; i++) {
+
         gradient[i] = d3.select("svg").append("defs")
             .append("linearGradient")
             .attr("id", "gradient" + i)
@@ -132,7 +146,13 @@ function drawGraph(data) {
 
         gradient[i].append("stop")
             .attr("offset", "100%")
-            .attr("stop-color", "#404040")
+            .attr("stop-color", function () {
+                if (graph.links[i].tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
+                    return godParentMarkerColor
+                }
+                else
+                    return parentMarkerColor;
+            })
             .attr("stop-opacity", 1);
 
     }
@@ -147,7 +167,7 @@ function drawGraph(data) {
         .attr("height", 300);
 
     var actorHaloRadius = 20,
-        marriageHaloRadius = 5;
+        marriageHaloRadius = 8;
 
     var actorCircles = actorNodes
         .append("circle")
@@ -238,7 +258,7 @@ function drawGraph(data) {
     text.on('mouseout', function () {
         link.style('stroke', function (d, i) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
-                return "#eee";
+                return "url(#gradient" + i + ")";
             }
             else return "url(#gradient" + i + ")";
         });
@@ -295,7 +315,7 @@ function drawGraph(data) {
 
     }
 
-    function setPath(d, i, n) {
+    function setPath(d, i) {
         var radius = 10;
 
         var sourceX = d.source.x;
