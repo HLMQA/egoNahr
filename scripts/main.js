@@ -29,10 +29,12 @@ var yearFrequency = function (year, frequency) {
 function drawGraph(data) {
 
     var gradient = [];
+    var gradientHighlighted = [];
     var color = d3.schemeCategory20;
 
-    var godParentMarkerColor = "#b7b7b7";
+    var godParentMarkerColor = "#c8c8c8";
     var parentMarkerColor = "#000000";
+    var highlightedMarkerColor = "#FFD700";
 
     var defs = svg.append("svg:defs");
 
@@ -121,7 +123,7 @@ function drawGraph(data) {
         })
         .style("stroke-width", function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
-                return 2;
+                return 1;
             }
             else return 2;
         }).attr("marker-end", function (d) {
@@ -133,7 +135,6 @@ function drawGraph(data) {
 
 
     for (var i = 0; i < graph.links.length; i++) {
-
         gradient[i] = d3.select("svg").append("defs")
             .append("linearGradient")
             .attr("id", "gradient" + i)
@@ -141,7 +142,7 @@ function drawGraph(data) {
 
         gradient[i].append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", "#f2f2f2")
+            .attr("stop-color", "#f7f7f7")
             .attr("stop-opacity", 1);
 
         gradient[i].append("stop")
@@ -155,7 +156,23 @@ function drawGraph(data) {
             })
             .attr("stop-opacity", 1);
 
+
+        gradientHighlighted[i] = d3.select("svg").append("defs")
+            .append("linearGradient")
+            .attr("id", "highlighted" + i)
+            .attr("spreadMethod", "pad");
+
+        gradientHighlighted[i].append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#ffffff")
+            .attr("stop-opacity", 1);
+
+        gradientHighlighted[i].append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", highlightedMarkerColor)
+            .attr("stop-opacity", 1);
     }
+
 
 
     var actorNodes = svg.append("g")
@@ -225,6 +242,7 @@ function drawGraph(data) {
             }
         })
         .on('mouseover', function (d) {
+
             actorNodes.style('stroke', function (l) {
                 if (l.ID === d.ID || l.ID === d.ID) {
                     return "red";
@@ -232,10 +250,30 @@ function drawGraph(data) {
                 else
                     return "blue";
             });
-            link.style('stroke', function (l) {
+
+            link.style('stroke', function (l, i) {
+                var actorObject = util.findActorNodeByID(d.ID, data.objects);
+
+                if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+                    return "url(#highlighted" + l.index+ ")";
+                }
+                if (!actorObject.firstParent) {
+                    var firstParentID = ""
+                } else var firstParentID = actorObject.firstParent.ID;
+                if (!actorObject.secondParent) {
+                    var secondParentID = ""
+                } else var secondParentID = actorObject.secondParent.ID;
+
+                if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
+                    return "url(#highlighted" + l.index + ")";
+                }
+                else
+                    return "#eee";
+            }).attr("marker-end", function (l) {
+
                 var actorObject = util.findActorNodeByID(d.ID, data.objects);
                 if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
-                    return "gold";
+                    return marker(highlightedMarkerColor);
                 }
                 if (!actorObject.firstParent) {
                     var firstParentID = ""
@@ -246,10 +284,10 @@ function drawGraph(data) {
 
 
                 if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
-                    return "gold";
+                    return marker(highlightedMarkerColor);
                 }
                 else
-                    return "#eee";
+                    return marker("#eee");
             });
             showPopUp(d, data, "actor");
 
@@ -261,7 +299,12 @@ function drawGraph(data) {
                 return "url(#gradient" + i + ")";
             }
             else return "url(#gradient" + i + ")";
-        });
+        }).attr("marker-end", function (d) {
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
+                return marker(godParentMarkerColor);
+            }
+            else return marker(parentMarkerColor);
+        })
 
         d3.select("#tooltip").classed("hidden", true);
     });
@@ -368,39 +411,47 @@ function drawGraph(data) {
             .attr("x2", 0.5 + gradientVector.X)
             .attr("y2", 0.5 + gradientVector.Y);
 
+        gradientHighlighted[i]
+            .attr("x1", 0.5 - gradientVector.X)
+            .attr("y1", 0.5 - gradientVector.Y)
+            .attr("x2", 0.5 + gradientVector.X)
+            .attr("y2", 0.5 + gradientVector.Y);
+
 
     }
 
 
     underlines.on('mouseover', function (d) {
-        actorNodes.style('stroke', function (l) {
-            if (l.ID === d.ID || l.ID === d.ID) {
-                return "red";
-            }
-            else
-                return "blue";
-        });
-
-        link.style('stroke', function (l) {
-            var actorObject = util.findActorNodeByID(d.ID, data.objects);
-            if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
-                return "gold";
-            }
-            if (!actorObject.firstParent) {
-                var firstParentID = ""
-            } else var firstParentID = actorObject.firstParent.ID;
-            if (!actorObject.secondParent) {
-                var secondParentID = ""
-            } else var secondParentID = actorObject.secondParent.ID;
-
-
-            if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
-                return "gold";
-            }
-            else
-                return "#eee";
-        });
-        showPopUp(d, data, "actor");
+        //     debugger;
+        //     actorNodes.style('stroke', function (l) {
+        //         if (l.ID === d.ID || l.ID === d.ID) {
+        //             return "red";
+        //         }
+        //         else
+        //             return "blue";
+        //     });
+        //
+        //     link.style('stroke', function (l) {
+        //         var actorObject = util.findActorNodeByID(d.ID, data.objects);
+        //         if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+        //             return highlightedMarkerColor;
+        //         }
+        //         if (!actorObject.firstParent) {
+        //             var firstParentID = ""
+        //         } else var firstParentID = actorObject.firstParent.ID;
+        //         if (!actorObject.secondParent) {
+        //             var secondParentID = ""
+        //         } else var secondParentID = actorObject.secondParent.ID;
+        //
+        //
+        //         if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
+        //             return highlightedMarkerColor;
+        //         }
+        //         else
+        //             return "#eee";
+        //     }).attr("marker-end", marker(highlightedMarkerColor));
+        //     showPopUp(d, data, "actor");
+        // });
     });
 
     underlines.on('mouseout', function () {
