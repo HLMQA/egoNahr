@@ -10,7 +10,8 @@ var simulation;
 var svg = d3.select("svg"),
     // width = +svg._groups[0][0].clientWidth,
     width = 1000,
-    height = +svg.attr("height"),
+    // height = +svg.attr("height"),
+    height = 1200,
     midX = 50,
     sliderHeight = height * 7 / 8;
 
@@ -143,7 +144,7 @@ function drawGraph(data) {
         gradient[i].append("stop")
             .attr("offset", "0%")
             .attr("stop-color", "#f7f7f7")
-            .attr("stop-opacity", 1);
+            .attr("stop-opacity", 0.5);
 
         gradient[i].append("stop")
             .attr("offset", "100%")
@@ -183,7 +184,7 @@ function drawGraph(data) {
         .attr("class", "actorObject")
         .attr("height", 300);
 
-    var actorHaloRadius = 20,
+    var actorHaloRadius = 18,
         marriageHaloRadius = 8;
 
     var actorCircles = actorNodes
@@ -254,7 +255,7 @@ function drawGraph(data) {
             link.style('stroke', function (l, i) {
                 var actorObject = util.findActorNodeByID(d.ID, data.objects);
 
-                if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+                if (l.source.ID.split("+").includes(d.ID) || l.target.ID.split("+").includes(d.ID)) {
                     return "url(#highlighted" + l.index+ ")";
                 }
                 if (!actorObject.firstParent) {
@@ -272,7 +273,7 @@ function drawGraph(data) {
             }).attr("marker-end", function (l) {
 
                 var actorObject = util.findActorNodeByID(d.ID, data.objects);
-                if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+                if (l.source.ID.split("+").includes(d.ID) || l.target.ID.split("+").includes(d.ID)) {
                     return marker(highlightedMarkerColor);
                 }
                 if (!actorObject.firstParent) {
