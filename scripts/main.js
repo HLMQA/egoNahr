@@ -9,7 +9,7 @@ var simulation;
 
 var svg = d3.select("svg"),
     // width = +svg._groups[0][0].clientWidth,
-    width = 1000,
+    width = 1200,
     height = +svg.attr("height"),
     midX = 50,
     sliderHeight = height * 7 / 8;
@@ -64,8 +64,8 @@ function drawGraph(data) {
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
-        }).distance(60).strength(function (d) {
-            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.7;
+        }).distance(40).strength(function (d) {
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.8;
             return 2;
         }))
         .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(550))
@@ -115,51 +115,28 @@ function drawGraph(data) {
         .attr("y1", 5)
         .attr("y2", 5)
         .attr('fill', 'white')
-        .attr('stroke', function (d) {
-            if (d.isActor) {
-                return 'black';
-            }
-            else
-                return 'none';
-        })
+        // .attr('stroke', function (d) {
+        //     if (d.isActor) {
+        //         return 'white';
+        //     }
+        //     else
+        //         return 'none';
+        // })
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
 
 
-    var eventNodes = actorNodes.append("g")
-        .attr("class", "eventArray")
-        .selectAll("circle")
-        .data(function (d) {
-            if (d.isActor) {
-                var actorObject = util.findActorNodeByID(d.ID, data.objects);
-                return (actorObject.eventList.sort(function (x, y) {
-                    return d3.ascending(x.eventTime.year(), y.eventTime.year());
-                }));
-            }
-            else return [];
-        })
-        .enter().append("circle")
-        .attr("class", "eventUnit")
-        .attr("r", function (d) {
-            // if (d.isActor) {
-            return 3;
-            // }
-            // else return 0;
-        })
-        .attr("cx", function (d, i) {
-            return i * 12 + 5
-        })
-        .attr("cy", 14)
-        .attr('fill', 'none');
-
-
-    var text = svg.selectAll('text')
+    var text = actorNodes.select('text')
         .data(graph.nodes)
         .enter().append("svg:text")
-        .attr("class", "label")
-        .style("font-size", "11px")
+        .attr("class", function (d) {
+            if (d.ID === centralActorID) {
+                return ("label centralActor")
+            }
+            else return ("label")
+        })
         .text(function (d) {
             if (d.isActor) {
                 var actorData = data.objects.filter(x => x.ID === d.ID);
@@ -173,13 +150,6 @@ function drawGraph(data) {
             }
         })
         .on('mouseover', function (d) {
-            actorNodes.style('stroke', function (l) {
-                if (l.ID === d.ID || l.ID === d.ID) {
-                    return "red";
-                }
-                else
-                    return "blue";
-            });
             link.style('stroke', function (l) {
                 var actorObject = util.findActorNodeByID(d.ID, data.objects);
                 if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
@@ -202,6 +172,10 @@ function drawGraph(data) {
             showPopUp(d, data, "actor");
 
         });
+
+    text.each(function (d) {
+        d.textWidth = this.clientWidth;
+    });
 
     text.on('mouseout', function () {
         link.style('stroke', function (d) {
@@ -236,22 +210,22 @@ function drawGraph(data) {
         link
             .attr("x1", function (d) {
                 if (d.source.isActor) {
-                    return d.source.x + lifeSpanWidth;
+                    return d.source.x + d.source.textWidth + 10;
                 }
                 else return d.source.x + 80;
             })
             .attr("y1", function (d) {
-                return d.source.y + 5;
+                return d.source.y;
             })
             .attr("x2", function (d) {
 
                 if (d.target.isActor) {
-                    return d.target.x;
+                    return d.target.x - 10 ;
                 }
                 else return d.target.x + 80;
             })
             .attr("y2", function (d) {
-                return d.target.y + 5;
+                return d.target.y;
             });
 
         actorNodes
@@ -261,37 +235,37 @@ function drawGraph(data) {
 
     }
 
-
-    underlines.on('mouseover', function (d) {
-        actorNodes.style('stroke', function (l) {
-            if (l.ID === d.ID || l.ID === d.ID) {
-                return "red";
-            }
-            else
-                return "blue";
-        });
-
-        link.style('stroke', function (l) {
-            var actorObject = util.findActorNodeByID(d.ID, data.objects);
-            if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
-                return "gold";
-            }
-            if (!actorObject.firstParent) {
-                var firstParentID = ""
-            } else var firstParentID = actorObject.firstParent.ID;
-            if (!actorObject.secondParent) {
-                var secondParentID = ""
-            } else var secondParentID = actorObject.secondParent.ID;
-
-
-            if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
-                return "gold";
-            }
-            else
-                return "#eee";
-        });
-        showPopUp(d, data, "actor");
-    });
+    //
+    // underlines.on('mouseover', function (d) {
+    //     actorNodes.style('stroke', function (l) {
+    //         if (l.ID === d.ID || l.ID === d.ID) {
+    //             return "red";
+    //         }
+    //         else
+    //             return "blue";
+    //     });
+    //
+    //     link.style('stroke', function (l) {
+    //         var actorObject = util.findActorNodeByID(d.ID, data.objects);
+    //         if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
+    //             return "gold";
+    //         }
+    //         if (!actorObject.firstParent) {
+    //             var firstParentID = ""
+    //         } else var firstParentID = actorObject.firstParent.ID;
+    //         if (!actorObject.secondParent) {
+    //             var secondParentID = ""
+    //         } else var secondParentID = actorObject.secondParent.ID;
+    //
+    //
+    //         if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
+    //             return "gold";
+    //         }
+    //         else
+    //             return "#eee";
+    //     });
+    //     showPopUp(d, data, "actor");
+    // });
 
     underlines.on('mouseout', function () {
         link.style('stroke', function (d) {
@@ -325,103 +299,103 @@ function drawGraph(data) {
         })]);
 
 
-    var g = d3.select("#sideBar").append("g")
-        .attr("height", sliderHeight);
-
-    var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
-    g.append("g")
-        .attr("class", "grid")
-        .attr("transform", "translate(" + midX + ", 50)")
-        .call(d3.axisRight(rangeSliderY)
-            .ticks(minorTickNumber, ".0f")
-            .tickSize(-5))
-        // .selectAll(".tick")
-        // .exit()
-        .classed("minor", true);
-
-    g.append("g")
-        .attr("transform", "translate(" + midX + ", 50)")
-        .attr("class", "axis")
-        .call(d3.axisRight(rangeSliderY)
-            .ticks(10, ".0f")
-            .tickSize(10, 5)
-        );
-
-
-    var barChart = g.append("g")
-        .attr("transform", "translate(" + midX + ", 50)");
-
-    var bars = barChart.selectAll(".bar")
-        .data(yearFrequencyList)
-        .enter()
-        .append("g")
-        .attr("transform", function (d) {
-            return "translate(0, " + rangeSliderY(+d.year) + ")";
-        });
-
-
-    var squareWidth = 0;
-
-    var squares = bars.selectAll(".squares")
-        .data(function (d) {
-            return d.eventsPerYear
-        })
-        .enter()
-        .append("rect")
-        .attr("class", function (d) {
-            return "squares " + d.label;
-        })
-        .attr("height", function (d) {
-            return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
-        })
-        .attr("width", function (d) {
-            squareWidth = (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
-            return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
-        })
-        .attr("x", function (d, i) {
-            return (-squareWidth - (i * (squareWidth + 1) + 1));
-        })
-        .attr("fill", function (d) {
-            return ("#f1dd97")
-        }).on("mouseover", function (d) {
-            showToolTip(d, graph)
-        }).on("mouseout", function () {
-            d3.select("#tooltip").classed("hidden", true);
-
-        });
-
-
-    var slider = g.append("g")
-        .attr("transform", "translate(" + midX + ", 50)")
-        .attr("class", "slider");
-
-    slider.append("line")
-        .attr("class", "track")
-        .attr("y1", rangeSliderY.range()[0])
-        .attr("y2", rangeSliderY.range()[1])
-        .select(function () {
-            return this.parentNode.appendChild(this.cloneNode(true));
-        })
-        .attr("class", "track-inset")
-        .select(function () {
-            return this.parentNode.appendChild(this.cloneNode(true));
-        })
-        .attr("class", "track-overlay")
-        .call(d3.drag()
-            .on("start.interrupt", function () {
-                slider.interrupt();
-
-            })
-            .on("start drag", function () {
-                handle.attr("cy", rangeSliderY(rangeSliderY.invert(d3.event.y)));
-                update(float2int(rangeSliderY.invert(d3.event.y)));
-            }));
-
-
-    var handle = slider.insert("circle", ".track-overlay")
-        .attr("class", "handle")
-        .attr("r", 7)
-        .attr("cy", 0);
+// var g = d3.select("#sideBar").append("g")
+//     .attr("height", sliderHeight);
+//
+// var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
+// g.append("g")
+//     .attr("class", "grid")
+//     .attr("transform", "translate(" + midX + ", 50)")
+//     .call(d3.axisRight(rangeSliderY)
+//         .ticks(minorTickNumber, ".0f")
+//         .tickSize(-5))
+//     // .selectAll(".tick")
+//     // .exit()
+//     .classed("minor", true);
+//
+// g.append("g")
+//     .attr("transform", "translate(" + midX + ", 50)")
+//     .attr("class", "axis")
+//     .call(d3.axisRight(rangeSliderY)
+//         .ticks(10, ".0f")
+//         .tickSize(10, 5)
+//     );
+//
+//
+// var barChart = g.append("g")
+//     .attr("transform", "translate(" + midX + ", 50)");
+//
+// var bars = barChart.selectAll(".bar")
+//     .data(yearFrequencyList)
+//     .enter()
+//     .append("g")
+//     .attr("transform", function (d) {
+//         return "translate(0, " + rangeSliderY(+d.year) + ")";
+//     });
+//
+//
+// var squareWidth = 0;
+//
+// var squares = bars.selectAll(".squares")
+//     .data(function (d) {
+//         return d.eventsPerYear
+//     })
+//     .enter()
+//     .append("rect")
+//     .attr("class", function (d) {
+//         return "squares " + d.label;
+//     })
+//     .attr("height", function (d) {
+//         return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+//     })
+//     .attr("width", function (d) {
+//         squareWidth = (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+//         return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+//     })
+//     .attr("x", function (d, i) {
+//         return (-squareWidth - (i * (squareWidth + 1) + 1));
+//     })
+//     .attr("fill", function (d) {
+//         return ("#f1dd97")
+//     }).on("mouseover", function (d) {
+//         showToolTip(d, graph)
+//     }).on("mouseout", function () {
+//         d3.select("#tooltip").classed("hidden", true);
+//
+//     });
+//
+//
+// var slider = g.append("g")
+//     .attr("transform", "translate(" + midX + ", 50)")
+//     .attr("class", "slider");
+//
+// slider.append("line")
+//     .attr("class", "track")
+//     .attr("y1", rangeSliderY.range()[0])
+//     .attr("y2", rangeSliderY.range()[1])
+//     .select(function () {
+//         return this.parentNode.appendChild(this.cloneNode(true));
+//     })
+//     .attr("class", "track-inset")
+//     .select(function () {
+//         return this.parentNode.appendChild(this.cloneNode(true));
+//     })
+//     .attr("class", "track-overlay")
+//     .call(d3.drag()
+//         .on("start.interrupt", function () {
+//             slider.interrupt();
+//
+//         })
+//         .on("start drag", function () {
+//             handle.attr("cy", rangeSliderY(rangeSliderY.invert(d3.event.y)));
+//             update(float2int(rangeSliderY.invert(d3.event.y)));
+//         }));
+//
+//
+// var handle = slider.insert("circle", ".track-overlay")
+//     .attr("class", "handle")
+//     .attr("r", 7)
+//     .attr("cy", 0);
 
 
     var collapseCheckBox = d3.select("#collapseCheckBox");
@@ -615,8 +589,8 @@ d3.select("#idField").on("keydown", function () {
 
     console.log(+this.value);
 
-    var centralActorID = this.value;
-    var centralActor = actorManagement.getCentralActor(centralActorID);
+    centralActorID = this.value;
+    centralActor = actorManagement.getCentralActor(centralActorID);
 
     var populatedActorData = actorManagement.buildNodeList(centralActor);
     console.log(populatedActorData);
@@ -698,7 +672,7 @@ function showPopUp(element, data, type) {
             .style("top", yPosition + "px")
             .select("#eventType")
             .text(function (d) {
-                    return element.label;
+                return element.label;
             });
 
         d3.select("#eventTooltip").classed("hidden", false);

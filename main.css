@@ -2,6 +2,19 @@
     font-family: 'Helvetica', sans-serif;
 }
 
+
+
+.label {
+    font-weight: normal;
+    font-size: 12px;
+
+}
+
+.label.centralActor {
+    font-weight: bold;
+
+}
+
 .links line {
     stroke: #000;
     stroke-opacity: 1;
