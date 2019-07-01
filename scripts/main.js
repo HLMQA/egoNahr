@@ -91,11 +91,11 @@ function drawGraph(data) {
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
-        }).distance(60).strength(function (d) {
+        }).distance(40).strength(function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.7;
             return 2;
         }))
-        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(550))
+        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(750))
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("collisionForce", collisionForce);
 
@@ -305,7 +305,7 @@ function drawGraph(data) {
                 return marker(godParentMarkerColor);
             }
             else return marker(parentMarkerColor);
-        })
+        });
 
         d3.select("#tooltip").classed("hidden", true);
     });
