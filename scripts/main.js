@@ -9,10 +9,11 @@ var simulation;
 
 var svg = d3.select("svg"),
     // width = +svg._groups[0][0].clientWidth,
-    width = 1200,
-    height = +svg.attr("height"),
-    midX = 50,
-    sliderHeight = height * 7 / 8;
+    width = 1600,
+    // height = +svg.attr("height"),
+    height = 1200,
+    sliderHeight = height * 7 / 8,
+    midX = 50;
 
 
 var lifeSpanWidth = 200;
@@ -29,6 +30,29 @@ var yearFrequency = function (year, frequency) {
 
 function drawGraph(data) {
 
+
+    var godParentMarkerColor = "#c8c8c8";
+    var parentMarkerColor = "#000000";
+    var highlightedMarkerColor = "#FFD700";
+
+    var defs = svg.append("svg:defs");
+
+    function marker(color) {
+        defs.append("svg:marker")
+            .attr("id", color.replace("#", ""))
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 5) // This sets how far back it sits, kinda
+            .attr("refY", 0)
+            .attr("markerWidth", 9)
+            .attr("markerHeight", 9)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse")
+            .append("svg:path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .style("fill", color);
+
+        return "url(" + color + ")";
+    };
 
     var graph = {};
     graph["nodes"] = data.actors;
@@ -65,10 +89,11 @@ function drawGraph(data) {
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
         }).distance(40).strength(function (d) {
-            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 0.8;
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 3;
+            else if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL) return 4.2;
             return 2;
         }))
-        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(0).distanceMax(550))
+        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(80).distanceMax(550))
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("collisionForce", collisionForce);
 
@@ -90,8 +115,23 @@ function drawGraph(data) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
                 return 1;
             }
+            else if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL) {
+                return 0.2;}
             else return 2;
-        });
+        }).attr("marker-end", function (d) {
+                var target;
+                if (typeof d.target === 'string') {
+                    target = util.findActorNodeByID(d.target, data.actors);
+                } else target = d.target;
+                if (!target.isActor) {
+                    return;
+                }
+                if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
+                    return marker(godParentMarkerColor);
+                }
+                else return marker(parentMarkerColor);
+            }
+        );
 
 
     var actorNodes = svg.append("g")
@@ -115,17 +155,48 @@ function drawGraph(data) {
         .attr("y1", 5)
         .attr("y2", 5)
         .attr('fill', 'white')
-        // .attr('stroke', function (d) {
-        //     if (d.isActor) {
-        //         return 'white';
-        //     }
-        //     else
-        //         return 'none';
-        // })
+        .attr('stroke', function (d) {
+            if (d.isActor) {
+                return 'black';
+            }
+            else
+                return 'none';
+        })
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
+    var eventNodes = actorNodes.append("g")
+        .attr("class", "eventArray")
+        .selectAll("circle")
+        .data(function (d) {
+            if (d.isActor) {
+                var actorObject = util.findActorNodeByID(d.ID, data.objects);
+                return (actorObject.eventList.sort(function (x, y) {
+                    return d3.ascending(x.eventTime.year(), y.eventTime.year());
+                }));
+            }
+            else return [];
+        })
+        .enter().append("circle")
+        .attr("class", "eventUnit")
+        .attr("r", function (d) {
+            // if (d.isActor) {
+            return 3;
+            // }
+            // else return 0;
+        })
+        .attr("cx", function (d, i) {
+            return i * 12 + 5
+        })
+        .attr("cy", 14)
+        .attr('fill', 'none')
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+
+
 
 
     var text = actorNodes.select('text')
@@ -168,7 +239,34 @@ function drawGraph(data) {
                 }
                 else
                     return "#eee";
+            }).attr("marker-end", function (l) {
+                var target;
+                if (typeof l.target === 'string') {
+                    target = util.findActorNodeByID(l.target, data.actors);
+                } else target = l.target;
+                if (!target.isActor) {
+                    return;
+                }
+
+                var actorObject = util.findActorNodeByID(d.ID, data.objects);
+                if (l.source.ID.split("+").includes(d.ID) || l.target.ID.split("+").includes(d.ID)) {
+                    return marker(highlightedMarkerColor);
+                }
+                if (!actorObject.firstParent) {
+                    var firstParentID = ""
+                } else var firstParentID = actorObject.firstParent.ID;
+                if (!actorObject.secondParent) {
+                    var secondParentID = ""
+                } else var secondParentID = actorObject.secondParent.ID;
+
+
+                if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
+                    return marker(highlightedMarkerColor);
+                }
+                else
+                    return marker("#eee");
             });
+
             showPopUp(d, data, "actor");
 
         });
@@ -183,6 +281,20 @@ function drawGraph(data) {
                 return "#eee";
             }
             else return "black";
+        }).attr("marker-end", function (d) {
+
+            var target;
+            if (typeof d.target === 'string') {
+                target = util.findActorNodeByID(d.target, data.actors);
+            } else target = d.target;
+            if (!target.isActor) {
+                return;
+            }
+
+            if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
+                return marker(godParentMarkerColor);
+            }
+            else return marker(parentMarkerColor);
         });
 
         d3.select("#tooltip").classed("hidden", true);
@@ -209,8 +321,10 @@ function drawGraph(data) {
 
         link
             .attr("x1", function (d) {
-                if (d.source.isActor) {
-                    return d.source.x + d.source.textWidth + 10;
+                if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL){
+                    return d.source.x;}
+                else if (d.source.isActor) {
+                    return d.source.x + d.source.textWidth;
                 }
                 else return d.source.x + 80;
             })
@@ -218,9 +332,10 @@ function drawGraph(data) {
                 return d.source.y;
             })
             .attr("x2", function (d) {
-
-                if (d.target.isActor) {
-                    return d.target.x - 10 ;
+                if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL)
+                    return d.target.x;
+                else if (d.target.isActor) {
+                    return d.target.x - 10;
                 }
                 else return d.target.x + 80;
             })
@@ -277,14 +392,14 @@ function drawGraph(data) {
         d3.select("#tooltip").classed("hidden", true);
 
     });
-
-    eventNodes.on('mouseover', function (d) {
-        showPopUp(d, data, "event")
-    })
-        .on('mouseout', function (d) {
-            d3.select("#eventTooltip").classed("hidden", true);
-
-        });
+    //
+    // eventNodes.on('mouseover', function (d) {
+    //     showPopUp(d, data, "event")
+    // })
+    //     .on('mouseout', function (d) {
+    //         d3.select("#eventTooltip").classed("hidden", true);
+    //
+    //     });
 
     var rangeSliderY = d3.scaleLinear()
         .domain([+rangeSliderMin - 5, +rangeSliderMax + 5])
@@ -299,103 +414,103 @@ function drawGraph(data) {
         })]);
 
 
-// var g = d3.select("#sideBar").append("g")
-//     .attr("height", sliderHeight);
+    var g = d3.select("#sideBar").append("g")
+        .attr("height", sliderHeight);
+
+    var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
+    g.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(" + midX + ", 50)")
+        .call(d3.axisRight(rangeSliderY)
+            .ticks(minorTickNumber, ".0f")
+            .tickSize(-5))
+        // .selectAll(".tick")
+        // .exit()
+        .classed("minor", true);
+
+    g.append("g")
+        .attr("transform", "translate(" + midX + ", 50)")
+        .attr("class", "axis")
+        .call(d3.axisRight(rangeSliderY)
+            .ticks(10, ".0f")
+            .tickSize(10, 5)
+        );
+
+
+    var barChart = g.append("g")
+        .attr("transform", "translate(" + midX + ", 50)");
+
+    var bars = barChart.selectAll(".bar")
+        .data(yearFrequencyList)
+        .enter()
+        .append("g")
+        .attr("transform", function (d) {
+            return "translate(0, " + rangeSliderY(+d.year) + ")";
+        });
+
+
+    var squareWidth = 0;
 //
-// var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
-// g.append("g")
-//     .attr("class", "grid")
-//     .attr("transform", "translate(" + midX + ", 50)")
-//     .call(d3.axisRight(rangeSliderY)
-//         .ticks(minorTickNumber, ".0f")
-//         .tickSize(-5))
-//     // .selectAll(".tick")
-//     // .exit()
-//     .classed("minor", true);
-//
-// g.append("g")
-//     .attr("transform", "translate(" + midX + ", 50)")
-//     .attr("class", "axis")
-//     .call(d3.axisRight(rangeSliderY)
-//         .ticks(10, ".0f")
-//         .tickSize(10, 5)
-//     );
-//
-//
-// var barChart = g.append("g")
-//     .attr("transform", "translate(" + midX + ", 50)");
-//
-// var bars = barChart.selectAll(".bar")
-//     .data(yearFrequencyList)
-//     .enter()
-//     .append("g")
-//     .attr("transform", function (d) {
-//         return "translate(0, " + rangeSliderY(+d.year) + ")";
-//     });
-//
-//
-// var squareWidth = 0;
-//
-// var squares = bars.selectAll(".squares")
-//     .data(function (d) {
-//         return d.eventsPerYear
-//     })
-//     .enter()
-//     .append("rect")
-//     .attr("class", function (d) {
-//         return "squares " + d.label;
-//     })
-//     .attr("height", function (d) {
-//         return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
-//     })
-//     .attr("width", function (d) {
-//         squareWidth = (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
-//         return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
-//     })
-//     .attr("x", function (d, i) {
-//         return (-squareWidth - (i * (squareWidth + 1) + 1));
-//     })
-//     .attr("fill", function (d) {
-//         return ("#f1dd97")
-//     }).on("mouseover", function (d) {
-//         showToolTip(d, graph)
-//     }).on("mouseout", function () {
-//         d3.select("#tooltip").classed("hidden", true);
-//
-//     });
-//
-//
-// var slider = g.append("g")
-//     .attr("transform", "translate(" + midX + ", 50)")
-//     .attr("class", "slider");
-//
-// slider.append("line")
-//     .attr("class", "track")
-//     .attr("y1", rangeSliderY.range()[0])
-//     .attr("y2", rangeSliderY.range()[1])
-//     .select(function () {
-//         return this.parentNode.appendChild(this.cloneNode(true));
-//     })
-//     .attr("class", "track-inset")
-//     .select(function () {
-//         return this.parentNode.appendChild(this.cloneNode(true));
-//     })
-//     .attr("class", "track-overlay")
-//     .call(d3.drag()
-//         .on("start.interrupt", function () {
-//             slider.interrupt();
-//
-//         })
-//         .on("start drag", function () {
-//             handle.attr("cy", rangeSliderY(rangeSliderY.invert(d3.event.y)));
-//             update(float2int(rangeSliderY.invert(d3.event.y)));
-//         }));
-//
-//
-// var handle = slider.insert("circle", ".track-overlay")
-//     .attr("class", "handle")
-//     .attr("r", 7)
-//     .attr("cy", 0);
+    var squares = bars.selectAll(".squares")
+        .data(function (d) {
+            return d.eventsPerYear;
+        })
+        .enter()
+        .append("rect")
+        .attr("class", function (d) {
+            return "squares " + d.label;
+        })
+        .attr("height", function (d) {
+            return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+        })
+        .attr("width", function (d) {
+            squareWidth = (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+            return (Math.min(rangeSliderY(+d.eventTime.year() + 1) - rangeSliderY(+d.eventTime.year()) - 1, 6));
+        })
+        .attr("x", function (d, i) {
+            return (-squareWidth - (i * (squareWidth + 1) + 1));
+        })
+        .attr("fill", function (d) {
+            return ("#f1dd97")
+        }).on("mouseover", function (d) {
+            // showToolTip(d, graph)
+        }).on("mouseout", function () {
+            // d3.select("#tooltip").classed("hidden", true);
+
+        });
+
+
+    var slider = g.append("g")
+        .attr("transform", "translate(" + midX + ", 50)")
+        .attr("class", "slider");
+
+    slider.append("line")
+        .attr("class", "track")
+        .attr("y1", rangeSliderY.range()[0])
+        .attr("y2", rangeSliderY.range()[1])
+        .select(function () {
+            return this.parentNode.appendChild(this.cloneNode(true));
+        })
+        .attr("class", "track-inset")
+        .select(function () {
+            return this.parentNode.appendChild(this.cloneNode(true));
+        })
+        .attr("class", "track-overlay")
+        .call(d3.drag()
+            .on("start.interrupt", function () {
+                slider.interrupt();
+
+            })
+            .on("start drag", function () {
+                handle.attr("cy", rangeSliderY(rangeSliderY.invert(d3.event.y)));
+                update(float2int(rangeSliderY.invert(d3.event.y)));
+            }));
+
+
+    var handle = slider.insert("circle", ".track-overlay")
+        .attr("class", "handle")
+        .attr("r", 7)
+        .attr("cy", 0);
 
 
     var collapseCheckBox = d3.select("#collapseCheckBox");
@@ -405,7 +520,7 @@ function drawGraph(data) {
 
             d3.selectAll(".actorObject").attr("x", function (d) {
                 if (d.recursiveDepth > 1 && d.isActor) {
-                    d.fx = 650 + d.treeDepth * 300;
+                    d.fx = 450 + d.treeDepth * 500;
                 }
             })
             d3.selectAll(".rect")
@@ -687,10 +802,11 @@ function showPopUp(element, data, type) {
 // getActors(16);
 
 
-var centralActorID = "493";
+// var centralActorID = "493";
+var centralActorID = "890";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
 var populatedActorData = actorManagement.buildNodeList(centralActor);
-console.log(populatedActorData);
+
 drawGraph(populatedActorData);
 

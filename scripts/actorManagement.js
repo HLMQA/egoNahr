@@ -1,5 +1,8 @@
 var exports = module.exports = {};
 
+import * as d3Collection from 'd3-collection';
+
+
 const jsonConversion = require('./jsonConversion.js');
 const util = require('./util.js');
 const _ = require("underscore");
@@ -15,7 +18,8 @@ var maxRecursiveDepth;
 var Labels = {
     MARRIAGE_LABEL: "Marriage",
     OFFSPRING_LABEL: "Offspring",
-    GODPARENTHOOD_LABEL: "Godparenthood"
+    GODPARENTHOOD_LABEL: "Godparenthood",
+    SIBLINGHOOD_LABEL: "Sibling"
 }
 
 
@@ -115,6 +119,8 @@ function buildNodeList(actor) {
     correctCoupleTies(data);
     completeNonFamilyLevels(data);
     correctTieOrders(data);
+    addSiblingLinks(data)
+    console.log(data);
     return (finalActorList);
 }
 
@@ -646,7 +652,6 @@ function buildUnionNode(actor, recursiveDepth) {
     parentUnionNode = pushActorToList(parentUnionNode, data.actors, recursiveDepth + 0.5);
 
 
-
     var actorToUnionNodeTie = new jsonConversion.Tie(actor.ID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "marriageStartYear", "marriageEndYear");
     pushTieToList(actorToUnionNodeTie, data.ties);
 
@@ -697,6 +702,54 @@ function correctTieOrders(graph) {
             graph.ties[i].source = elder;
             graph.ties[i].target = youngin;
         }
+    }
+}
+
+
+function addSiblingLinks(graph) {
+    var filteredTieList = graph.ties.filter(function (d) {
+        var parentID;
+        if (d.source.ID)
+            parentID = d.source.ID;
+        else
+            parentID = d.source;
+        return parentID.includes("+");
+    });
+
+    var siblingGroups = d3Collection.nest()
+        .key(function (d) {
+            var parentID;
+            if (d.source.ID)
+                parentID = d.source.ID;
+            else
+                parentID = d.source;
+            return parentID;
+        })
+        .entries(filteredTieList);
+
+    for (var i = 0; i < siblingGroups.length; i++) {
+
+        siblingGroups[i].values.sort(function (a, b) {
+            var objectA, objectB;
+
+            if (a.target.ID)
+            objectA = util.findActorNodeByID(a.target.ID, graph.objects);
+            else
+                objectA = util.findActorNodeByID(a.target, graph.objects);
+
+            if (b.target.ID)
+                objectB = util.findActorNodeByID(b.target.ID, graph.objects);
+            else
+                objectB = util.findActorNodeByID(b.target, graph.objects);
+            return objectA.baptismDate.format('YYYYMMDD') - objectB.baptismDate.format('YYYYMMDD');
+        });
+
+        for (var j = 0; j<siblingGroups[i].values.length-1; j++){
+
+            var newTie = new jsonConversion.Tie(siblingGroups[i].values[j].target, siblingGroups[i].values[j+1].target, "Sibling");
+            newTie = pushTieToList(newTie, graph.ties);
+        }
+
     }
 }
 
