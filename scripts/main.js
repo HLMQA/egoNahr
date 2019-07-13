@@ -7,9 +7,24 @@ const d3 = require('d3');
 var simulation;
 
 
-var svg = d3.select("svg"),
+var svg = d3.select("svg");
     // width = +svg._groups[0][0].clientWidth,
-    width = 1600,
+    // width = 1000,
+    // // height = +svg.attr("height"),
+    // height = 1200,
+    // midX = 50,
+    // sliderHeight = height * 7 / 8;
+
+// var svg = d3.select("svg")
+//     .call(d3.zoom().on("zoom", function () {
+//         svg.attr("transform", d3.event.transform)
+//     }))
+//     .append("g");
+
+// var svgFrame = d3.select("svg");
+// var svg = svgFrame.append("g"),
+// width = +svg._groups[0][0].clientWidth,
+var width = 1600,
     // height = +svg.attr("height"),
     height = 1200,
     sliderHeight = height * 7 / 8,
@@ -28,8 +43,47 @@ var yearFrequency = function (year, frequency) {
 }
 
 
+var zoom = d3.zoom().on("zoom", function () {
+    svgFrame.attr("transform", d3.event.transform);
+});
+
+
+var svgFrame = d3.select("svg")
+    // .call(zoom);
+
+var svgZoomRect = svgFrame.append("rect")
+    .call(zoom);
+
+
 function drawGraph(data) {
 
+    // d3.select("canvas").remove();
+    //
+    //
+    svgZoomRect
+        .attr("width", width)
+        .attr("height", height)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .call(zoom.transform, d3.zoomIdentity);
+
+
+    var svg = svgFrame
+        .append("g")
+        .attr("class", "canvas");
+    //
+    //
+    //
+    // var bbox, viewBox, vx, vy, vw, vh, defaultView;
+    //
+    // bbox = svgZoomRect.node().getBBox();
+    // vx = bbox.x;		// container x co-ordinate
+    // vy = bbox.y;		// container y co-ordinate
+    // vw = width;	// container width
+    // vh = height;	// container height
+    // defaultView = "" + vx + " " + vy + " " + vw + " " + vh;
+    // svgZoomRect
+    //     .attr("viewBox", defaultView)
 
     var godParentMarkerColor = "#c8c8c8";
     var parentMarkerColor = "#000000";
@@ -84,16 +138,23 @@ function drawGraph(data) {
 
     var collisionForce = d3.forceCollide(12).strength(1).iterations(100);
 
-
     simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function (d) {
             return d.ID;
-        }).distance(40).strength(function (d) {
+        }).distance(function (d) {
+                if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 400;
+                else if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL) return 10;
+
+                else return 80;
+            }
+        ).strength(function (d) {
             if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) return 3;
             else if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL) return 4.2;
-            return 2;
+            return 1.3;
         }))
-        .force("charge", d3.forceManyBody().strength(-2000).distanceMin(80).distanceMax(550))
+        .force("charge", d3.forceManyBody().strength(-500)
+            .distanceMin(0)
+            .distanceMax(850))
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("collisionForce", collisionForce);
 
@@ -116,7 +177,8 @@ function drawGraph(data) {
                 return 1;
             }
             else if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL) {
-                return 0.2;}
+                return 0.2;
+            }
             else return 2;
         }).attr("marker-end", function (d) {
                 var target;
@@ -195,8 +257,6 @@ function drawGraph(data) {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
-
-
 
 
     var text = actorNodes.select('text')
@@ -321,8 +381,9 @@ function drawGraph(data) {
 
         link
             .attr("x1", function (d) {
-                if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL){
-                    return d.source.x;}
+                if (d.tieType === actorManagement.Labels.SIBLINGHOOD_LABEL) {
+                    return d.source.x;
+                }
                 else if (d.source.isActor) {
                     return d.source.x + d.source.textWidth;
                 }
@@ -349,6 +410,7 @@ function drawGraph(data) {
             })
 
     }
+
 
     //
     // underlines.on('mouseover', function (d) {
@@ -400,6 +462,7 @@ function drawGraph(data) {
     //         d3.select("#eventTooltip").classed("hidden", true);
     //
     //     });
+
 
     var rangeSliderY = d3.scaleLinear()
         .domain([+rangeSliderMin - 5, +rangeSliderMax + 5])
@@ -572,6 +635,8 @@ function drawGraph(data) {
         }
 
     });
+
+
 }
 
 
@@ -807,6 +872,7 @@ var centralActorID = "890";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
 var populatedActorData = actorManagement.buildNodeList(centralActor);
+
 
 drawGraph(populatedActorData);
 
