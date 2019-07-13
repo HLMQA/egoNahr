@@ -43,34 +43,29 @@ var yearFrequency = function (year, frequency) {
 }
 
 
-var zoom = d3.zoom().on("zoom", function () {
-    svgFrame.attr("transform", d3.event.transform);
-});
+var zoom = d3.zoom().scaleExtent([0.5, 4]).on("zoom", zoomed);
 
 
 var svgFrame = d3.select("svg")
-    // .call(zoom);
-
-var svgZoomRect = svgFrame.append("rect")
     .call(zoom);
+
+function zoomed() {
+    var translate = d3.event.transform;
+    // var xScale = d3.event.scale;
+    svg.attr("transform", translate);
+}
 
 
 function drawGraph(data) {
 
-    // d3.select("canvas").remove();
-    //
-    //
-    svgZoomRect
-        .attr("width", width)
-        .attr("height", height)
-        .style("fill", "none")
-        .style("pointer-events", "all")
-        .call(zoom.transform, d3.zoomIdentity);
+
+    svgFrame.call(zoom.transform, d3.zoomIdentity);
 
 
-    var svg = svgFrame
+    svg = svgFrame
         .append("g")
-        .attr("class", "canvas");
+        .attr("class", "canvas")
+
     //
     //
     //
