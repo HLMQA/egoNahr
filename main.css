@@ -1,7 +1,6 @@
-*{
+* {
     font-family: 'Helvetica', sans-serif;
 }
-
 
 .Sibling {
     visibility: hidden;
@@ -32,6 +31,7 @@
     stroke-width: 1px;
 
 }
+
 .nodes circle {
     stroke: black;
     stroke-width: 1px;
@@ -41,7 +41,6 @@
     stroke: #B2B2B2;
     fill: #B2B2B2;
 }
-
 
 .eventUnit.currentCircle {
     stroke: black;
@@ -59,8 +58,6 @@ text {
     font-family: sans-serif;
     font-size: 10px;
 }
-
-
 
 #tooltip {
     position: absolute;
@@ -89,7 +86,7 @@ text {
 div#container {
     height: 200px;
     width: 150px;
-    border:2px solid #000;
+    border: 2px solid #000;
     overflow: scroll;
 }
 
@@ -104,12 +101,10 @@ div#container {
     line-height: 20px;
 }
 
-
 .squares {
-    overflow:auto;
+    overflow: auto;
 
 }
-
 
 .Baptism {
     /*fill: blueviolet;*/
@@ -117,13 +112,11 @@ div#container {
 
 }
 
-
 .Funeral {
     fill: black;
 }
 
-
-.Offspring{
+.Offspring {
     fill: #b3dd72;
     fill: black;
 
@@ -135,25 +128,18 @@ div#container {
 
 }
 
-
-
-.minor text{
+.minor text {
     display: none;
 
 }
 
-
 .hidden {
 
-
 }
-
 
 #sideBar {
     height: 1200px;
 }
-
-
 
 .handle {
     fill: #fff;
@@ -162,13 +148,11 @@ div#container {
     stroke-width: 1.25px;
 }
 
-
 .track,
 .track-inset,
 .track-overlay {
     stroke-linecap: round;
 }
-
 
 .track-inset {
     stroke: black;
@@ -190,8 +174,6 @@ div#container {
     top: 800px;
 
 }
-
-
 
 #tooltip,
 #eventTooltip {
@@ -230,3 +212,65 @@ div#container {
     line-height: 20px;
 }
 
+@keyframes lds-eclipse {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes lds-eclipse {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.lds-eclipse {
+    position: relative;
+}
+
+.lds-eclipse div {
+    position: absolute;
+    -webkit-animation: lds-eclipse 1s linear infinite;
+    animation: lds-eclipse 1s linear infinite;
+    width: 160px;
+    height: 160px;
+    top: 20px;
+    left: 20px;
+    border-radius: 50%;
+    box-shadow: 0 8px 0 0 #8a8a8a;
+    -webkit-transform-origin: 80px 84px;
+    transform-origin: 80px 84px;
+}
+
+.lds-eclipse {
+    width: 92px !important;
+    height: 92px !important;
+    -webkit-transform: translate(-46px, -46px) scale(0.46) translate(46px, 46px);
+    transform: translate(-46px, -46px) scale(0.46) translate(46px, 46px);
+}
+
+#spinner {
+    z-index: 100;
+}
+
+#spinner.hidden {
+    display: none;
+}

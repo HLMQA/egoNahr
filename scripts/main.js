@@ -8,12 +8,12 @@ var simulation;
 
 
 var svg = d3.select("svg");
-    // width = +svg._groups[0][0].clientWidth,
-    // width = 1000,
-    // // height = +svg.attr("height"),
-    // height = 1200,
-    // midX = 50,
-    // sliderHeight = height * 7 / 8;
+// width = +svg._groups[0][0].clientWidth,
+// width = 1000,
+// // height = +svg.attr("height"),
+// height = 1200,
+// midX = 50,
+// sliderHeight = height * 7 / 8;
 
 // var svg = d3.select("svg")
 //     .call(d3.zoom().on("zoom", function () {
@@ -153,6 +153,9 @@ function drawGraph(data) {
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("collisionForce", collisionForce);
 
+
+    d3.select("#spinner")
+        .classed("hidden", true);
 
     var link = svg.append("g")
         .selectAll("line")
@@ -761,18 +764,22 @@ d3.select("#yearField").on("input", function () {
 d3.select("#idField").on("keydown", function () {
     if (d3.event.keyCode !== 13)
         return;
-
-    console.log(+this.value);
+    d3.selectAll("svg > *").remove();
+    // debugger;
+    d3.select("#spinner")
+        .classed("hidden", false);
 
     centralActorID = this.value;
-    centralActor = actorManagement.getCentralActor(centralActorID);
 
-    var populatedActorData = actorManagement.buildNodeList(centralActor);
-    console.log(populatedActorData);
+    setTimeout(function () {
+        centralActor = actorManagement.getCentralActor(centralActorID);
 
-    d3.selectAll("svg > *").remove();
+        var populatedActorData = actorManagement.buildNodeList(centralActor);
 
-    drawGraph(populatedActorData);
+        drawGraph(populatedActorData);
+
+    }, 1);
+
 });
 
 function update(inputYear) {
@@ -786,7 +793,6 @@ function float2int(value) {
 
 
 function showPopUp(element, data, type) {
-
     if (type === "actor") {
 
         var currentActor = util.findActorNodeByID(element.ID, data.objects);
@@ -863,6 +869,10 @@ function showPopUp(element, data, type) {
 
 
 // var centralActorID = "493";
+
+d3.select("#spinner")
+    .classed("hidden", false);
+
 var centralActorID = "890";
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
