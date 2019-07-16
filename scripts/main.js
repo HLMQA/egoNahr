@@ -44,7 +44,7 @@ var yearFrequency = function (year, frequency) {
 
 
 var zoom = d3.zoom().scaleExtent([0.5, 4]).on("zoom", zoomed);
-
+var yearSlider, handle, rangeSliderY;
 
 var svgFrame = d3.select("svg")
     .call(zoom);
@@ -158,9 +158,9 @@ function drawGraph(data) {
         .classed("hidden", true);
 
     var link = svg.append("g")
-        .selectAll("line")
+        .selectAll("path")
         .data(graph.links)
-        .enter().append("line")
+        .enter().append("path")
         .attr("class", function (d) {
             return ("links " + d.tieType);
         })
@@ -226,6 +226,8 @@ function drawGraph(data) {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
+
+
     var eventNodes = actorNodes.append("g")
         .attr("class", "eventArray")
         .selectAll("circle")
@@ -254,7 +256,11 @@ function drawGraph(data) {
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
-            .on("end", dragended));
+            .on("end", dragended))
+        .on("click", function (d) {
+            console.log(d.eventTime.year());
+            update(d.eventTime.year());
+        });
 
 
     var text = actorNodes.select('text')
@@ -402,6 +408,31 @@ function drawGraph(data) {
                 return d.target.y;
             });
 
+        link.attr("d", d3.linkHorizontal()
+            .x(function (d, i) {
+
+                var sourceActor = graph.links[i].source;
+                var targetActor = graph.links[i].target;
+
+                if (sourceActor.ID === d.ID) {
+                    if (d.isActor) {
+                        return d.x + lifeSpanWidth;
+                    }
+                    else {
+                        return d.x + 80;
+                    }
+                }
+                else if (targetActor.ID === d.ID) {
+                    if (d.isActor) {
+                        return (d.x - 10);
+                    }
+                    else return d.x + 80;
+
+                }
+            }).y(function (d) {
+                return d.y;
+            }));
+
         actorNodes
             .attr("transform", function (d) {
                 return "translate(" + d.x + "," + d.y + ")";
@@ -452,17 +483,17 @@ function drawGraph(data) {
         d3.select("#tooltip").classed("hidden", true);
 
     });
-    //
-    // eventNodes.on('mouseover', function (d) {
-    //     showPopUp(d, data, "event")
-    // })
-    //     .on('mouseout', function (d) {
-    //         d3.select("#eventTooltip").classed("hidden", true);
-    //
-    //     });
+
+    eventNodes.on('mouseover', function (d) {
+        showPopUp(d, data, "event")
+    })
+        .on('mouseout', function (d) {
+            d3.select("#eventTooltip").classed("hidden", true);
+
+        });
 
 
-    var rangeSliderY = d3.scaleLinear()
+    rangeSliderY = d3.scaleLinear()
         .domain([+rangeSliderMin - 5, +rangeSliderMax + 5])
         .range([0, sliderHeight])
         .clamp(true);
@@ -541,11 +572,11 @@ function drawGraph(data) {
         });
 
 
-    var slider = g.append("g")
+    yearSlider = g.append("g")
         .attr("transform", "translate(" + midX + ", 50)")
-        .attr("class", "slider");
+        .attr("class", "yearSlider");
 
-    slider.append("line")
+    yearSlider.append("line")
         .attr("class", "track")
         .attr("y1", rangeSliderY.range()[0])
         .attr("y2", rangeSliderY.range()[1])
@@ -559,7 +590,7 @@ function drawGraph(data) {
         .attr("class", "track-overlay")
         .call(d3.drag()
             .on("start.interrupt", function () {
-                slider.interrupt();
+                yearSlider.interrupt();
 
             })
             .on("start drag", function () {
@@ -568,7 +599,7 @@ function drawGraph(data) {
             }));
 
 
-    var handle = slider.insert("circle", ".track-overlay")
+    handle = yearSlider.insert("circle", ".track-overlay")
         .attr("class", "handle")
         .attr("r", 7)
         .attr("cy", 0);
@@ -784,6 +815,9 @@ d3.select("#idField").on("keydown", function () {
 
 function update(inputYear) {
     console.log(inputYear);
+    handle.attr("cy", rangeSliderY(inputYear));
+
+    // yearSlider.value(Math.random() * 100)
     changeYear(inputYear);
 }
 

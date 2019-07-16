@@ -34,6 +34,7 @@
 
 .nodes circle {
     stroke: black;
+    fill: white;
     stroke-width: 1px;
 }
 
@@ -116,11 +117,11 @@ div#container {
     fill: black;
 }
 
-.Offspring {
-    fill: #b3dd72;
-    fill: black;
+/*.Offspring {*/
+    /*fill: #b3dd72;*/
+    /*fill: black;*/
 
-}
+/*}*/
 
 .Godparent {
     fill: #98e5f5;
@@ -273,4 +274,10 @@ div#container {
 
 #spinner.hidden {
     display: none;
+}
+
+path {
+    stroke: black;
+    stroke-width: 2px;
+    fill:none;
 }
