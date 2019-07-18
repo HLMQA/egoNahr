@@ -32,6 +32,23 @@
 
 }
 
+.links.Offspring{
+    stroke: black;
+    stroke-width: 2px;
+
+}
+
+.links.Godparenthood{
+    stroke: #959595;
+    stroke-width: 1px;
+
+}
+
+.links.active{
+    stroke: #f3b224;
+}
+
+
 .nodes circle {
     stroke: black;
     fill: white;
