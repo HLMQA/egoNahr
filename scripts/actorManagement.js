@@ -656,7 +656,7 @@ function buildUnionNode(actor, recursiveDepth) {
     pushTieToList(actorToUnionNodeTie, data.ties);
 
     if (actorSpouseID != "") {
-        var spouseToUnionNodeTie = new jsonConversion.Tie(actorSpouseID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "marriageStartYear", "marriageEndYear")
+        var spouseToUnionNodeTie = new jsonConversion.Tie(actorSpouseID, parentUnionNode.ID, Labels.OFFSPRING_LABEL, "marriageStartYear", "marriageEndYear");
         pushTieToList(spouseToUnionNodeTie, data.ties);
     }
 

@@ -141,7 +141,6 @@ div#container {
 /*}*/
 
 .Godparent {
-    fill: #98e5f5;
     fill: black;
 
 }
@@ -155,9 +154,6 @@ div#container {
 
 }
 
-#sideBar {
-    height: 1200px;
-}
 
 .handle {
     fill: #fff;

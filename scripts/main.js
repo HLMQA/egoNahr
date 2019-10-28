@@ -8,33 +8,21 @@ var simulation;
 
 
 var svg = d3.select("svg");
-// width = +svg._groups[0][0].clientWidth,
-// width = 1000,
-// // height = +svg.attr("height"),
-// height = 1200,
-// midX = 50,
-// sliderHeight = height * 7 / 8;
 
-// var svg = d3.select("svg")
-//     .call(d3.zoom().on("zoom", function () {
-//         svg.attr("transform", d3.event.transform)
-//     }))
-//     .append("g");
 
-// var svgFrame = d3.select("svg");
-// var svg = svgFrame.append("g"),
-// width = +svg._groups[0][0].clientWidth,
 var width = 1600,
     // height = +svg.attr("height"),
-    height = 1200,
+    height = d3.select("#frameHeight").node().value,
     sliderHeight = height * 7 / 8,
     midX = 50;
 
+var sliderOffset = 25;
+
+svg.style("height", height);
 
 var lifeSpanWidth = 200;
 var eventList;
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var yearFrequency = function (year, frequency) {
     this.year = year;
@@ -66,23 +54,10 @@ function drawGraph(data) {
         .append("g")
         .attr("class", "canvas")
 
-    //
-    //
-    //
-    // var bbox, viewBox, vx, vy, vw, vh, defaultView;
-    //
-    // bbox = svgZoomRect.node().getBBox();
-    // vx = bbox.x;		// container x co-ordinate
-    // vy = bbox.y;		// container y co-ordinate
-    // vw = width;	// container width
-    // vh = height;	// container height
-    // defaultView = "" + vx + " " + vy + " " + vw + " " + vh;
-    // svgZoomRect
-    //     .attr("viewBox", defaultView)
 
     var godParentMarkerColor = "#959595";
     var parentMarkerColor = "#000000";
-    var highlightedMarkerColor = "#FFD700";
+    var highlightedMarkerColor = "#f3b224";
 
     var defs = svg.append("svg:defs");
 
@@ -314,8 +289,11 @@ function drawGraph(data) {
                     if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
                         return marker(highlightedMarkerColor);
                     }
-                    else
-                        return marker("#ff0000");
+                    else {
+                        var lineColor = d3.select(this).style("stroke");
+                        lineColor = d3.color(lineColor).hex();
+                        return marker(lineColor);
+                    }
                 });
 
             showPopUp(d, data, "actor");
@@ -431,49 +409,6 @@ function drawGraph(data) {
     }
 
 
-    //
-    // underlines.on('mouseover', function (d) {
-    //     actorNodes.style('stroke', function (l) {
-    //         if (l.ID === d.ID || l.ID === d.ID) {
-    //             return "red";
-    //         }
-    //         else
-    //             return "blue";
-    //     });
-    //
-    //     link.style('stroke', function (l) {
-    //         var actorObject = util.findActorNodeByID(d.ID, data.objects);
-    //         if (l.source.ID.includes(d.ID) || l.target.ID.includes(d.ID)) {
-    //             return "gold";
-    //         }
-    //         if (!actorObject.firstParent) {
-    //             var firstParentID = ""
-    //         } else var firstParentID = actorObject.firstParent.ID;
-    //         if (!actorObject.secondParent) {
-    //             var secondParentID = ""
-    //         } else var secondParentID = actorObject.secondParent.ID;
-    //
-    //
-    //         if ((l.target.ID === firstParentID + "+" + secondParentID) || (l.target.ID === secondParentID + "+" + firstParentID)) {
-    //             return "gold";
-    //         }
-    //         else
-    //             return "#eee";
-    //     });
-    //     showPopUp(d, data, "actor");
-    // });
-
-    // underlines.on('mouseout', function () {
-    //     link.style('stroke', function (d) {
-    //         if (d.tieType === actorManagement.Labels.GODPARENTHOOD_LABEL) {
-    //             return "#eee";
-    //         }
-    //         else return "black";
-    //     });
-    //     d3.select("#tooltip").classed("hidden", true);
-    //
-    // });
-
     eventNodes.on('mouseover', function (d) {
         showPopUp(d, data, "event")
     })
@@ -502,16 +437,16 @@ function drawGraph(data) {
     var minorTickNumber = (rangeSliderY.domain()[1] - rangeSliderY.domain()[0]);
     g.append("g")
         .attr("class", "grid")
-        .attr("transform", "translate(" + midX + ", 50)")
+        .attr("transform", "translate(" + midX + ", " + sliderOffset + ")")
         .call(d3.axisRight(rangeSliderY)
             .ticks(minorTickNumber, ".0f")
-            .tickSize(-5))
+            .tickSize(-2))
         // .selectAll(".tick")
         // .exit()
         .classed("minor", true);
 
     g.append("g")
-        .attr("transform", "translate(" + midX + ", 50)")
+        .attr("transform", "translate(" + midX + ", " + sliderOffset + ")")
         .attr("class", "axis")
         .call(d3.axisRight(rangeSliderY)
             .ticks(10, ".0f")
@@ -520,7 +455,7 @@ function drawGraph(data) {
 
 
     var barChart = g.append("g")
-        .attr("transform", "translate(" + midX + ", 50)");
+        .attr("transform", "translate(" + midX + ", " + sliderOffset + ")");
 
     var bars = barChart.selectAll(".bar")
         .data(yearFrequencyList)
@@ -532,7 +467,7 @@ function drawGraph(data) {
 
 
     var squareWidth = 0;
-//
+
     var squares = bars.selectAll(".squares")
         .data(function (d) {
             return d.eventsPerYear;
@@ -552,9 +487,10 @@ function drawGraph(data) {
         .attr("x", function (d, i) {
             return (-squareWidth - (i * (squareWidth + 1) + 1));
         })
-        .attr("fill", function (d) {
-            return ("#f1dd97")
-        }).on("mouseover", function (d) {
+        // .attr("fill", function (d) {
+        //     return ("#f1dd97")
+        // })
+        .on("mouseover", function (d) {
             // showToolTip(d, graph)
         }).on("mouseout", function () {
             // d3.select("#tooltip").classed("hidden", true);
@@ -563,7 +499,7 @@ function drawGraph(data) {
 
 
     yearSlider = g.append("g")
-        .attr("transform", "translate(" + midX + ", 50)")
+        .attr("transform", "translate(" + midX + ", " + sliderOffset + ")")
         .attr("class", "yearSlider");
 
     yearSlider.append("line")
@@ -782,30 +718,10 @@ d3.select("#yearField").on("input", function () {
     update(+this.value);
 });
 
-d3.select("#idField").on("keydown", function () {
-    if (d3.event.keyCode !== 13)
-        return;
-    d3.selectAll("svg > *").remove();
-    // debugger;
-    d3.select("#spinner")
-        .classed("hidden", false);
-
-    centralActorID = this.value;
-
-    setTimeout(function () {
-        centralActor = actorManagement.getCentralActor(centralActorID);
-
-        var populatedActorData = actorManagement.buildNodeList(centralActor);
-
-        drawGraph(populatedActorData);
-
-    }, 1);
-
-});
-
 function update(inputYear) {
     console.log(inputYear);
-    handle.transition()
+    handle
+        // .transition()
         .attr("cy", rangeSliderY(inputYear));
 
     // yearSlider.value(Math.random() * 100)
@@ -854,11 +770,6 @@ function showPopUp(element, data, type) {
 
             });
 
-        // d3.select("#tooltip")
-        //     .style("left", xPosition + "px")
-        //     .style("top", yPosition + "px")
-        //     .select("#occupation")
-        //     .text(currentActor.occupation);
 
         d3.select("#tooltip").classed("hidden", false);
     }
@@ -887,18 +798,11 @@ function showPopUp(element, data, type) {
 
 }
 
-// getActors(4);
-// getActors(42);
-// getActors(480);
-// getActors(16);
-
-
-// var centralActorID = "493";
-
 d3.select("#spinner")
     .classed("hidden", false);
 
-var centralActorID = "890";
+
+var centralActorID = d3.select("#actorID").node().value;
 var centralActor = actorManagement.getCentralActor(centralActorID);
 
 var populatedActorData = actorManagement.buildNodeList(centralActor);

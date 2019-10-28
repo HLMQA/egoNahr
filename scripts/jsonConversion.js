@@ -70,7 +70,7 @@ var tieList = [];
 function getJSON(id) {
     var myActorData;
     var http = new XMLHttpRequest();
-    var url = "https://projectcornelia.be/source_browser/public/router.php";
+    var url = "/source_browser/public/router.php";
     var params = "q=" + id + "&s=ALL-SOURCES&w=search-by-option";
 
     // TODO: now synchronous call. to be fixed
