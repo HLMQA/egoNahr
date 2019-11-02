@@ -294,3 +294,29 @@ path {
     stroke-width: 2px;
     fill:none;
 }
+
+
+.button {
+    background-color: #af1500;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.homeButtons{
+    height:20px;
+    width:500px;
+    margin: -150px -250px;
+    position:relative;
+    top:50%;
+    left:50%;
+}
