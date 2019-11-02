@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>egoNAHR </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+
+
+</head>
+<style>
+</style>
+<body>
+
+<!--<input type="number" placeholder="Add some text" id="yearField" value = "">-->
+<!--<input type="number" placeholder="Add some text" id="idField" value="">-->
+
+<input type="hidden" id="actorID" value = "493">
+<input type="hidden" id="frameHeight" value = "400">
+
+
+<svg width="90%"
+     preserveAspectRatio="xMidYMid meet"
+     style="float:left" ></svg>
+<svg width="10%" height="450" id="sideBar" style="float:left"></svg>
+
+<!--<div id="spinner" class="lds-css ng-scope"><div style="width:100%;height:100%" class="lds-eclipse"><div></div></div></div>-->
+
+<!--<script src="build/bundle.js"></script>-->
+
+<div class ="homeButtons">
+
+<a href="#" class="button">Start</a>
+
+
+</div>
+
+<div id="tooltip" class="hidden">
+    <strong><p id="ID"> NA </p></strong>
+    <br/>
+    <br/>
+
+    <p><strong>Birth: </strong><span id="birthYear"> NA </span></p>
+    <br/>
+    <p><strong>Death: </strong><span id="deathYear"> NA </span></p>
+    <br/>
+    <p><strong>Known occupation: </strong><span id="occupation"> NA </span></p>
+
+</div>
+
+<div id="linkTooltip" class="hidden">
+    <p><span id="relFirstActor">  </span></p>
+    <p><span id="relSecondActor">  </span></p>
+    <br/>
+    <p>Relationship start year: <span id="relStart">  </span></p>
+    <p>Relationship end year: <span id="relEnd">  </span></p>
+    <p>Relationship type: <span id="relType">  </span></p>
+
+</div>
+
+<div id="eventTooltip" class="hidden">
+
+    <p><strong>Event year: </strong><span id="eventYear"> NA </span></p>
+    <p><strong>Type: </strong><span id="eventType"> NA </span></p>
+
+
+</div>
+
+
+
+</body>
+</html>
+
+
+
