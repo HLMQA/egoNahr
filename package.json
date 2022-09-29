@@ -13,8 +13,8 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
-    "d3": "^5.0.0",
-    "d3-scale": "^2.0.0",
+    "d3": "^7.6.1",
+    "d3-scale": "^4.0.2",
     "lodash": "^4.17.11",
     "moment": "^2.22.1",
     "webpack-core": "^0.6.9",
